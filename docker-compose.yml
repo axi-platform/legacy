@@ -1,0 +1,18 @@
+version: "2"
+services:
+  feathers:
+    build: .
+    ports:
+      - "3030:3030"
+      # - "27017:27017"
+    volumes:
+      - ./server/dist:/home/app/feathers
+    depends_on:
+      - mongod
+  mongod:
+    image: ulboralabs/alpine-mongodb:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - /srv/docker/mongodb:/var/lib/mongodb
+    restart: always
