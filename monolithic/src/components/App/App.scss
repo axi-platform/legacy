@@ -1,0 +1,368 @@
+
+@import "~normalize.css";
+@import "../variables.scss";
+
+:global {
+
+  blockquote {
+    margin: 0;
+    border-left: 4px solid #ccc;
+    margin-bottom: 5px;
+    padding-left: 16px;
+    margin-top: 5px;
+  }
+
+  :-webkit-autofill,
+  :-webkit-autofill:hover,
+  :-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+  }
+
+  input::-ms-clear {
+    display: none;
+  }
+
+  @media (min-width: 1000px) {
+    .container.narrow {
+      width: 690px;
+    }
+    .container.normal {
+      width: 940px;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .container {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
+
+  @media screen and (max-width: 680px) {
+    .col-xs-12 {
+      margin-top: 1em;
+    }
+  }
+
+  .vcenter {
+    min-height: 100%;
+    min-height: 100%; // 100vh
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .center {
+    margin: 0 auto;
+  }
+
+  .full {
+    width: 100%;
+  }
+
+  .inlineInput {
+    background: transparent;
+    border: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: inherit;
+    font-weight: inherit;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .flow-text {
+    font-weight: $font-weight-base;
+  }
+
+  @media only screen and (min-width: 360px) {
+    .flow-text {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media only screen and (min-width: 390px) {
+    .flow-text {
+      font-size: 1.224rem;
+    }
+  }
+
+  @media only screen and (min-width: 420px) {
+    .flow-text {
+      font-size: 1.248rem;
+    }
+  }
+
+  @media only screen and (min-width: 450px) {
+    .flow-text {
+      font-size: 1.272rem;
+    }
+  }
+
+  @media only screen and (min-width: 480px) {
+    .flow-text {
+      font-size: 1.296rem;
+    }
+  }
+
+  @media only screen and (min-width: 510px) {
+    .flow-text {
+      font-size: 1.32rem;
+    }
+  }
+
+  @media only screen and (min-width: 540px) {
+    .flow-text {
+      font-size: 1.344rem;
+    }
+  }
+
+  @media only screen and (min-width: 570px) {
+    .flow-text {
+      font-size: 1.368rem;
+    }
+  }
+
+  @media only screen and (min-width: 600px) {
+    .flow-text {
+      font-size: 1.392rem;
+    }
+  }
+
+  @media only screen and (min-width: 630px) {
+    .flow-text {
+      font-size: 1.416rem;
+    }
+  }
+
+  @media only screen and (min-width: 660px) {
+    .flow-text {
+      font-size: 1.44rem;
+    }
+  }
+
+  @media only screen and (min-width: 690px) {
+    .flow-text {
+      font-size: 1.464rem;
+    }
+  }
+
+  @media only screen and (min-width: 720px) {
+    .flow-text {
+      font-size: 1.488rem;
+    }
+  }
+
+  @media only screen and (min-width: 750px) {
+    .flow-text {
+      font-size: 1.512rem;
+    }
+  }
+
+  @media only screen and (min-width: 780px) {
+    .flow-text {
+      font-size: 1.536rem;
+    }
+  }
+
+  @media only screen and (min-width: 810px) {
+    .flow-text {
+      font-size: 1.56rem;
+    }
+  }
+
+  @media only screen and (min-width: 840px) {
+    .flow-text {
+      font-size: 1.584rem;
+    }
+  }
+
+  @media only screen and (min-width: 870px) {
+    .flow-text {
+      font-size: 1.608rem;
+    }
+  }
+
+  @media only screen and (min-width: 900px) {
+    .flow-text {
+      font-size: 1.632rem;
+    }
+  }
+
+  @media only screen and (min-width: 930px) {
+    .flow-text {
+      font-size: 1.656rem;
+    }
+  }
+
+  @media only screen and (min-width: 960px) {
+    .flow-text {
+      font-size: 1.68rem;
+    }
+  }
+
+  @media only screen and (max-width: 360px) {
+    .flow-text {
+      font-size: 1.2rem;
+    }
+  }
+
+}
+
+* {
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+  outline: none;
+}
+
+html {
+  color: #222;
+  background: #fefefe; // #f6f6f6 white
+  font-weight: $font-weight-base;
+  font-size: 1em;
+  font-family: $font-family-base;
+  line-height: 1em;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+}
+
+a {
+  color: #0074c2;
+}
+
+p {
+  font-size: 1em; // 1.1em
+  line-height: 1.5em;
+  font-weight: $font-weight-base; // 400
+}
+
+b, strong {
+  font-weight: 400; // bold
+}
+
+::-moz-selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+::selection {
+  background: #b3d4fc;
+  text-shadow: none;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid #ccc;
+  margin: 1em 0;
+  padding: 0;
+}
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video {
+  vertical-align: middle;
+}
+
+/*
+ * Remove default fieldset styles.
+ */
+
+fieldset {
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+/*
+ * Allow only vertical resizing of textareas.
+ */
+
+textarea {
+  resize: vertical;
+}
+
+/*
+ * Browser upgrade prompt
+ * ========================================================================== */
+
+:global(.browserupgrade) {
+  margin: 0.2em 0;
+  background: #ccc;
+  color: #000;
+  padding: 0.2em 0;
+}
+
+/*
+ * Print styles
+ * Inlined to avoid the additional HTTP request:
+ * http://www.phpied.com/delay-loading-your-print-css/
+ * ========================================================================== */
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #000 !important; /* Black prints faster: http://www.sanbeiji.com/archives/953 */
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  a[href]::after {
+    content: ' (' attr(href) ')';
+  }
+
+  abbr[title]::after {
+    content: ' (' attr(title) ')';
+  }
+
+  a[href^='#']::after,
+  a[href^='javascript:']::after {
+    content: '';
+  }
+
+  pre,
+  blockquote {
+    // border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  thead {
+    display: table-header-group;
+  }
+
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  img {
+    max-width: 100% !important;
+  }
+
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}

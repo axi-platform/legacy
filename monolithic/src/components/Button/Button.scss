@@ -1,0 +1,32 @@
+@import "../variables.scss";
+
+$text: $white !default;
+$button: $accent !default; // dark
+$shadow: $z1 !default;
+$height: 2.6em !default;
+$padding: 0.6em 1em !default;
+
+.button {
+  @extend .resetBtn;
+  text-decoration: none;
+
+  width: auto;
+  min-width: 6em;
+
+  height: $height;
+  padding: $padding;
+  color: $text;
+  background: $button;
+  box-shadow: $shadow;
+  border-radius: 4px;
+}
+
+.button:disabled {
+  color: $grey;
+  background: $white;
+  box-shadow: none;
+}
+
+.block {
+  width: 100%;
+}
