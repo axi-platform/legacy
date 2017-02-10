@@ -1,0 +1,43 @@
+version: "3"
+
+services:
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379"
+    networks:
+      - app
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+  mongodb:
+    image: ulboralabs/alpine-mongodb:latest
+    networks:
+      - app
+    ports:
+      - "27017"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+  app:
+    image: printat
+    ports:
+      - "3000"
+    networks:
+      - app
+    depends_on:
+      - mongodb
+      - redis
+    deploy:
+      replicas: 2
+      update_config:
+        parallelism: 2
+      restart_policy:
+        condition: on-failure
+
+networks:
+  app:

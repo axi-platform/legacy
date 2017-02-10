@@ -1,10 +1,44 @@
 import redis from "redis"
 import bluebird from "bluebird"
+import {REDIS_HOST, REDIS_PORT} from "../config"
 
 bluebird.promisifyAll(redis.RedisClient.prototype)
 bluebird.promisifyAll(redis.Multi.prototype)
 
-export const r = redis.createClient()
+export const r = redis.createClient({
+  host: REDIS_HOST,
+  port: REDIS_PORT,
+  retry_strategy: opt => {
+    console.log("RETRY_STRATEGY", opt)
+    if (opt.error && opt.error.code === "ECONNREFUSED") {
+      // End reconnecting on a specific error
+      //  and flush all commands with an individual error
+      console.error("ECONNREFUSED")
+      return new Error("The server refused the connection")
+    }
+
+    if (opt.error && opt.error.code === "ENOTFOUND") {
+      console.log("ENOTFOUND")
+      return Math.min(opt.attempt * 100, 3000)
+    }
+
+    if (opt.total_retry_time > 1000 * 60 * 60) {
+      // End reconnecting after a specific timeout
+      //  and flush all commands with an individual error
+      console.error("TOTAL_RETRY_TIME > 1M")
+      return new Error("Retry time exhausted")
+    }
+    if (opt.times_connected > 10) {
+      // End reconnecting with built in error
+      console.error("TIMES_RECONNECTED > 10")
+      return undefined
+    }
+    // reconnect after
+    return Math.min(opt.attempt * 100, 3000)
+  }
+})
+
+r.on("error", err => console.error("Redis Error", err))
 
 class QueueManager {
 

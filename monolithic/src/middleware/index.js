@@ -10,7 +10,7 @@ import locale from "express-locale"
 import path from "path"
 import cookieParser from "cookie-parser"
 import bodyParser from "body-parser"
-import kue from "kue"
+// import kue from "kue"
 
 import logger from "../core/logger"
 import socketHandler from "./socketHandler"
@@ -18,7 +18,7 @@ import serverRender from "./serverRender"
 import errorHandler from "./errorHandler"
 import basicLogger from "./basicLogger"
 
-import {REDIS_URL} from "../config"
+import {REDIS_HOST, REDIS_PORT} from "../config"
 import {IS_PROD} from "../constants/util"
 
 const without = (uri, middleware) => (req, res, next) => {
@@ -47,12 +47,12 @@ export default function middlewares() {
   // this.configure(rest())
   this.configure(socketio(socketHandler))
 
-  this.use("/kue", kue.app)
+  // logger.log("debug", `Establishing Redis Connection to ${REDIS_HOST}:${REDIS_PORT}`)
 
   // Feathers Sync Module
-  this.configure(sync({
-    db: REDIS_URL || "redis://localhost:6379"
-  }))
+  // this.configure(sync({
+  //  db: {host: REDIS_HOST, port: REDIS_PORT}
+  // }))
 
   this.use(basicLogger)
   this.use(serverRender)

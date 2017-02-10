@@ -1,12 +1,22 @@
-FROM node:alpine
+FROM risingstack/alpine:3.4-v6.7.0-4.0.0
+MAINTAINER Phoomparin Mano <phoomparin@gmail.com>
+
 RUN adduser -S app
-# RUN npm i -g npm
-ENV HOME=/home/app
-USER app
-WORKDIR $HOME/feathers
-COPY ./server/dist $HOME/feathers
-# COPY ./server/package.json $HOME/feathers/package.json
-COPY ./server/node_modules $HOME/feathers/node_modules
-RUN ls $HOME/feathers/node_modules
-# RUN npm install
+
+ENV HOME=/opt/app
+WORKDIR $HOME
+
+ADD yarn.tar.gz $HOME
+ENV PATH "$PATH:/opt/app/dist/bin"
+
+COPY ./monolithic/build $HOME
+COPY ./monolithic/yarn.lock $HOME
+COPY ./.env $HOME
+
+# RUN yarn global add nodemon
+
+# RUN npm i -g yarn
+RUN yarn --pure-lockfile
+
+# USER app
 RUN node server
