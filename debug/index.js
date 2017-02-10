@@ -8,7 +8,7 @@ import client from "feathers-client"
 import socket from "feathers-socketio/client"
 import io from "socket.io-client"
 
-const PORT = 3001
+const PORT = "3000"
 const SERVICE = "http://localhost:3000"
 const REDIS_CONN = "redis://localhost:6379"
 
@@ -18,9 +18,7 @@ const worker = client().configure(socket(io(SERVICE)))
 app.configure(hooks())
 app.configure(rest())
 app.configure(socketio())
-app.configure(sync({
-  db: REDIS_CONN
-}))
+// app.configure(sync({db: REDIS_CONN}))
 
 class DebugService {
 
