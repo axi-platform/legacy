@@ -23,11 +23,7 @@
     "webpack-dev-server": "^2.3.0"
   },
   "scripts": {
-    "build": "webpack",
-    "dev:web": "webpack-dev-server",
-    "dev:watch": "webpack --watch",
-    "dev:run-app": "nodemon build/app",
-    "dev:run-debug": "nodemon build/debug",
-    "dev": "yarn run dev:watch | yarn run dev:run-app | yarn run dev:run-debug"
+    "start": "webpack",
+    "watch": "webpack --watch"
   }
 }

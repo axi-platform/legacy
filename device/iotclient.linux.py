@@ -15,8 +15,8 @@ Bugs:
 """
 
 deviceId = "5885bb1d75f2ed518cbf5f48"
-cdnPath = "https://printat.co"
-serverPath = "printat.co"
+cdnPath = "http://localhost:8000"
+serverPath = "localhost"
 
 printerName = "WTF"
 
@@ -96,6 +96,6 @@ client.on_connect = on_connect
 client.on_message = on_message
 client.will_set(presence, "offline", qos = 1, retain = True)
 
-client.connect(serverPath)
+client.connect(serverPath, port=1883)
 
 client.loop_forever()

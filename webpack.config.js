@@ -5,12 +5,11 @@ const DEBUG = true
 
 module.exports = {
   entry: {
-    app: "./app/index.js",
-    debug: "./debug/index.js"
+    api: "./api/src/index.js",
   },
 
   output: {
-    filename: "[name]/build/build.js",
+    filename: "[name]/build/bundle.js",
     path: __dirname,
     libraryTarget: "commonjs2"
   },
