@@ -1,8 +1,8 @@
 import React from "react"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 
-import Paper from "../Paper"
-import Button from "../Button"
+import Paper from "../../Paper"
+import Button from "../../Button"
 
 import s from "./PrintQueue.scss"
 

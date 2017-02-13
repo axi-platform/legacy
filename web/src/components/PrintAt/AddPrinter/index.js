@@ -4,12 +4,12 @@ import withStyles from "isomorphic-style-loader/lib/withStyles"
 
 import TextField from "material-ui/TextField"
 
-import Grid from "../Grid"
-import Paper from "../Paper"
-import Button from "../Button"
+import Grid from "../../Grid"
+import Paper from "../../Paper"
+import Button from "../../Button"
 
-import {services} from "../../client/api"
-import {setUi, setStation, notify} from "../../ducks/app"
+import {services} from "../../../client/api"
+import {setUi, setStation, notify} from "../../../ducks/app"
 
 import s from "./AddPrinter.scss"
 

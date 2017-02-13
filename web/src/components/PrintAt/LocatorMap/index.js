@@ -6,12 +6,12 @@ import withStyles from "isomorphic-style-loader/lib/withStyles"
 import OnlineIcon from "material-ui/svg-icons/device/wifi-tethering"
 import OfflineIcon from "material-ui/svg-icons/communication/portable-wifi-off"
 
-import Maps from "../Maps"
-import Paper from "../Paper"
-import Button from "../Button"
+import Maps from "../../Maps"
+import Paper from "../../Paper"
+import Button from "../../Button"
 
-import {setStation, setUi, notify} from "../../ducks/app"
-import app, {services} from "../../client/api"
+import {setStation, setUi, notify} from "../../../ducks/app"
+import app, {services} from "../../../client/api"
 
 import s from "./LocatorMap.scss"
 

@@ -2,17 +2,17 @@ import React from "react"
 import {connect} from "react-redux"
 import {Match, Miss, Redirect} from "react-router"
 
+import Home from "./Home"
+import NotFound from "./NotFound"
+
 import Login from "./Login"
 import Signup from "./Signup"
 
-import NotFound from "./NotFound"
-
-import Root from "../components/Layout"
-import Unauthorized from "../components/Unauthorized"
-
 import PrintAt from "./PrintAt"
-
 import Admin from "./Admin"
+
+import Unauthorized from "../components/Unauthorized"
+import Notification from "../components/Notification"
 
 import {isPermitted} from "../core/helper"
 
@@ -63,13 +63,15 @@ const MatchWhenNotAuthorized = connect(mapState)(({
 ))
 
 export default () => (
-  <Root>
-    <Match exactly pattern="/" component={PrintAt} />
+  <div>
+    <Match exactly pattern="/" component={Home} />
+    <Match exactly pattern="/printat" component={PrintAt} />
     <Match exactly pattern="/login" component={Login} />
     <Match exactly pattern="/signup" component={Signup} />
-    <MatchPermitted exactly pattern="/admin" component={Admin} r="/login" />
-    <Match exactly pattern="/admin" component={() => <div />} />
+    <MatchPermitted exactly pattern="/dashboard" component={Admin} r="/login" />
+    <Match exactly pattern="/dashboard" component={() => <div />} />
     <Match exactly pattern="/" component={() => <div />} />
     <Miss component={NotFound} />
-  </Root>
+    <Notification />
+  </div>
 )

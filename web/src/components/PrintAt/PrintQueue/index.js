@@ -2,14 +2,14 @@ import React, {Component} from "react"
 import {connect} from "react-redux"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 
-import Paper from "../Paper"
-import Grid from "../Grid"
+import Paper from "../../Paper"
+import Grid from "../../Grid"
 
 import Queue, {Summary} from "./Queue"
 
-import app, {services} from "../../client/api"
-import {notify, setStation, setUi} from "../../ducks/app"
-import {clearFiles} from "../../ducks/files"
+import app, {services} from "../../../client/api"
+import {notify, setStation, setUi} from "../../../ducks/app"
+import {clearFiles} from "../../../ducks/files"
 
 import s from "./PrintQueue.scss"
 

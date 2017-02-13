@@ -1,10 +1,10 @@
 import React from "react"
 import {connect} from "react-redux"
 
-import AddPrinter from "../../components/AddPrinter"
-import LocatorMap from "../../components/LocatorMap"
-import DocumentUpload from "../../components/DocumentUpload"
-import PrintQueue from "../../components/PrintQueue"
+import AddPrinter from "../../components/PrintAt/AddPrinter"
+import LocatorMap from "../../components/PrintAt/LocatorMap"
+import DocumentUpload from "../../components/PrintAt/DocumentUpload"
+import PrintQueue from "../../components/PrintAt/PrintQueue"
 
 import BottomNav from "../../components/BottomNav"
 import Navbar from "../../components/Navbar"

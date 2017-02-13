@@ -19,9 +19,9 @@ import PDFIcon from "material-ui/svg-icons/image/picture-as-pdf"
 import WordIcon from "material-ui/svg-icons/action/description"
 import PlainIcon from "material-ui/svg-icons/action/receipt"
 
-import Upload from "../Upload"
+import Upload from "../../Upload"
 
-import {humanFileSize, getFileInfo} from "../../core/helper"
+import {humanFileSize, getFileInfo} from "../../../core/helper"
 
 const getIcon = (name, type) => {
   const ext = name.split(".").pop()

@@ -1,0 +1,204 @@
+@import "../../components/variables.scss";
+
+$landing: #1B5A7A; // #1B5A7A #009688 #0f9d58 $teal
+$sub: #757575;
+
+nav {
+  display: flex;
+  justify-content: space-between;
+
+  position: fixed;
+  width: 100%;
+  z-index: 10;
+
+  padding: 1.5em;
+  background: white;
+  transition: all 0.25s ease;
+  border-bottom: 1px solid white;
+
+  & > * > a {
+    flex: 1;
+    align-self: center;
+
+    font-size: 15px;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  & > .left {
+    display: flex;
+    justify-content: flex-start;
+
+    flex: 3;
+  }
+
+  & > .center {
+    flex: 3;
+  }
+
+  & > .right {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+
+    margin-right: 3.5em;
+  }
+
+  & > .left > h1 {
+    flex: 1;
+    align-self: center;
+
+    margin-right: 1em;
+    font-size: 1.3em;
+  }
+
+  & > .left > a {
+    color: $sub;
+    // font-weight: 500;
+  }
+
+  & > .right > a {
+    color: $landing;
+  }
+
+  & > .right > .try {
+    margin-left: 1em;
+
+    border-radius: 3px;
+    background: $landing;
+    color: $white;
+    padding: 0.5em;
+
+    box-shadow: $zLite;
+  }
+
+}
+
+nav.scrolled {
+  border-bottom: 1px solid #e1e1e1;
+  // box-shadow: $zLite;
+}
+
+nav > * > a:hover {
+  color: $landing;
+  font-weight: 400;
+}
+
+nav > .right > .try:hover {
+  background: lighten($landing, 10%);
+  box-shadow: $z1;
+}
+
+.fold {
+  height: 100vh;
+
+  & > .graphic > img {
+    bottom: 0;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, 0);
+    width: 100%;
+  }
+}
+
+.intro {
+  position: absolute;
+  top: 27.3%;
+  left: 50%;
+  z-index: 3;
+
+  width: 90%;
+  text-align: center;
+  transform: translate(-50%, 0);
+
+  & > h2 {
+    color: $landing;
+    font-size: 2.5em;
+    // text-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+  }
+
+  & > h3 {
+    color: $sub;
+    margin-top: 1em;
+    font-size: 1.1em;
+    line-height: 1.6em;
+  }
+}
+
+@media screen and (max-width: $screen-md-min) {
+  .intro > h2 {
+    font-size: 2em;
+  }
+
+  .intro > h3 {
+    font-size: 1.05em;
+  }
+}
+
+@media screen and (max-width: $screen-sm-min) {
+  .break {
+    display: none
+  }
+}
+
+@media screen and (max-width: $screen-xs-min) {
+  .intro > h2 {
+    font-size: 1.8em;
+  }
+
+  .intro > h3 {
+    font-size: 1em;
+  }
+}
+
+.more {
+  & > span {
+    align-self: center;
+    margin-right: 0.6em;
+    transition: all 1s cubic-bezier(0.03, 0.86, 0.57, 1);
+
+    color: $landing;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  & > svg {
+    align-self: center;
+
+    width: 1.5em;
+    height: 1.5em;
+    fill: $landing;
+  }
+}
+
+.more.hero {
+  display: flex;
+  justify-content: center;
+
+  margin-top: 1.5em;
+}
+
+.more:hover > span {
+  margin-right: 1.3em;
+  cursor: pointer;
+}
+
+.why {
+  & > .row {
+    margin-top: 1em;
+  }
+}
+
+.reason {
+  padding: 5em 6em;
+
+  & > h2 {
+    font-size: 1.8em;
+    color: $landing;
+  }
+}
+
+.video {
+  width: 90%;
+}

@@ -2,11 +2,11 @@ import React from "react"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 import Image from "react-medium-image-zoom"
 
-import Paper from "../Paper"
-import Button from "../Button"
-import Upload from "../Upload"
+import Paper from "../../Paper"
+import Button from "../../Button"
+import Upload from "../../Upload"
 
-import {humanFileSize, getFileInfo} from "../../core/helper"
+import {humanFileSize, getFileInfo} from "../../../core/helper"
 
 import s from "./Document.scss"
 
