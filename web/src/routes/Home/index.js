@@ -23,8 +23,6 @@ const Techs = () => (
 )
 */
 
-const defaultImage = "https://fi.google.com/about/static/images/home/fi_documents.svg"
-
 const More = ({text, hero}) => (
   <div className={c(s.more, hero && s.hero)}>
     <span>{text}</span>
@@ -54,7 +52,7 @@ const Fold = () => (
   </section>
 )
 
-const Reason = ({r, p, ra, more, img = defaultImage, children}) => (
+const Reason = ({r, p, ra, ic, more, img, children}) => (
   <Grid r>
     <Grid className={c(s.rel, p && s.p, r && s.r)} xs={12} sm={6}>
       <div className={c(s.trig, r && s.r)} />
@@ -65,7 +63,7 @@ const Reason = ({r, p, ra, more, img = defaultImage, children}) => (
     </Grid>
     <Grid xs={12} sm={6}>
       <div className={s.deco}>
-        <img src={img} />
+        <img src={img} className={ic} role="presentation" />
       </div>
     </Grid>
   </Grid>
@@ -73,49 +71,50 @@ const Reason = ({r, p, ra, more, img = defaultImage, children}) => (
 
 const Rationale = () => (
   <section className={s.why}>
-    <Reason more="Try Some Examples">
+    <Reason more="Know the Physical Web" img="/images/isocity.svg" ic={s.phyweb} ra>
+      <h2>
+        Instantaneous Interaction with&nbsp;
+        <br className={s.break} />
+        Google&apos;s Physical Web
+      </h2>
+      <p>
+        Your users should be able to just walk up and use anything.&nbsp;
+        <br className={s.breakmd} />
+        With Contextual Beacons and Progressive Web Apps, it is literally a
+        tap away. Axi gives you the foundation to deliver the best experience.
+      </p>
+    </Reason>
+    <Reason more="View The Technologies" img="/images/isodata.svg" r>
+      <h2>Stay Ahead of the Curve</h2>
+      <p>
+        Axi implements various cutting edge technologies to fill in the gaps and
+        empower your solutions. From managing beacons and IoT devices,
+        composing microservices, and cloud deployments.
+      </p>
+    </Reason>
+    <Reason more="Try Some Examples" img="/images/gamechars.svg">
       <h2>
         Build Practical Solutions, not toys
       </h2>
       <p>
         Real IoT Solutions are not just turning things on and viewing
-        data from sensors. Axi provides a reliable platform to develop with
-        those moving parts in mind.
+        data from sensors. Axi incorporates the core requirements of building
+        solutions based on our real world experiences.
       </p>
     </Reason>
-    <Reason more="View The Technologies" r>
-      <h2>Stay Ahead of the Curve</h2>
-      <p>
-        Axi implements cutting edge technologies to empower your solution.
-        From Managing Beacons and Devices, composing Microservices,
-        up until Cloud Deployments.
-      </p>
-    </Reason>
-    <Reason more="Know the Physical Web" img="/images/isocity.svg" ra>
-      <h2>
-        Instantaneous Interaction with
-        <br />
-        Google&apos;s Physical Web
-      </h2>
-      <p>
-        Your users should be able to just walk up and use anything.
-        With Contextual Beacons and Progressive Web Apps,
-        it's only a tap away.
-      </p>
-    </Reason>
-    <Reason more="Request a Demo" r>
+    <Reason more="Request a Demo" img="/images/isomac.svg" r>
       <h2>
         Decentralized Control,
         <br />
         Centralized Dashboard
       </h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+        Axi Dashboard helps you to monitor and control every moving parts in
+        your Solution. However, we relies on trusted third-parties, so you
+        can freely choose and switch between providers with no lock-ins.
     </p>
     </Reason>
-    <Reason more="Learn More">
+    <Reason more="Learn More" img="/images/isocitymono.svg" ic={s.isomono}>
       <h2>
         Modular and Scalable
       </h2>
@@ -129,7 +128,7 @@ const Rationale = () => (
 )
 
 const Idea = ({t, ds, img = defaultImage}) => (
-  <Grid xs={12} sm={3}>
+  <Grid sm={3} xs={6}>
     <h2>{t}</h2>
     <div className={s.deco}>
       <img className={c(ds && s.ds)} style={{height: `${ds}em`}} src={img} />
@@ -143,7 +142,7 @@ const Ideas = () => (
     <h2>Out of Ideas? Here are some possibilities.</h2>
     <Grid r>
       <Idea t="PrintAt" img="/images/pw_logo.svg" ds="4.5" />
-      <Idea t="Smart Co-working Spaces" img="/images/pw_logo.svg" ds="4.5" />
+      <Idea t="Co-working Spaces" img="/images/pw_logo.svg" ds="4.5" />
       <Idea t="Smart City" img="/images/pw_logo.svg" ds="4.5" />
       <Idea t="Access Control" img="/images/pw_logo.svg" ds="4.5" />
     </Grid>
@@ -152,7 +151,7 @@ const Ideas = () => (
 
 const Join = () => (
   <section className={s.join}>
-    <h2>It's simple to join.</h2>
+    <h2>It&apos;s simple to join.</h2>
   </section>
 )
 

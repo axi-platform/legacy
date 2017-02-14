@@ -32,7 +32,7 @@ export default class Nav extends Component {
     <nav className={c(s.nav, this.state.scrolled && s.scrolled)}>
       <div className={s.left}>
         <img src="/images/axi1.svg" alt="Logo" />
-        <a href="#!">Rationale</a>
+        <a href="#!">Overview</a>
         <a href="#!">Examples</a>
         <a href="#!">FAQ</a>
         <a href="#!">Contact</a>

@@ -48,6 +48,10 @@ $container: 980px;
   .intro > h3 {
     font-size: 1.05em;
   }
+
+  .breakmd {
+    display: none;
+  }
 }
 
 @media screen and (max-width: $screen-sm-min) {
@@ -119,7 +123,7 @@ $container: 980px;
 
 @media screen and (max-width: $screen-md-min) {
   .reason {
-    padding: 5em 3em;
+    padding: 2em 3em;
   }
 }
 
@@ -131,7 +135,7 @@ $container: 980px;
 
 @media screen and (max-width: $screen-xs-min) {
   .reason {
-    padding: 5em 2em;
+    padding: 1em 2em;
   }
 }
 
@@ -151,10 +155,6 @@ $container: 980px;
 
 .reason.r {
   text-align: right;
-}
-
-.reason.ra {
-  padding: 1em 6em 5em;
 }
 
 .reason.p {
@@ -187,17 +187,36 @@ $container: 980px;
   text-align: center;
 
   & > img {
-    width: 75%;
+    width: 50%;
+    margin-top: 2em;
+    margin-bottom: 2em;
   }
+}
+
+.deco > .phyweb {
+  width: 65%;
+  margin-top: 6em;
+}
+
+.deco > .isomono {
+  margin-top: 4em;
 }
 
 @media screen and (max-width: $screen-sm-min) {
   .deco > img {
-    width: 45%;
+    width: 35%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .deco > .phyweb {
+    width: 40%;
+    margin-top: 1em;
   }
 }
 
-.section, .tech, .ideas {
+.ideas {
+  padding-top: 5em;
   max-width: $container;
   margin: 0 auto;
   text-align: center;
@@ -207,10 +226,6 @@ $container: 980px;
   }
 }
 
-.tech {
-  padding-top: 5em;
-}
-
 img.ds {
   width: initial;
   margin-top: 1em;
@@ -218,4 +233,5 @@ img.ds {
 
 .join {
   text-align: center;
+  padding-top: 3em;
 }
