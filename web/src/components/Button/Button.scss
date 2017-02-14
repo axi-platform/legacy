@@ -6,8 +6,11 @@ $shadow: $z1 !default;
 $height: 2.6em !default;
 $padding: 0.6em 1em !default;
 
-.button {
+.btn {
   @extend .resetBtn;
+}
+
+.button {
   text-decoration: none;
 
   width: auto;

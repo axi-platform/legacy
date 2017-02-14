@@ -7,23 +7,25 @@ import s from "./Button.scss"
 @withStyles(s)
 export default class Button extends Component {
 
-  componentDidMount() {
-    Waves.init()
-  }
+  componentDidMount = () => Waves.init()
 
-  render = () => (
-    <button
-      {...this.props}
-      className={c(
-        this.props.className,
-        this.props.base && s.button,
-        this.props.light && "waves-light",
-        this.props.b && s.block
-      )}
-      ref={ref => Waves.attach(ref)}
-    >
-      {this.props.children}
-    </button>
-  )
+  render = () => {
+    const {className, light, base, b, children, ...btn} = this.props
+    return (
+      <button
+        {...btn}
+        className={c(
+          s.btn,
+          className,
+          base && s.button,
+          light && "waves-light",
+          b && s.block
+        )}
+        ref={ref => Waves.attach(ref)}
+      >
+        {children}
+      </button>
+    )
+  }
 
 }

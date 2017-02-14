@@ -2,93 +2,7 @@
 
 $landing: #1B5A7A; // #1B5A7A #009688 #0f9d58 $teal
 $sub: #757575;
-
-nav {
-  display: flex;
-  justify-content: space-between;
-
-  position: fixed;
-  width: 100%;
-  z-index: 10;
-
-  padding: 1.5em;
-  background: white;
-  transition: all 0.25s ease;
-  border-bottom: 1px solid white;
-
-  & > * > a {
-    flex: 1;
-    align-self: center;
-
-    font-size: 15px;
-    text-decoration: none;
-    text-transform: uppercase;
-    text-align: center;
-  }
-
-  & > .left {
-    display: flex;
-    justify-content: flex-start;
-
-    flex: 3;
-  }
-
-  & > .center {
-    flex: 3;
-  }
-
-  & > .right {
-    display: flex;
-    justify-content: flex-end;
-    flex: 1;
-
-    margin-right: 3.5em;
-  }
-
-  & > .left > h1 {
-    flex: 1;
-    align-self: center;
-
-    margin-right: 1em;
-    font-size: 1.3em;
-  }
-
-  & > .left > a {
-    color: $sub;
-    // font-weight: 500;
-  }
-
-  & > .right > a {
-    color: $landing;
-  }
-
-  & > .right > .try {
-    margin-left: 1em;
-
-    border-radius: 3px;
-    background: $landing;
-    color: $white;
-    padding: 0.5em;
-
-    box-shadow: $zLite;
-  }
-
-}
-
-nav.scrolled {
-  border-bottom: 1px solid #e1e1e1;
-  // box-shadow: $zLite;
-}
-
-nav > * > a:hover {
-  color: $landing;
-  font-weight: 400;
-}
-
-nav > .right > .try:hover {
-  background: lighten($landing, 10%);
-  box-shadow: $z1;
-}
+$container: 980px;
 
 .fold {
   height: 100vh;
@@ -197,8 +111,111 @@ nav > .right > .try:hover {
     font-size: 1.8em;
     color: $landing;
   }
+
+  & > p {
+    margin-bottom: 1.5em;
+  }
 }
 
-.video {
-  width: 90%;
+@media screen and (max-width: $screen-md-min) {
+  .reason {
+    padding: 5em 3em;
+  }
+}
+
+@media screen and (max-width: $screen-sm-min) {
+  .reason {
+    text-align: center !important;
+  }
+}
+
+@media screen and (max-width: $screen-xs-min) {
+  .reason {
+    padding: 5em 2em;
+  }
+}
+
+.rel {
+  position: relative;
+}
+
+.rel.p {
+  background: $landing;
+}
+
+@media screen and (min-width: $screen-sm-min) {
+  .rel.r {
+    order: 1;
+  }
+}
+
+.reason.r {
+  text-align: right;
+}
+
+.reason.ra {
+  padding: 1em 6em 5em;
+}
+
+.reason.p {
+  & > h2, & > p, & > .more > span {
+    color: $white;
+  }
+
+  & > .more > svg {
+    fill: white;
+  }
+}
+
+.trig {
+  position: absolute;
+  right: -1em;
+  top: 38%;
+
+  width: 2em;
+  height: 2em;
+  background: white;
+  transform: rotate(135deg);
+}
+
+.trig.r {
+  left: -1em;
+  right: initial;
+}
+
+.deco {
+  text-align: center;
+
+  & > img {
+    width: 75%;
+  }
+}
+
+@media screen and (max-width: $screen-sm-min) {
+  .deco > img {
+    width: 45%;
+  }
+}
+
+.section, .tech, .ideas {
+  max-width: $container;
+  margin: 0 auto;
+  text-align: center;
+
+  & > h2 {
+    margin-bottom: 1em;
+  }
+}
+
+.tech {
+  padding-top: 5em;
+}
+
+img.ds {
+  width: initial;
+  margin-top: 1em;
+}
+
+.join {
+  text-align: center;
 }

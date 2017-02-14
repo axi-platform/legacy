@@ -1,6 +1,7 @@
 import feathers from "feathers"
 import hooks from "feathers-hooks"
 import sync from "feathers-sync"
+import errorHandler from "feathers-errors/handler"
 
 import {Logger, transports} from "winston"
 import cors from "cors"
@@ -45,6 +46,7 @@ app.use(cookieParser())
 app.configure(hooks())
 
 app.use(render)
+app.use(errorHandler())
 
 app.listen(PORT, "localhost", () => {
   /* eslint no-console: 0 */

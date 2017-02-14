@@ -1,11 +1,29 @@
-import React, {Component} from "react"
+import React from "react"
 import c from "classnames"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
 
+import Nav from "./Nav"
 import Grid from "../../components/Grid"
 import Icon from "../../components/Icon"
 
 import s from "./Home.scss"
+
+/*
+const Techs = () => (
+  <section className={s.tech}>
+    <h2>Our Technologies</h2>
+    <Grid r>
+      <Idea t="Physical Web Beacons" />
+      <Idea t="Internet of Things" />
+      <Idea t="Progressive Web Apps" />
+      <Idea t="Cloud Microservices" />
+      <Idea t="High Availability Infrastructure" />
+    </Grid>
+  </section>
+)
+*/
+
+const defaultImage = "https://fi.google.com/about/static/images/home/fi_documents.svg"
 
 const More = ({text, hero}) => (
   <div className={c(s.more, hero && s.hero)}>
@@ -26,7 +44,7 @@ const Fold = () => (
       <h3>
         With Physical Web, Cloud Services, and Internet of Things,
         <br className={s.break} />
-        &nbsp;Axi helps you to develop innovative services.
+        &nbsp;Axi joins you to develop innovative products.
       </h3>
       <More text="Watch the Intro" hero />
     </div>
@@ -36,156 +54,107 @@ const Fold = () => (
   </section>
 )
 
-// TODO: Interactive Idea Generetor
-const Ideas = () => (
-  <section>
-    <h2>Out of Ideas? Here are some possibilities.</h2>
-    <div>[::Interactive]</div>
-    <div>
-      Smart Co-working Spaces
-      ::AXI Spaces
-    </div>
-    <div>
-      Public Printing Service
-      ::PrintAt
-    </div>
-    <div>
-      Self-Study Learning Space
-      ::FlipED NEXT
-    </div>
-    <div>
-      E-residency System
-      ::Kalaland
-    </div>
-    <div>
-      Smart Coffee Shops
-      ::AXI Coffee
-    </div>
-  </section>
+const Reason = ({r, p, ra, more, img = defaultImage, children}) => (
+  <Grid r>
+    <Grid className={c(s.rel, p && s.p, r && s.r)} xs={12} sm={6}>
+      <div className={c(s.trig, r && s.r)} />
+      <div className={c(s.reason, p && s.p, r && s.r, ra && s.ra)}>
+        {children}
+        <More text={more} />
+      </div>
+    </Grid>
+    <Grid xs={12} sm={6}>
+      <div className={s.deco}>
+        <img src={img} />
+      </div>
+    </Grid>
+  </Grid>
 )
 
 const Rationale = () => (
   <section className={s.why}>
-    <Grid r>
-      <Grid xs={12} sm={6}>
-        <div className={s.reason}>
-          <h2>Build Practical Solutions, not just toys.</h2>
-          <p>
-            It isn't just turning things on and viewing data from sensors anymore.
-            Real-World IoT Solutions have a considerable amount of moving parts,
-            so we provided a flexible framework to develop on.
-          </p>
-          <More text="Try Some Examples" />
-        </div>
-      </Grid>
-      <Grid xs={12} sm={6}>
-        <video className={s.video} preload="auto" loop autoPlay poster="https://fi.google.com/about/static/videos/home/multiple_networks.png">
-          <source src="https://fi.google.com/about/static/videos/home/multiple_networks.mp4" type="video/mp4" />
-        </video>
-      </Grid>
-    </Grid>
-    <Grid r>
-      <Grid xs={12} sm={6}>
-        [::Graphical]
-      </Grid>
-      <Grid xs={12} sm={6}>
-        <h2>Stay Ahead of the Trend</h2>
-        <p>
-          Axi implements the cutting edge technologies to empower your solution.
-          From Managing Beacons and Devices, composing Microservices,
-          up until Cloud Deployments.
-        </p>
-      </Grid>
-    </Grid>
-  </section>
-)
-
-const Techs = () => (
-  <section>
-    <h2>Technology matters.</h2>
-    <h3>Here are the technologies we use.</h3>
-    <div>
-      Physical Web Beacons
-    </div>
-    <div>
-      Internet of Things
-    </div>
-    <div>
-      Progressive Web Apps
-    </div>
-    <div>
-      Cloud Microservices
-    </div>
-    <div>
-      High Availability Infrastructure
-    </div>
-  </section>
-)
-
-const Features = () => (
-  <section>
-    <h2>
-      One Dashboard to rule them all
-    </h2>
-    <h2>
-      Modular & Composable
-    </h2>
-    <p>
-      Service Oriented -> Compose them together.
+    <Reason more="Try Some Examples">
+      <h2>
+        Build Practical Solutions, not toys
+      </h2>
+      <p>
+        Real IoT Solutions are not just turning things on and viewing
+        data from sensors. Axi provides a reliable platform to develop with
+        those moving parts in mind.
+      </p>
+    </Reason>
+    <Reason more="View The Technologies" r>
+      <h2>Stay Ahead of the Curve</h2>
+      <p>
+        Axi implements cutting edge technologies to empower your solution.
+        From Managing Beacons and Devices, composing Microservices,
+        up until Cloud Deployments.
+      </p>
+    </Reason>
+    <Reason more="Know the Physical Web" img="/images/isocity.svg" ra>
+      <h2>
+        Instantaneous Interaction with
+        <br />
+        Google&apos;s Physical Web
+      </h2>
+      <p>
+        Your users should be able to just walk up and use anything.
+        With Contextual Beacons and Progressive Web Apps,
+        it's only a tap away.
+      </p>
+    </Reason>
+    <Reason more="Request a Demo" r>
+      <h2>
+        Decentralized Control,
+        <br />
+        Centralized Dashboard
+      </h2>
+      <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
     </p>
-    <h2>Use Instantaneously</h2>
-    <h2>
-      Decentralized Approach
-    </h2>
-    <h2>
-      Scale Effortlessly
-    </h2>
+    </Reason>
+    <Reason more="Learn More">
+      <h2>
+        Modular and Scalable
+      </h2>
+      <p>
+        Our service-oriented architecture allows you to compose multiple
+        Microservices together, in the High Availability Infrastructure
+        to scale and meet your goals.
+      </p>
+    </Reason>
   </section>
 )
 
-// Navbar:: [Logo::Project Axi] ... [Login] [Sign up]
-// Possibilities Examples Ideas
-// Technologies
-// Rationale
-// Features
+const Idea = ({t, ds, img = defaultImage}) => (
+  <Grid xs={12} sm={3}>
+    <h2>{t}</h2>
+    <div className={s.deco}>
+      <img className={c(ds && s.ds)} style={{height: `${ds}em`}} src={img} />
+    </div>
+  </Grid>
+)
 
-@withStyles(s)
-class Nav extends Component {
+// TODO: Interactive Idea Generetor
+const Ideas = () => (
+  <section className={s.ideas}>
+    <h2>Out of Ideas? Here are some possibilities.</h2>
+    <Grid r>
+      <Idea t="PrintAt" img="/images/pw_logo.svg" ds="4.5" />
+      <Idea t="Smart Co-working Spaces" img="/images/pw_logo.svg" ds="4.5" />
+      <Idea t="Smart City" img="/images/pw_logo.svg" ds="4.5" />
+      <Idea t="Access Control" img="/images/pw_logo.svg" ds="4.5" />
+    </Grid>
+  </section>
+)
 
-  constructor(props) {
-    super(props)
-    this.state = {scrolled: false}
-  }
-
-  componentDidMount = () => window.addEventListener("scroll", this.scroll)
-
-  componentWillUnmount = () => window.removeEventListener("scroll", this.scroll)
-
-  scroll = () => {
-    if (window.scrollY > 150)
-      this.setState({scrolled: true})
-    else
-      this.setState({scrolled: false})
-  }
-
-  render = () => (
-    <nav className={c(s.nav, this.state.scrolled && s.scrolled)}>
-      <div className={s.left}>
-        <h1>Project Axi</h1>
-        <a href="#!">Rationale</a>
-        <a href="#!">Example</a>
-        <a href="#!">Feature</a>
-        <a href="#!">FAQ</a>
-      </div>
-      <div className={s.center} />
-      <div className={s.right}>
-        <a href="#!">Sign In</a>
-        <a href="#!" className={s.try}>Try Now</a>
-      </div>
-    </nav>
-  )
-
-}
+const Join = () => (
+  <section className={s.join}>
+    <h2>It's simple to join.</h2>
+  </section>
+)
 
 const Home = () => (
   <div>
@@ -194,8 +163,13 @@ const Home = () => (
       <Fold />
       <Rationale />
       <Ideas />
-      <Features />
-      <Techs />
+      <Join />
+      <div>
+        Illustrations are&nbsp;
+        <a href="http://www.freepik.com/free-vector/blue-isometric-technological-city_893734.htm">
+          Designed by Freepik
+        </a>
+      </div>
     </main>
   </div>
 )
