@@ -9,7 +9,8 @@ import Login from "./Login"
 import Signup from "./Signup"
 
 import PrintAt from "./PrintAt"
-import Admin from "./Admin"
+import Coffe from "./Coffe"
+import Dashboard from "./Dashboard"
 
 import Unauthorized from "../components/Unauthorized"
 import Notification from "../components/Notification"
@@ -66,9 +67,10 @@ export default () => (
   <div>
     <Match exactly pattern="/" component={Home} />
     <Match exactly pattern="/printat" component={PrintAt} />
+    <Match exactly pattern="/coffe" component={Coffe} />
     <Match exactly pattern="/login" component={Login} />
     <Match exactly pattern="/signup" component={Signup} />
-    <MatchPermitted exactly pattern="/dashboard" component={Admin} r="/login" />
+    <Match exactly pattern="/dashboard" component={Dashboard} r="/login" />
     <Match exactly pattern="/dashboard" component={() => <div />} />
     <Match exactly pattern="/" component={() => <div />} />
     <Miss component={NotFound} />

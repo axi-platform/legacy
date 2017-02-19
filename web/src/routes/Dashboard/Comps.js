@@ -1,5 +1,4 @@
 import React from "react"
-import withStyles from "isomorphic-style-loader/lib/withStyles"
 
 import StatusIcon from "material-ui/svg-icons/action/swap-vertical-circle"
 import OnlineIcon from "material-ui/svg-icons/device/wifi-tethering"
@@ -8,7 +7,7 @@ import OfflineIcon from "material-ui/svg-icons/communication/portable-wifi-off"
 import Grid from "../../components/Grid"
 import Paper from "../../components/Paper"
 
-import s from "./Admin.scss"
+import s from "./Dashboard.scss"
 
 export const getPC = status => {
   if (status === "online")
@@ -26,7 +25,7 @@ export const getPI = status => {
   return <div />
 }
 
-export const Device = withStyles(s)(({_id, name, loc, presence, remove}) => (
+export const Device = ({_id, name, loc, presence, remove}) => (
   <Paper style={{marginBottom: "1em"}}>
     <div className={s.device}>
       <h3 className={getPC(presence)}>
@@ -42,7 +41,7 @@ export const Device = withStyles(s)(({_id, name, loc, presence, remove}) => (
       </h5>
     </div>
   </Paper>
-))
+)
 
 /*
 <Grid className={s.bottom} xs={12} sm={6}>
@@ -50,7 +49,7 @@ export const Device = withStyles(s)(({_id, name, loc, presence, remove}) => (
 </Grid>
 */
 
-export const Devices = withStyles(s)(({data, remove = () => {}}) => (
+export const Devices = ({data, remove = () => {}}) => (
   <Grid r>
     {data && data.map((device, i) => (
       <Grid key={i} xs={12} sm={6}>
@@ -58,18 +57,18 @@ export const Devices = withStyles(s)(({data, remove = () => {}}) => (
       </Grid>
     ))}
   </Grid>
-))
+)
 
-export const Welcome = withStyles(s)(() => (
+export const Welcome = () => (
   <div className={s.welcome}>
     <Grid c>
       <h2 className={s.heading}>Welcome Back to the Reminiscence.</h2>
       <h3 className={s.sub}>Let&apos;s get you started.</h3>
     </Grid>
   </div>
-))
+)
 
-export const Pipelines = withStyles(s)(() => (
+export const Pipelines = () => (
   <Grid className={s.bottom} r>
     {["Steps", "Procedures", "Onboarding"].map((item, i) => (
       <Grid className={s.bottom} xs={6} sm={4} md={3} key={i}>
@@ -81,18 +80,18 @@ export const Pipelines = withStyles(s)(() => (
       </Grid>
     ))}
   </Grid>
-))
+)
 
-export const Heading = withStyles(s)(({text, sub}) => (
+export const Heading = ({text, sub}) => (
   <Grid className={s.bottom} r>
     <Grid xs={12}>
       <h2 className={s.heading}>{text}</h2>
       <h3 className={s.sub}>{sub}</h3>
     </Grid>
   </Grid>
-))
+)
 
-export const StatHeading = withStyles(s)(({text, sub, stat, ctrl}) => (
+export const StatHeading = ({text, sub, stat, ctrl}) => (
   <Grid className={s.bottom} r>
     <Grid xs={12}>
       <div>
@@ -109,9 +108,9 @@ export const StatHeading = withStyles(s)(({text, sub, stat, ctrl}) => (
       </div>
     </Grid>
   </Grid>
-))
+)
 
-export const Monitoring = withStyles(s)(() => (
+export const Monitoring = () => (
   <Grid className={s.bottom} r>
     <Grid xs={6}>
       <div>
@@ -138,9 +137,9 @@ export const Monitoring = withStyles(s)(() => (
       </div>
     </Grid>
   </Grid>
-))
+)
 
-export const AppStore = withStyles(s)(() => (
+export const AppStore = () => (
   <Grid className={s.bottom} r>
     {["PrintAt App", "PrintAt App"].map((item, i) => (
       <Grid className={s.bottom} xs={6} sm={4} md={3} key={i}>
@@ -152,9 +151,9 @@ export const AppStore = withStyles(s)(() => (
       </Grid>
     ))}
   </Grid>
-))
+)
 
-export const Infrastructure = withStyles(s)(() => (
+export const Infrastructure = () => (
   <div>
     <h3 className={s.heading}>Infrastructure Overview</h3>
     {["S3 Storage", "Azure Windows Server"].map((item, i) => (
@@ -165,9 +164,9 @@ export const Infrastructure = withStyles(s)(() => (
       </h4>
     ))}
   </div>
-))
+)
 
-export const Environments = withStyles(s)(() => (
+export const Environments = () => (
   <div>
     <h3 className={s.heading}>My Environments</h3>
     {["Development", "Production", "Staging"].map((item, i) => (
@@ -178,9 +177,9 @@ export const Environments = withStyles(s)(() => (
       </h4>
     ))}
   </div>
-))
+)
 
-export const Clusters = withStyles(s)(() => (
+export const Clusters = () => (
   <div>
     <h3 className={s.heading}>My Clusters</h3>
     {["0x000", "0x001", "0x002"].map((item, i) => (
@@ -191,9 +190,9 @@ export const Clusters = withStyles(s)(() => (
       </h4>
     ))}
   </div>
-))
+)
 
-export const Containers = withStyles(s)(() => (
+export const Containers = () => (
   <div>
     <h3 className={s.heading}>My Containers</h3>
     {["Redis", "Mosca", "PostgreSQL", "Jenkins"].map((item, i) => (
@@ -204,9 +203,9 @@ export const Containers = withStyles(s)(() => (
       </h4>
     ))}
   </div>
-))
+)
 
-export const Providers = withStyles(s)(() => (
+export const Providers = () => (
   <div>
     <h3 className={s.heading}>My Providers</h3>
     {["DigitalOcean", "Microsoft Azure", "Google Cloud Platform", "Amazon Web Services"].map((item, i) => (
@@ -217,9 +216,9 @@ export const Providers = withStyles(s)(() => (
       </h4>
     ))}
   </div>
-))
+)
 
-export const Playbooks = withStyles(s)(() => (
+export const Playbooks = () => (
   <div>
     <h3 className={s.heading}>My Playbook Scripts</h3>
     {["DigitalOcean", "Microsoft Azure", "Google Cloud Platform", "Amazon Web Services"].map((item, i) => (
@@ -230,9 +229,9 @@ export const Playbooks = withStyles(s)(() => (
       </h4>
     ))}
   </div>
-))
+)
 
-export const Microservices = withStyles(s)(() => (
+export const Microservices = () => (
   <div>
     <h3 className={s.heading}>Microservices Overview</h3>
     {["LDAP Authentication", "User Account Management", "Print Queue Management"].map((item, i) => (
@@ -243,9 +242,9 @@ export const Microservices = withStyles(s)(() => (
       </h4>
     ))}
   </div>
-))
+)
 
-export const Transports = withStyles(s)(() => (
+export const Transports = () => (
   <div>
     <h3 className={s.heading}>Transport Status</h3>
     {["HTTP REST", "WebSocket", "MQTT", "GraphQL"].map((item, i) => (
@@ -256,9 +255,9 @@ export const Transports = withStyles(s)(() => (
       </h4>
     ))}
   </div>
-))
+)
 
-export const Endpoints = withStyles(s)(() => (
+export const Endpoints = () => (
   <div>
     <h3 className={s.heading}>RESTful Endpoints</h3>
     {["/auth", "/user", "/locate", "/file", "/queue", "/payment"].map((item, i) => (
@@ -267,9 +266,9 @@ export const Endpoints = withStyles(s)(() => (
       </h4>
     ))}
   </div>
-))
+)
 
-export const SideEffects = withStyles(s)(() => (
+export const SideEffects = () => (
   <div>
     <h3 className={s.heading}>Side Effects</h3>
     {["WebHooks", "MQTT Broker", "Image Processor", "Render Server"].map((item, i) => (
@@ -278,9 +277,9 @@ export const SideEffects = withStyles(s)(() => (
       </h4>
     ))}
   </div>
-))
+)
 
-export const Triggers = withStyles(s)(() => (
+export const Triggers = () => (
   <div>
     <h3 className={s.heading}>Triggers</h3>
     {["IFTTT", "If Online"].map((item, i) => (
@@ -289,9 +288,9 @@ export const Triggers = withStyles(s)(() => (
       </h4>
     ))}
   </div>
-))
+)
 
-export const Scripts = withStyles(s)(() => (
+export const Scripts = () => (
   <div>
     <h3 className={s.heading}>Scripts</h3>
     {
@@ -305,4 +304,4 @@ export const Scripts = withStyles(s)(() => (
       ))
     }
   </div>
-))
+)

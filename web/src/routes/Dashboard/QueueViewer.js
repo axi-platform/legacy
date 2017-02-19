@@ -11,7 +11,7 @@ import Button from "../../components/Button"
 import {services} from "../../client/api"
 import {notify} from "../../ducks/app"
 
-import s from "./Admin.scss"
+import s from "./Dashboard.scss"
 
 const mapStateToProps = state => ({
   user: state.user || {},

@@ -3,6 +3,7 @@ import json
 import os
 import urllib.request
 import sys
+import beacon
 
 deviceId = "5885bb1d75f2ed518cbf5f48"
 cdnPath = "http://localhost:3001"
@@ -51,15 +52,20 @@ def on_connect(client, userdata, flags, rc):
     client.publish(presence, "online", qos = 1, retain = True)
 
 def on_message(client, userdata, msg):
-    if msg.topic == room + "/queue":
-        queue = json.loads(str(msg.payload, "utf-8"))
-        print("[Queue #" + str(queue["id"]) + "]", msg.payload)
-        jobStatus("received", queue)
-        printFile(queue)
-    elif msg.topic == room + "/ping":
-        client.publish(room + "/pong", "pong")
-    else:
-        print("Received Message from", msg.topic, "as", msg.payload)
+    try:
+        payload = json.loads(str(msg.payload, "utf-8"))
+        if msg.topic == room + "/queue":
+            print("[Queue #" + str(payload["id"]) + "]", msg.payload)
+            jobStatus("received", payload)
+            printFile(payload)
+        elif msg.topic == room + "/beacon":
+            beacon.advertise(payload["url"])
+        elif msg.topic == room + "/ping":
+            client.publish(room + "/pong", "pong")
+        else:
+            print("Received Message from", msg.topic, "as", msg.payload)
+    except json.decoder.JSONDecodeError:
+        print("[Error] Malformed JSON.")
 
 if (len(sys.argv) > 1):
     deviceId = sys.argv[1]

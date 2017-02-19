@@ -29,6 +29,7 @@ const Navbar = props => (
               </div>
             </Link>
           ))}
+          {props.left}
         </div>
         <div className={s.center}>
           <Link to="/" className={s.logo}>

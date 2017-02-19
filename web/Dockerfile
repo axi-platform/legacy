@@ -15,6 +15,7 @@ RUN apk update \
  && tar -C $YARN -xzf $YARN/latest.tar.gz
 
 ENV PATH "$PATH:/opt/yarn/dist/bin"
+ENV NODE_ENV development
 
 COPY package.json yarn.lock /tmp/
 RUN cd /tmp && yarn
@@ -26,9 +27,7 @@ COPY postcss.config.js package.json $APP/
 COPY src $APP/src
 copy tools $APP/tools
 
-RUN yarn global add babel-cli
-
 # USER app
-EXPOSE 3000 3001 3002 8000
+EXPOSE 3000 3002 8000
 
 CMD ["yarn", "start"]

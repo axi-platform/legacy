@@ -22,13 +22,15 @@ export const initState = async (user, services, dispatch, route) => {
   if (user) {
     dispatch(setUserInfo(user))
   }
-  /*
+  try {
     await dispatch(services.devices.find({
       query: {
         $sort: {presence: -1}
       }
     }))
-  */
+  } catch (err) {
+    console.error(err)
+  }
 }
 
 /**

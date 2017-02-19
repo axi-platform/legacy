@@ -71,6 +71,8 @@ $container: 980px;
 }
 
 .more {
+  text-decoration: none;
+
   & > span {
     align-self: center;
     margin-right: 0.6em;
@@ -193,12 +195,17 @@ $container: 980px;
   }
 }
 
+.deco > .isodata {
+  width: 40%;
+}
+
 .deco > .phyweb {
   width: 65%;
   margin-top: 6em;
 }
 
 .deco > .isomono {
+  width: 60%;
   margin-top: 4em;
 }
 
@@ -209,9 +216,18 @@ $container: 980px;
     margin-bottom: 1em;
   }
 
+  .deco > .isomono {
+    width: 45%;
+    margin-top: 0;
+  }
+
   .deco > .phyweb {
     width: 40%;
     margin-top: 1em;
+  }
+
+  .deco > .isodata {
+    width: 30%;
   }
 }
 
@@ -222,13 +238,19 @@ $container: 980px;
   text-align: center;
 
   & > h2 {
+    font-size: 1.6em;
     margin-bottom: 1em;
+    color: $landing;
   }
 }
 
 img.ds {
   width: initial;
   margin-top: 1em;
+}
+
+.link {
+  text-decoration: none;
 }
 
 .join {

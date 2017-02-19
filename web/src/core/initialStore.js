@@ -13,7 +13,9 @@ import {setUserInfo} from "../ducks/user"
 
 import {NO_JWT, NO_COOKIE, INVALID_JWT} from "../constants"
 
-const worker = client().configure(socket(io("http://localhost:3000"))).configure(hooks())
+const SSR_URL = "http://api:3000"
+
+const worker = client().configure(socket(io(SSR_URL))).configure(hooks())
 
 /**
  * @module initialStore

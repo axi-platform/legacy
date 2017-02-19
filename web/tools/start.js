@@ -67,6 +67,8 @@ export default async () => {
 
             ws: true,
 
+            open: false,
+
             files: ["build/public/*"],
           }, resolve)
           handleServerBundleComplete = runServer

@@ -12,6 +12,17 @@
   }
 }
 
+.menuBtn {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22%23fff%22%3E%3Cpath%20d%3D%22M0%200h6v6H0z%22%2F%3E%3Cpath%20d%3D%22M0%209h6v6H0z%22%2F%3E%3Cpath%20d%3D%22M0%2018h6v6H0z%22%2F%3E%3Cpath%20d%3D%22M18%2018h6v6h-6z%22%2F%3E%3Cpath%20d%3D%22M9%2018h6v6H9z%22%2F%3E%3Cpath%20d%3D%22M9%200h6v6H9z%22%2F%3E%3Cpath%20d%3D%22M9%209h6v6H9z%22%2F%3E%3Cpath%20d%3D%22M18%200h6v6h-6z%22%2F%3E%3Cpath%20d%3D%22M18%209h6v6h-6z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  width: 1.5em;
+  height: 1.5em;
+  opacity: .3;
+}
+
+.menuBtn:hover {
+  opacity: .9;
+}
+
 .pre {
   line-height: 1.4em;
   white-space: pre-wrap;

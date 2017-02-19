@@ -3,34 +3,37 @@ import React, {PropTypes} from "react"
 import {SEGMENT} from "../constants"
 import {IS_PROD} from "../constants/util"
 
-const APP_NAME = "PrintAt"
+const APP_NAME = "Axi Platform"
 const LANG = "en-US"
-const TITLE = "Your Classroom 4.0 tools | PrintAt"
-const DESCRIPTION = "The tools you need for Education 4.0"
-const KEYWORDS = "Education 4.0, ห้องเรียน, การศึกษา, Thailand, Education, Classroom"
-const AUTHOR = "FlipDev Team"
-const COPYRIGHT = "All rights reserved by FlipDev Team."
-const URL = "https://printat.co"
+const TITLE = "Axi | Turn Ideas into Physical Web Solutions"
+const DESCRIPTION = `
+  Axi Platform helps you develop practical solutions with the Physical Web,
+  Cloud Services and Internet of Things.
+`
+
+const KEYWORDS = "Physical Web, Platform, Axi, IoT, Internet of Things"
+const AUTHOR = "Phoomparin Mano and Krerkthad"
+const COPYRIGHT = "All rights reserved by Axi Platform."
+const URL = "https://axiplatform.com"
 
 const IMAGE = ""
 const THEME_COLOR = "#1b1f24"
 
-const GOOGLE_FONTS = "css?family=Kanit:300,400|Roboto:300,400"
+// Kanit:300,400|
+const GOOGLE_FONTS = "css?family=Roboto:300,400"
 
 const Html = ({
-  title = TITLE,
-  description = DESCRIPTION,
   style, script, vendors, children, state
 }) => (
   <html className="no-js" lang={LANG}>
     <head>
-      <title>{title}</title>
+      <title>{TITLE}</title>
 
       <meta charSet="utf-8" />
       <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
       <meta httpEquiv="x-ua-compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-      <meta name="description" content={description} />
+      <meta name="description" content={DESCRIPTION} />
       <meta name="keywords" content={KEYWORDS} />
       <meta name="author" content={AUTHOR} />
       <meta name="copyright" content={COPYRIGHT} />
@@ -48,16 +51,16 @@ const Html = ({
       <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
       <meta name="apple-mobile-web-app-title" content="PrintAt" />
 
-      <meta property="og:title" content={title} />
+      <meta property="og:title" content={TITLE} />
       <meta property="og:site_name" content={APP_NAME} />
       <meta property="og:type" content="website" />
       <meta property="og:image" content={IMAGE} />
       <meta property="og:url" content={URL} />
-      <meta property="og:description" content={description} />
+      <meta property="og:description" content={DESCRIPTION} />
 
       <meta name="twitter:card" content="summary" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
+      <meta name="twitter:title" content={TITLE} />
+      <meta name="twitter:description" content={DESCRIPTION} />
       <meta name="twitter:image" content={IMAGE} />
 
       <link rel="stylesheet" href="/css/grid.css" />
