@@ -5,6 +5,7 @@ RUN adduser -S app
 
 ENV APP /opt/app
 ENV YARN /opt/yarn
+ENV NODE_ENV development
 
 WORKDIR $APP
 
@@ -15,15 +16,12 @@ RUN apk update \
  && tar -C $YARN -xzf $YARN/latest.tar.gz
 
 ENV PATH "$PATH:/opt/yarn/dist/bin"
-ENV NODE_ENV development
 
 COPY package.json yarn.lock /tmp/
 RUN cd /tmp && yarn
 RUN mkdir -p $APP && cd $APP && ln -s /tmp/node_modules
 
-# .env
 COPY postcss.config.js package.json $APP/
-
 COPY src $APP/src
 copy tools $APP/tools
 

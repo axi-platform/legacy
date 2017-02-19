@@ -5,6 +5,7 @@ RUN adduser -S app
 
 ENV APP /opt/app
 ENV YARN /opt/yarn
+ENV NODE_ENV development
 
 WORKDIR $APP
 
@@ -17,15 +18,14 @@ RUN apk update \
 ENV PATH "$PATH:/opt/yarn/dist/bin"
 
 COPY package.json yarn.lock /tmp/
-RUN cd /tmp && yarn --prod
+RUN cd /tmp && yarn
 RUN mkdir -p $APP && cd $APP && ln -s /tmp/node_modules
-RUN yarn global add nodemon
 
-COPY .env $APP
+COPY .env package.json webpack.config.js $APP/
 COPY build $APP/build
-copy src $app/src
+copy src $APP/src
 
 # USER app
 EXPOSE 3000
 
-CMD ["nodemon", "build/bundle.js"]
+CMD ["yarn", "start"]

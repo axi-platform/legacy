@@ -17,11 +17,22 @@ import print from "./print"
 import debug from "./debug"
 
 export default function services() {
-  mongoose.connect(DATABASE_URL)
+  try {
+    mongoose.connect(DATABASE_URL)
+  } catch (err) {
+    console.warn(err)
+  }
+
   mongoose.Promise = global.Promise
 
-  // mongooseRedisCache(mongoose, {host: REDIS_HOST, port: REDIS_PORT})
-  // console.log(`Setting up Mongoose Redis Cache at ${REDIS_HOST}:${REDIS_PORT}`)
+  /*
+  mongooseRedisCache(mongoose, {
+    host: REDIS_HOST,
+    port: REDIS_PORT
+  })
+  */
+
+  console.log(`Setting up Mongoose Redis Cache at ${REDIS_HOST}:${REDIS_PORT}`)
 
   this.configure(users)
   this.configure(authentication)

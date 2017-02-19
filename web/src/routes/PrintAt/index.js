@@ -14,7 +14,7 @@ const menu = [{
   icon: "info",
   text: "Configuration"
 }, {
-  to: "/admin",
+  to: "/dashboard",
   icon: "details",
   text: "Dashboard"
 }]

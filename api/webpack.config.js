@@ -1,15 +1,12 @@
 const webpack = require("webpack")
-const path = require("path")
 
 const DEBUG = true
 
 module.exports = {
-  entry: {
-    api: "./api/src/index.js",
-  },
+  entry: "./src/index.js",
 
   output: {
-    filename: "[name]/build/bundle.js",
+    filename: "build/bundle.js",
     path: __dirname,
     libraryTarget: "commonjs2"
   },
@@ -42,7 +39,8 @@ module.exports = {
       options: {raw: true, entryOnly: false}
     }),
 
-    new webpack.IgnorePlugin(/\.(css|less|scss)$/)
+    new webpack.IgnorePlugin(/\.(css|less|scss)$/),
+    new webpack.WatchIgnorePlugin(["build"])
   ],
 
   node: {
@@ -57,8 +55,8 @@ module.exports = {
   externals: [
     /^\.\/assets$/,
     (context, request, cb) => {
-      cb(null, Boolean(request.match(/^[@a-z][a-z\/\.\-0-9]*$/i)))
-    },
+      cb(null, Boolean(request.match(/^[@a-z][a-z/.\-0-9]*$/i)))
+    }
   ],
 
   devtool: "source-map"

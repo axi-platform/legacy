@@ -3,7 +3,7 @@ class DebugService {
     this.app = app
   }
 
-  find = () => Promise.resolve({data: "Debug Endpoint"})
+  find = () => Promise.resolve({data: "Debug. Hello world!"})
 
   get = async function get() {
     const users = await this.app.service("users").find()
