@@ -11,7 +11,9 @@ import {IS_CLIENT, IS_PROD} from "../constants/util"
 
 const app = feathers()
 
-const socketURI = IS_PROD ? "https://api.printat.co" : "http://localhost:3000" 
+// IS_PROD ? "https://api.printat.co" :
+
+const socketURI = "http://localhost:3000"
 
 const socket = io(
   IS_CLIENT ? socketURI : "", {

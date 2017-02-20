@@ -9,11 +9,6 @@ export const KEYMAP = {
 
 export const UPLOAD_PATH = "/uploads/"
 
-// Parameters for Chat Interface
-export const WAITING_TIME_BASE = 800
-export const WAITING_TIME_MULTIPLIER = 550
-export const TYPING_TIME = 950
-
 export const SEGMENT_KEY = "inYx5crWKP9gKRgehuRMlXH3hS8MjENa"
 export const SEGMENT = `
 !function(){var analytics=window.analytics=window.analytics||[];

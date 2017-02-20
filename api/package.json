@@ -10,6 +10,7 @@
     "csurf": "^1.9.0",
     "dauria": "^1.1.4",
     "dotenv-safe": "^4.0.2",
+    "eddystone-uid": "^0.1.5",
     "express-locale": "^1.0.1",
     "feathers": "^2.0.3",
     "feathers-authentication": "^1.0.2",

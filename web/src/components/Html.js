@@ -6,12 +6,10 @@ import {IS_PROD} from "../constants/util"
 const APP_NAME = "Axi Platform"
 const LANG = "en-US"
 const TITLE = "Axi | Turn Ideas into Physical Web Solutions"
-const DESCRIPTION = `
-  Axi Platform helps you develop practical solutions with the Physical Web,
-  Cloud Services and Internet of Things.
-`
+const DESCRIPTION = `Axi Platform helps you develop practical solutions with the Physical Web,`
++ ` Cloud Services and Internet of Things.`
 
-const KEYWORDS = "Physical Web, Platform, Axi, IoT, Internet of Things"
+const KEYWORDS = "Physical Web, Eddystone, Platform, Axi, IoT, Internet of Things"
 const AUTHOR = "Phoomparin Mano and Krerkthad"
 const COPYRIGHT = "All rights reserved by Axi Platform."
 const URL = "https://axiplatform.com"

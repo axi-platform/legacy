@@ -21,9 +21,9 @@ COPY package.json yarn.lock /tmp/
 RUN cd /tmp && yarn
 RUN mkdir -p $APP && cd $APP && ln -s /tmp/node_modules
 
-COPY postcss.config.js package.json $APP/
-COPY src $APP/src
+COPY package.json postcss.config.js $APP/
 copy tools $APP/tools
+COPY src $APP/src
 
 # USER app
 EXPOSE 3000 3002 8000

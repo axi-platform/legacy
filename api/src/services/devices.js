@@ -1,8 +1,10 @@
 import {Service} from "feathers-mongoose"
+import GenUID from "eddystone-uid"
 
-import device from "../models/device"
+import deviceModel from "../models/device"
 
 import client from "../core/mqtt"
+import {base64ArrayBuffer, hexToArrayBuffer} from "../core/buffer"
 import {DEVICE} from "../constants/api"
 
 class DeviceService extends Service {
@@ -34,12 +36,60 @@ class DeviceService extends Service {
   }
 }
 
+class BeaconManagement {
+
+  setup(app) {
+    this.app = app
+  }
+
+  send = (mode, device, data) => {
+    client.publish(
+      `printat/${device}/beacon/${mode}`,
+      JSON.stringify(data),
+      {qos: 1, retain: true}
+    )
+  }
+
+  genUID = (namespace = "https://projectaxi.com", id) => {
+    const instance = id || Math.random().toString(36).slice(2, 8)
+    return (GenUID.toNamespace(namespace) + GenUID.toBeaconId(instance)).toUpperCase()
+  }
+
+  patch(device, {url, uid}) {
+    if (url) {
+      this.send("url", device, {url})
+      this.app.service("devices").patch({beacon: {url}})
+      return Promise.resolve({status: "OK"})
+    } else if (uid) {
+      const buid = this.genUID(uid.namespace, uid.id)
+      const base64 = base64ArrayBuffer(hexToArrayBuffer(buid))
+      this.send("uid", device, {uid: buid, base64})
+      this.app.service("devices").patch(device, {beacon: {uid: buid}})
+      return Promise.resolve({status: "OK", uid: buid, base64})
+    }
+    throw new Error("Invalid Request. Either URL or UID must be specified.")
+  }
+
+}
+
+class CommandService {
+
+  create = data => {
+    client.publish(data.topic, data.payload, data.options)
+    return Promise.resolve({status: "OK"})
+  }
+
+}
+
 export default function devices() {
   this.use(DEVICE, new DeviceService({
-    Model: device,
+    Model: deviceModel,
     paginate: {
       default: 50,
       max: 100
     }
   }))
+
+  this.use("beacon", new BeaconManagement())
+  this.use("command", new CommandService())
 }

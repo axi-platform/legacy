@@ -5,7 +5,16 @@ const DeviceSchema = new Schema({
   loc: {type: [Number], index: "2d"},
   presence: {type: String, enum: ["online", "offline"], default: "offline"},
   status: {type: String, enum: ["ready", "busy", "unavailable"]},
-  queue: {type: Number, default: 0},
+  queue: {type: Number, min: 0, default: 0},
+  beacon: {
+    type: {type: String, enum: ["static", "dynamic"], default: "dynamic"},
+    uid: String,
+    url: String
+  },
+  flags: {
+    sensor: Boolean,
+    control: Boolean
+  },
   createdAt: {type: Date, default: Date.now},
   updatedAt: {type: Date, default: Date.now}
 })

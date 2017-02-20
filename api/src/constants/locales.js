@@ -68,7 +68,7 @@ export const Home = {
     obec: "OBEC's guest Project Awards",
     footer: (
       <span>
-        Developed by FlipDev Team.
+        Developed by PrintAt Team.
         Supported by NECTEC and SCB Foundation.
       </span>
     )
@@ -128,7 +128,7 @@ export const Home = {
     obec: "การประกวดโครงงานคอมพิวเตอร์ระดับนักเรียนโดยสพฐ.",
     footer: (
       <span>
-        พัฒนาโดยทีมพัฒนา FlipDev
+        พัฒนาโดยทีมพัฒนา PrintAt
         สนับสนุนโดย NECTEC และมูลนิธิสยามกัมมาจล
       </span>
     )

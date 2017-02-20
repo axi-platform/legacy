@@ -1,4 +1,4 @@
-import React from "react"
+import React, {Component} from "react"
 // import c from "classnames"
 import {connect} from "react-redux"
 import withStyles from "isomorphic-style-loader/lib/withStyles"
@@ -39,26 +39,54 @@ const mapDispatchToProps = dispatch => ({
   setStation: (device = {}) => {
     dispatch(setStation(device))
     dispatch(notify(`Setting Print Station to ${device.name}.`))
-  },
+  }
 })
 
-const Admin = () => (
+@connect(mapStateToProps, mapDispatchToProps)
+class DeviceMgr extends Component {
+
+  componentDidMount() {
+    app.service("devices").on("created", this.props.findDevices)
+    app.service("devices").on("removed", this.props.findDevices)
+    app.service("devices").on("patched", this.props.findDevices)
+  }
+
+  componentWillUnmount() {
+    app.service("devices").off("created")
+    app.service("devices").off("removed")
+    app.service("devices").off("patched")
+  }
+
+  render() {
+    const devices = this.props.devices.data || []
+    return (
+      <Grid className={s.bottom} r>
+        <Grid xs={12} sm={6} md={7}>
+          <Devices data={devices} remove={this.props.removeDevice} />
+        </Grid>
+        <Grid xs={12} sm={6} md={5}>
+          <div className={s.map}>
+            <Maps pins={devices} onMarkerClick={this.props.setStation} />
+          </div>
+        </Grid>
+      </Grid>
+    )
+  }
+}
+
+const Admin = ({devices, ...props}) => (
   <div className={s.root}>
     <Navbar left={<div className={s.menuBtn} />} />
     <Grid c>
-      <Grid className={s.bottom} r>
-        {["PrintAt Alpha", "PrintAt 2.0"].map((item, i) => (
-          <Grid className={s.bottom} xs={6} sm={4} md={3} key={i}>
-            <Paper>
-              <h3 className={s.heading}>
-                {item}
-              </h3>
-            </Paper>
-          </Grid>
-        ))}
-      </Grid>
+      <StatHeading
+        text="My Devices"
+        sub="Telemetry is"
+        stat="Online"
+        ctrl="Beacons | Sensors | Receivers"
+      />
+      <DeviceMgr />
     </Grid>
   </div>
 )
 
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(s)(Admin))
+export default withStyles(s)(Admin)

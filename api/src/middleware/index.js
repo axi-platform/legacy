@@ -3,6 +3,7 @@ import hooks from "feathers-hooks"
 import rest from "feathers-rest"
 import socketio from "feathers-socketio"
 import sync from "feathers-sync"
+import errorHandler from "feathers-errors/handler"
 
 import cors from "cors"
 import helmet from "helmet"
@@ -13,7 +14,6 @@ import bodyParser from "body-parser"
 
 import logger from "../core/logger"
 import socketHandler from "./socketHandler"
-import errorHandler from "./errorHandler"
 import basicLogger from "./basicLogger"
 
 import {REDIS_HOST, REDIS_PORT} from "../config"
@@ -53,5 +53,5 @@ export default function middlewares() {
   // }))
 
   this.use(basicLogger)
-  this.use(errorHandler)
+  this.use(errorHandler())
 }

@@ -48,7 +48,7 @@ app.configure(hooks())
 app.use(render)
 app.use(errorHandler())
 
-app.listen(PORT, "localhost", () => {
+app.listen(PORT, () => {
   /* eslint no-console: 0 */
   console.log(`The server is running at http://localhost:${PORT}/`)
 })

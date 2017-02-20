@@ -5,7 +5,7 @@ RUN adduser -S app
 
 ENV APP /opt/app
 ENV YARN /opt/yarn
-ENV NODE_ENV development
+ENV NODE_ENV production
 
 WORKDIR $APP
 
@@ -18,14 +18,12 @@ RUN apk update \
 ENV PATH "$PATH:/opt/yarn/dist/bin"
 
 COPY package.json yarn.lock /tmp/
-RUN cd /tmp && yarn
+RUN cd /tmp && yarn --prod
 RUN mkdir -p $APP && cd $APP && ln -s /tmp/node_modules
 
-COPY package.json webpack.config.js $APP/
-COPY build $APP/build
-copy src $APP/src
+COPY build $APP
 
 # USER app
 EXPOSE 3000
 
-CMD ["yarn", "start"]
+CMD ["node", "bundle"]

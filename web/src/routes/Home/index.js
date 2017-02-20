@@ -44,7 +44,7 @@ const Fold = () => (
   <section className={s.fold}>
     <div className={s.intro}>
       <h2>
-        Turn Sucky Ideas into Physical Web Solutions
+        Turn Amazing Ideas into Physical Web Solutions
         <br className={s.break} />
         &nbsp;with Axi Platform
       </h2>

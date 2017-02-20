@@ -1,36 +1,16 @@
 /*
-  componentDidMount() {
-    app.service("devices").on("created", this.props.findDevices)
-    app.service("devices").on("removed", this.props.findDevices)
-    app.service("devices").on("patched", this.props.findDevices)
-  }
 
-  componentWillUnmount() {
-    app.service("devices").off("created")
-    app.service("devices").off("removed")
-    app.service("devices").off("patched")
-  }
-
-  <StatHeading
-    text="My Beacons"
-    sub="Beacon Telemetry is"
-    stat="Connected"
-    ctrl="Toggle Card View | Table View"
-  />
-  <StatHeading
-    text="My Devices"
-    sub="Persistent Connection is"
-    stat="Established"
-    ctrl="Toggle Card View | Table View | Sensors Only | Devices Only"
-  />
-  <Grid className={s.bottom} r>
-    <Grid xs={12} sm={6} md={7}>
-      <Devices data={this.props.devices.data} remove={this.props.removeDevice} />
-    </Grid>
-    <Grid xs={12} sm={6} md={5}>
-      <div className={s.map}>
-        <Maps pins={this.props.devices.data} onMarkerClick={this.props.setStation} />
-      </div>
+  <Grid c>
+    <Grid className={s.bottom} r>
+      {["PrintAt Alpha", "PrintAt 2.0"].map((item, i) => (
+        <Grid className={s.bottom} xs={6} sm={4} md={3} key={i}>
+          <Paper>
+            <h3 className={s.heading}>
+              {item}
+            </h3>
+          </Paper>
+        </Grid>
+      ))}
     </Grid>
   </Grid>
   <StatHeading text="My Queues" stat="Queues and Schedulers are active." />

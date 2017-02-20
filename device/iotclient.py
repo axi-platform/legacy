@@ -1,3 +1,5 @@
+#!/usr/bin/python3
+
 import paho.mqtt.client as mqtt
 import json
 import os
@@ -32,8 +34,9 @@ def printFile(queue):
 
         try:
             req = urllib.request.urlretrieve(filePath, fileName)
-        except e:
-            print("[Error] Fetching document failed.", e)
+        except Exception as e:
+            print("[Error] Fetching document failed.")
+            print(e)
             jobStatus("error", queue, {"error": "document_fetch_error"})
 
         os.startfile(fileName, "print")
@@ -58,8 +61,20 @@ def on_message(client, userdata, msg):
             print("[Queue #" + str(payload["id"]) + "]", msg.payload)
             jobStatus("received", payload)
             printFile(payload)
-        elif msg.topic == room + "/beacon":
-            beacon.advertise(payload["url"])
+        elif msg.topic == room + "/beacon/url":
+            try:
+                print("Updating URL", payload)
+                beacon.advertise(payload["url"])
+            except Exception as e:
+                print("[Error] URL Advertisement Failure")
+                print(e)
+        elif msg.topic == room + "/beacon/uid":
+            try:
+                print("Updating UID", payload)
+                beacon.advertise(payload["uid"], beacon.Eddystone.uid)
+            except Exception as e:
+                print("[Error] UID Advertisement Failure")
+                print(e)
         elif msg.topic == room + "/ping":
             client.publish(room + "/pong", "pong")
         else:
