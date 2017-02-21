@@ -6,13 +6,19 @@ import os
 import urllib.request
 import sys
 import beacon
+import cups
 
 deviceId = "5885bb1d75f2ed518cbf5f48"
-cdnPath = "http://localhost:3001"
-serverPath = "localhost"
+
+# cdnPath = "http://localhost:3001"
+# serverPath = "localhost"
+cdnPath = "https://printat.co"
+serverPath = "printat.co"
 
 room = "printat/" + deviceId
 presence = "presence/" + deviceId
+
+conn = cups.Connection()
 
 def jobStatus(status, queue, info = {}):
     topic = room + "/" + str(queue["id"]) + "/status"
@@ -39,7 +45,18 @@ def printFile(queue):
             print(e)
             jobStatus("error", queue, {"error": "document_fetch_error"})
 
-        os.startfile(fileName, "print")
+        try:
+            printer = conn.printFile("iP2700-series", fileName, "test", {})
+            print(conn.getPrinters())
+            print("[Printing]", queue["file"])
+            jobStatus("printing", queue)
+            deviceStatus({"status": "busy"})
+        except cups.IPPError as e:
+            print("[Printing Error] Printer Does Not Exist", e)
+            jobStatus("error", queue, {"error": "cups_nonexisting_printer"})
+        except Exception as e:
+            print("[Printing Error]", e)
+            jobStatus("error", queue, {"error": "cups_printer_error"})
         print("[Printing]", queue["file"])
         jobStatus("printing", queue)
         deviceStatus({"status": "busy"})

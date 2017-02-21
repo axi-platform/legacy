@@ -11,12 +11,10 @@ import {IS_CLIENT, IS_PROD} from "../constants/util"
 
 const app = feathers()
 
-// IS_PROD ? "https://api.printat.co" :
-
-const socketURI = "http://localhost:3000"
+const socketURI = IS_CLIENT ? `${location.protocol}//api.${location.hostname}` : ""
 
 const socket = io(
-  IS_CLIENT ? socketURI : "", {
+  IS_PROD ? socketURI : "http://localhost:3000", {
     transports: ["websocket"]
   }
 )

@@ -29,7 +29,7 @@ services:
       restart_policy:
         condition: on-failure
   api:
-    image: printat-api-prod
+    image: axi-api-prod
     ports:
       - "3000:3000"
     depends_on:
@@ -43,13 +43,27 @@ services:
       restart_policy:
         condition: on-failure
   web:
-    image: printat-web-prod
+    image: axi-web-prod
     ports:
       - "8000:8000"
     depends_on:
       - api
     environment:
     - NODE_ENV=production
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+      restart_policy:
+        condition: on-failure
+  nginx:
+    image: axi-nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+      - api
+      - mqtt
     deploy:
       replicas: 1
       update_config:

@@ -39,7 +39,7 @@ services:
       restart_policy:
         condition: on-failure
   api:
-    image: printat-api
+    image: axi-api
     ports:
       - "3000:3000"
     depends_on:
@@ -56,7 +56,7 @@ services:
       restart_policy:
         condition: on-failure
   web:
-    image: printat-web
+    image: axi-web
     ports:
       - "3001:3000"
       - "3002:3002"
