@@ -28,7 +28,7 @@ Axi's Deployment System is just an Interface. You can choose what providers to d
 ### 2. Everyone must be able to use, deploy and develop with Axi.
 
 > Technology alone is not enough.
-Technology must intersect with the liberal arts and the humanities, to create new ideas and experiences that pusha society forward. - [WWDC 2017](https://developer.apple.com/wwdc)
+Technology must intersect with the liberal arts and the humanities, to create new ideas and experiences that push society forward. - [WWDC 2017](https://developer.apple.com/wwdc)
 
 1 - Service **Developers**
 
@@ -169,11 +169,3 @@ Anyone should be able to deploy an Axi service to create their own businesses. D
   - Standalone Beacons will require registration of the beacon, and add the UID to the Platform. You might also use GATT.
 
     - You might also specify a permanent URL, if you wish to use Eddystone-URL instead of Nearby Notifications, but you won't be able to use App Intent in case Android Instant Apps are available.
-
----
-
-<style>
-p {
-  line-height: 1.4;
-}
-</style>
