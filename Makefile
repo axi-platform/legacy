@@ -29,6 +29,10 @@ run-dev:
 run-prod:
 	docker stack deploy -c docker-stack.yml axi
 
-kill:
+kill: stack-rm stack-rm-f
+
+stack-rm:
 	docker stack rm axi
+
+stack-rm-f:
 	docker rm -f $(docker ps -q)

@@ -9,11 +9,12 @@ import beacon
 import cups
 
 deviceId = "5885bb1d75f2ed518cbf5f48"
+printerName = "PDF" # iP2700-series
 
-# cdnPath = "http://localhost:3001"
-# serverPath = "localhost"
-cdnPath = "https://printat.co"
-serverPath = "printat.co"
+cdnPath = "http://localhost:3000"
+serverPath = "localhost"
+# cdnPath = "https://printat.co"
+# serverPath = "printat.co"
 
 room = "printat/" + deviceId
 presence = "presence/" + deviceId
@@ -34,7 +35,7 @@ def deviceStatus(info):
     client.publish(room + "/status", json.dumps(info), qos = 1, retain = True)
 
 def printFile(queue):
-    if queue["file"].endswith("docx") or queue["file"].endswith("pdf"):
+    if queue["file"].endswith("docx") or queue["file"].endswith("pdf") or queue["file"].endswith("png"):
         filePath = cdnPath + queue["file"]
         fileName = queue["file"].rsplit("/", 1)[-1]
 
@@ -46,7 +47,7 @@ def printFile(queue):
             jobStatus("error", queue, {"error": "document_fetch_error"})
 
         try:
-            printer = conn.printFile("iP2700-series", fileName, "test", {})
+            printer = conn.printFile(printerName, fileName, "test", {})
             print(conn.getPrinters())
             print("[Printing]", queue["file"])
             jobStatus("printing", queue)

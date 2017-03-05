@@ -11,7 +11,9 @@ export const setUserInfo = data => ({
   payload: data
 })
 
-export const authenticate = (email, password, msg = "ยินดีต้อนรับเข้าสู่ระบบ") => (dispatch, getState) => {
+const AUTH_MSG = "ยินดีต้อนรับเข้าสู่ระบบ"
+
+export const authenticate = (email, password, msg = AUTH_MSG) => (dispatch, getState) => {
   app.authenticate({
     strategy: "local",
     email: email,
@@ -40,10 +42,12 @@ export const authenticate = (email, password, msg = "ยินดีต้อน
   })
 }
 
+const REG_MSG = "ยินดีต้อนรับสู่ PrintAt ครับ!"
+
 export const register = (username, email, password) => (dispatch) => {
   app.service("accounts").create({username, email, password}).then(user => {
     if (user) {
-      dispatch(authenticate(email, password, "ยินดีต้อนรับสู่ PrintAt ครับ! ท่านสามารถสร้างห้องเรียนได้ทันที"))
+      dispatch(authenticate(email, password, REG_MSG))
       dispatch(reset("signup"))
       console.info("Registration Success", user)
     }

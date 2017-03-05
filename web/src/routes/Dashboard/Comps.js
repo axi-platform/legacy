@@ -25,17 +25,20 @@ export const getPI = status => {
   return <div />
 }
 
-export const Device = ({_id, name, loc, presence, remove}) => (
+export const Device = ({_id, name, loc, presence, queue = 0, beacon = {}, remove}) => (
   <Paper style={{marginBottom: "1em"}}>
     <div className={s.device}>
       <h3 className={getPC(presence)}>
-        {name} {getPI(presence)}
+        {name} ({queue} Queue) {getPI(presence)}
       </h3>
       {loc && (
         <h4 className={s.sub}>
           ({loc[0].toFixed(7)}, {loc[1].toFixed(7)})
         </h4>
       )}
+      {beacon && <h4 className={s.sub}>
+        {beacon.uid} {beacon.url}
+      </h4>}
       <h5 className={s.sub}>
         Id: {_id} <span onClick={() => remove(_id)}>[Delete]</span>
       </h5>

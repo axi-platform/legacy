@@ -13,8 +13,7 @@
       ))}
     </Grid>
   </Grid>
-  <StatHeading text="My Queues" stat="Queues and Schedulers are active." />
-  <QueueViewer />
+
   <StatHeading text="Centralized Monitoring" stat="Telemetry is in Passive Mode." />
   <Monitoring />
   <StatHeading text="My Deployments" stat="All Systems Go." />

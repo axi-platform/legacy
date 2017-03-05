@@ -15,7 +15,7 @@ const FirstUpload = withStyles(s)(upload => (
     <Button className={s.ripple}>
       <Paper title="No Files Yet -- Upload Something.">
         <div className={s.noFiles}>
-          <img src="/images/fdesk2.svg" role="presentation" />
+          <img src="/images/isomac.svg" role="presentation" />
           <h2 className={s.h}>
             Let&apos;s Upload some Files.
           </h2>
@@ -30,7 +30,7 @@ const FirstUpload = withStyles(s)(upload => (
 
 const NoPreview = withStyles(s)(({ext}) => (
   <div className={s.noFiles}>
-    <img src="/images/fdesk2.svg" role="presentation" />
+    <img src="/images/isomac.svg" role="presentation" />
     <h2 className={s.h}>
       {ext ? "No Preview Available for this file." : "File isn't Selected."}
     </h2>

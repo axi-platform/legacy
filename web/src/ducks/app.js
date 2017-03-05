@@ -15,7 +15,7 @@ export const notify = (text, type = "info") => dispatch => {
     setTimeout(() => {
       dispatch({type: "DEL_NOTIFS"})
     }, 1000)
-  }, 3000)
+  }, 1500)
 }
 
 export const removeNotif = payload => dispatch => {

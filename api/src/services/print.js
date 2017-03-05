@@ -31,7 +31,7 @@ class PrintService {
           id,
           file: file.path,
           order: order
-        }))
+        }), {qos: 2})
       }
     })
 
@@ -85,7 +85,7 @@ class PrintService {
 
     files.forEach(file => {
       const ext = file.name.split(".").pop()
-      const allowed = ["pdf", "docx"]
+      const allowed = ["pdf", "docx", "png"]
       if (allowed.indexOf(ext) < 0) {
         this.app.logger.log("debug", `[Failure] File type "${ext}" is unsupported!`)
         throw new Error(`${ext.toUpperCase()} files are unsupported at this time.`)

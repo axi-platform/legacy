@@ -122,18 +122,31 @@ export const getIDfromURL = (url, prefix) => {
 
 export const isRoute = (url, prefix) => (url.indexOf(prefix) > -1)
 
-/**
-  @func restoreScrollPosition
-  @desc Restore Scroll Position based on state
-  @param state
-*/
-
-export const restoreScrollPosition = state => {
-  if (state && state.scrollY !== undefined) {
-    setTimeout(() => {
-      window.scrollTo(state.scrollX, state.scrollY)
-    }, 40)
-  } else {
-    window.scrollTo(0, 0)
+export const REDIS_RETRY_STRATEGY = opt => {
+  console.log("RETRY_STRATEGY", opt)
+  if (opt.error && opt.error.code === "ECONNREFUSED") {
+    // End reconnecting on a specific error
+    //  and flush all commands with an individual error
+    console.error("ECONNREFUSED")
+    return new Error("The server refused the connection")
   }
+
+  if (opt.error && opt.error.code === "ENOTFOUND") {
+    console.log("ENOTFOUND")
+    return Math.min(opt.attempt * 100, 3000)
+  }
+
+  if (opt.total_retry_time > 1000 * 60 * 60) {
+    // End reconnecting after a specific timeout
+    //  and flush all commands with an individual error
+    console.error("TOTAL_RETRY_TIME > 1M")
+    return new Error("Retry time exhausted")
+  }
+  if (opt.times_connected > 10) {
+    // End reconnecting with built in error
+    console.error("TIMES_RECONNECTED > 10")
+    return undefined
+  }
+  // reconnect after
+  return Math.min(opt.attempt * 100, 3000)
 }

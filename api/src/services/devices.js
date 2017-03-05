@@ -61,6 +61,11 @@ class BeaconManagement {
       this.app.service("devices").patch({beacon: {url}})
       return Promise.resolve({status: "OK"})
     } else if (uid) {
+      if (uid.uid) {
+        const base64 = base64ArrayBuffer(hexToArrayBuffer(uid.uid))
+        this.send("uid", device, {uid: uid.uid, base64})
+        return Promise.resolve({status: "OK", base64})
+      }
       const buid = this.genUID(uid.namespace, uid.id)
       const base64 = base64ArrayBuffer(hexToArrayBuffer(buid))
       this.send("uid", device, {uid: buid, base64})

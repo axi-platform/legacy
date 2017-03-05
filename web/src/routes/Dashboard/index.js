@@ -85,6 +85,8 @@ const Admin = ({devices, ...props}) => (
         ctrl="Beacons | Sensors | Receivers"
       />
       <DeviceMgr />
+      <StatHeading text="My Queues" stat="Queues and Schedulers are active." />
+      <QueueViewer />
     </Grid>
   </div>
 )

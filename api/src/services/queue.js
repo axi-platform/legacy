@@ -1,6 +1,7 @@
 import redis from "redis"
 import bluebird from "bluebird"
 import {REDIS_HOST, REDIS_PORT} from "../config"
+import {REDIS_RETRY_STRATEGY} from "../core/helper"
 
 bluebird.promisifyAll(redis.RedisClient.prototype)
 bluebird.promisifyAll(redis.Multi.prototype)
@@ -8,34 +9,7 @@ bluebird.promisifyAll(redis.Multi.prototype)
 export const r = redis.createClient({
   host: REDIS_HOST,
   port: REDIS_PORT,
-  retry_strategy: opt => {
-    console.log("RETRY_STRATEGY", opt)
-    if (opt.error && opt.error.code === "ECONNREFUSED") {
-      // End reconnecting on a specific error
-      //  and flush all commands with an individual error
-      console.error("ECONNREFUSED")
-      return new Error("The server refused the connection")
-    }
-
-    if (opt.error && opt.error.code === "ENOTFOUND") {
-      console.log("ENOTFOUND")
-      return Math.min(opt.attempt * 100, 3000)
-    }
-
-    if (opt.total_retry_time > 1000 * 60 * 60) {
-      // End reconnecting after a specific timeout
-      //  and flush all commands with an individual error
-      console.error("TOTAL_RETRY_TIME > 1M")
-      return new Error("Retry time exhausted")
-    }
-    if (opt.times_connected > 10) {
-      // End reconnecting with built in error
-      console.error("TIMES_RECONNECTED > 10")
-      return undefined
-    }
-    // reconnect after
-    return Math.min(opt.attempt * 100, 3000)
-  }
+  retry_strategy: REDIS_RETRY_STRATEGY
 })
 
 r.on("error", err => console.error("Redis Error", err))
@@ -94,6 +68,11 @@ class QueueManager {
     if (this.events.indexOf(as) < 0)
       throw new Error("Queue State is invalid.")
 
+    if (as === "next") {
+      this.emit("next", {id, device})
+      return {id, device, as}
+    }
+
     // Emits the event back
     this.emit(as, {id, device})
 
@@ -111,6 +90,13 @@ class QueueManager {
     this.emit("next", {id: id + 1, device})
     this.app.logger.log("Info", `[Queue #${id}] has been marked as ${as}. Next is #${id + 1}.`)
     return {id, device, as}
+  }
+
+  remove = async function remove(device) {
+    // HACK: Purge all queues. USE WITH CAUTION!
+    await r.setAsync(`p:queue:${device}:ids`, 0)
+    await r.setAsync(`p:queue:${device}:completed`, 0)
+    return true
   }
 }
 
