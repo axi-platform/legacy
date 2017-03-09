@@ -37,9 +37,11 @@ const Navbar = props => (
           </Link>
         </div>
         <div className={s.right}>
-          <div className={s.icon}>
-            <Icon i="notifications" />
-          </div>
+          {/*
+            <div className={s.icon}>
+              <Icon i="notifications" />
+            </div>
+          */}
           <div className={s.profile}>
             <Round
               src={props.user.photo || DEFAULT_PROFILE}

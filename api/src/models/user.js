@@ -1,7 +1,6 @@
 import mongoose, {Schema} from "mongoose"
 
 import {roles} from "../constants/roles"
-import {DEFAULT_PROFILE} from "../constants/visual"
 
 /**
   @module User Model
@@ -41,10 +40,7 @@ const UserSchema = new Schema({
     match: [emailRegex, "Please fill a valid email address"]
   },
   password: {type: String, required: true},
-  photo: {
-    type: String,
-    default: DEFAULT_PROFILE
-  },
+  photo: String,
   roles: {
     type: String,
     enum: roles,

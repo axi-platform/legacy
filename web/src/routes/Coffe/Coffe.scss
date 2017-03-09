@@ -9,7 +9,7 @@ $font: Quicksand;
   padding: 1em 0 0.8em 0;
   box-shadow: 0px 7px 20px 1px rgba(0, 0, 0, 0.05);
 
-  & > svg {
+  > svg {
     flex: 1;
     align-self: center;
 
@@ -19,7 +19,7 @@ $font: Quicksand;
     height: 2em;
   }
 
-  & > span {
+  > span {
     flex: 4;
     align-self: center;
 
@@ -35,18 +35,18 @@ $font: Quicksand;
   max-width: 680px;
   margin: 0 auto;
 
-  & > img {
+  > img {
     margin-top: 1.8em;
     width: 4.3em;
   }
 
-  & > h2, & > h3, & > h4 {
+  > h2, > h3, > h4 {
     margin-top: 0.8em;
     font-weight: 400;
     font-family: $font;
   }
 
-  & > h3 {
+  > h3 {
     font-size: 1em;
     padding: 0 1.5em;
   }
@@ -74,12 +74,12 @@ $font: Quicksand;
   font-family: $font;
   text-transform: uppercase;
 
-  & > img {
+  > img {
     width: 1.7em;
     height: 1.7em;
   }
 
-  & > p {
+  > p {
     margin: 0.6em 0;
     font-size: 0.9em;
   }
@@ -130,7 +130,7 @@ $font: Quicksand;
 .order {
   margin: 0 1.5em;
 
-  & > button {
+  > button {
     color: $white;
     background: $prime;
     padding: 1em 1em;

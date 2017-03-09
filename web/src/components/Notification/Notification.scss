@@ -28,7 +28,7 @@ $info: #58abc3;
 
   cursor: pointer;
 
-  & > svg {
+  > svg {
     flex: 1;
     align-self: center;
 
@@ -39,7 +39,7 @@ $info: #58abc3;
     margin-right: 1em;
   }
 
-  & > span {
+  > span {
     flex: 6;
     align-self: center;
 

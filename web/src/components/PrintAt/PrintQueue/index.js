@@ -121,9 +121,7 @@ export default class PrintQueue extends Component {
         </Grid>
         <Grid xs={12} sm={6}>
           <div>
-            <Paper title="Process Monitor">
-              ...
-            </Paper>
+
           </div>
         </Grid>
       </Grid>

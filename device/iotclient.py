@@ -9,7 +9,7 @@ import beacon
 import cups
 
 deviceId = "5885bb1d75f2ed518cbf5f48"
-printerName = "PDF" # iP2700-series
+printerName = "iP2700-series" # PDF
 
 cdnPath = "http://localhost:3000"
 serverPath = "localhost"
@@ -20,13 +20,13 @@ room = "printat/" + deviceId
 presence = "presence/" + deviceId
 
 conn = cups.Connection()
+# next(iter(conn.getPrinters()))
 
 def jobStatus(status, queue, info = {}):
     topic = room + "/" + str(queue["id"]) + "/status"
     base = {
         "id": queue["id"],
         "status": status,
-        "file": queue["file"],
         "order": queue["order"]
     }
     client.publish(topic, json.dumps({**base, **info}), qos = 1)
@@ -35,7 +35,7 @@ def deviceStatus(info):
     client.publish(room + "/status", json.dumps(info), qos = 1, retain = True)
 
 def printFile(queue):
-    if queue["file"].endswith("docx") or queue["file"].endswith("pdf") or queue["file"].endswith("png"):
+    if queue["file"].endswith("jpeg") or queue["file"].endswith("pdf") or queue["file"].endswith("png"):
         filePath = cdnPath + queue["file"]
         fileName = queue["file"].rsplit("/", 1)[-1]
 
@@ -47,8 +47,7 @@ def printFile(queue):
             jobStatus("error", queue, {"error": "document_fetch_error"})
 
         try:
-            printer = conn.printFile(printerName, fileName, "test", {})
-            print(conn.getPrinters())
+            printer = conn.printFile(printerName, fileName, fileName, {})
             print("[Printing]", queue["file"])
             jobStatus("printing", queue)
             deviceStatus({"status": "busy"})
@@ -93,10 +92,6 @@ def on_message(client, userdata, msg):
             except Exception as e:
                 print("[Error] UID Advertisement Failure")
                 print(e)
-        elif msg.topic == room + "/ping":
-            client.publish(room + "/pong", "pong")
-        else:
-            print("Received Message from", msg.topic, "as", msg.payload)
     except json.decoder.JSONDecodeError:
         print("[Error] Malformed JSON.")
 
@@ -104,9 +99,13 @@ if (len(sys.argv) > 1):
     deviceId = sys.argv[1]
     room = "printat/" + sys.argv[1]
     presence = "presence/" + sys.argv[1]
-    print("Device Identifier is alternatively set to", deviceId)
+    print("Device Identifier is set to", deviceId)
 else:
     print("Device Identifier is", deviceId)
+
+print("Printer List:", conn.getPrinters().keys())
+print("Using Printer:", printerName, "with attributes:", conn.getPrinters()[printerName])
+
 client = mqtt.Client(client_id = deviceId, clean_session = True, userdata = None)
 client.on_connect = on_connect
 client.on_message = on_message

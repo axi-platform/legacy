@@ -11,12 +11,7 @@ import Paper from "../../components/Paper"
 import Maps from "../../components/Maps"
 import Button from "../../components/Button"
 
-import {
-  Devices, Pipelines, Heading, StatHeading, Monitoring, AppStore,
-  Infrastructure, Environments, Clusters, Containers, Providers,
-  Playbooks, Microservices, Transports, Endpoints, SideEffects,
-  Triggers, Scripts
-} from "./Comps"
+import {Devices, Heading, StatHeading} from "./Comps"
 
 import QueueViewer from "./QueueViewer"
 
@@ -82,7 +77,7 @@ const Admin = ({devices, ...props}) => (
         text="My Devices"
         sub="Telemetry is"
         stat="Online"
-        ctrl="Beacons | Sensors | Receivers"
+        ctrl="Beacons | Sensors | Controllers"
       />
       <DeviceMgr />
       <StatHeading text="My Queues" stat="Queues and Schedulers are active." />

@@ -15,6 +15,29 @@ class PrintService {
 
   setup(app) {
     this.app = app
+    app.service("queue").on("next", ({id, device}) => {
+      app.logger.log("info", `[QueueListener] Next Up: #${id} @ ${device}`)
+      app.service("queue").get({id, device}).then(({completed, data}) => {
+        if (completed) {
+          app.logger.log("error", "The queue is already completed.", err)
+          this.emit("failed", "ALREADY_COMPLETED")
+          app.service("queue").patch(device, {id, as: "failed"})
+        }
+        if (data) {
+          app.logger.log("info", `[QueueActive #${id} @ ${device}] Issuing PRINT.`)
+
+          try {
+            // When It's user's Queue, issue the Print command.
+            this.print(device, id)
+          } catch (err) {
+            app.logger.log("error", "Printing Error", err)
+            this.emit("failed", err)
+            app.service("queue").patch(device, {id, as: "failed"})
+            throw new Error(err)
+          }
+        }
+      })
+    })
   }
 
   print = async function print(device, id) {
@@ -22,18 +45,27 @@ class PrintService {
 
     mqtt.subscribe(queueTopic)
 
-    const {files} = await this.app.service("queue").get({id, device})
+    const {data: {files}} = await this.app.service("queue").get({id, device})
 
     // Iterate through each files
     files.forEach((file, order) => {
       if (file) {
         mqtt.publish(`printat/${device}/queue`, JSON.stringify({
           id,
-          file: file.path,
-          order: order
+          order,
+          file: file.path
         }), {qos: 2})
       }
     })
+
+    /*
+      NOTE: Print Multiple File at Once.
+      mqtt.publish(`printat/${device}/v2/queue`, JSON.stringify({
+        id,
+        order,
+        files: files.map(({path, size, name, type}) => ({path, size, name, type}))
+      }), {qos: 2})
+    */
 
     // Retrieve Progress Update on Printing
     mqtt.on("message", (topic, msg) => {
@@ -68,7 +100,7 @@ class PrintService {
   }
 
   // Enqueue a Print Job
-  create = async function ({files = [], station}) {
+  create = async function create({files = [], station}) {
     this.app.logger.log("debug", `Preparing to Print at ${station}...`)
 
     const {presence} = await this.app.service("devices").get(station)
@@ -85,7 +117,7 @@ class PrintService {
 
     files.forEach(file => {
       const ext = file.name.split(".").pop()
-      const allowed = ["pdf", "docx", "png"]
+      const allowed = ["pdf", "docx", "png", "jpg"]
       if (allowed.indexOf(ext) < 0) {
         this.app.logger.log("debug", `[Failure] File type "${ext}" is unsupported!`)
         throw new Error(`${ext.toUpperCase()} files are unsupported at this time.`)
@@ -96,21 +128,6 @@ class PrintService {
     const {id} = await this.app.service("queue").create({
       device: station,
       data: {files}
-    })
-
-    // Listens to the Queue's "Next" event.
-    this.app.service("queue").on("next", next => {
-      console.log("NEXT", next.id, "CURRENT", id)
-      if (next.id === id && next.device === station) {
-        this.app.logger.log("info", `[Queue #${id} @ ${station}] is ready.`)
-        try {
-          // When It's user's Queue, issue the Print command.
-          this.print(station, id)
-        } catch (err) {
-          this.app.logger.log("Printing Error", err)
-          throw new Error(err)
-        }
-      }
     })
 
     return {

@@ -1,0 +1,33 @@
+@import "../../components/variables.scss";
+
+.main {
+  margin-top: 5em;
+}
+
+.checkin, .plans {
+  button {
+    margin-right: 1em;
+    background: $dark;
+  }
+}
+
+h2.heading {
+  margin-bottom: 1em;
+}
+
+.plan {
+  text-align: center;
+
+  img {
+    width: 5.5em;
+    text-align: center;
+  }
+}
+
+.paper {
+  text-align: center;
+
+  h2 {
+    margin-bottom: 1em;
+  }
+}

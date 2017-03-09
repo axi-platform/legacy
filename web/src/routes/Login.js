@@ -14,7 +14,7 @@ const padding = {
 }
 
 export default () => (
-  <Background color="#16a8af">
+  <Background color="#efefef">
     <Grid style={padding} vc>
       <Paper depth="z-flow" cover={cover}>
         <LoginForm />

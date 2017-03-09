@@ -41,11 +41,11 @@
   text-align: right;
   line-height: 1.8em;
 
-  & > span {
+  > span {
     text-transform: capitalize;
   }
 
-  & > span > svg {
+  > span > svg {
     fill: $complement !important;
   }
 }
@@ -53,7 +53,7 @@
 .online {
   color: $accent;
 
-  & > span > svg {
+  > span > svg {
     margin-top: -0.2em;
     fill: $accent !important;
   }

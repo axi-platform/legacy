@@ -20,7 +20,7 @@
 	color: $white;
 	background: $dark;
 
-	& > div {
+	> div {
 		align-self: center;
 	}
 }
@@ -38,7 +38,7 @@
 .logo {
 	margin: 0 auto;
 
-	& > img {
+	> img {
 		width: 2.5em;
 		height: auto;
 	}
@@ -48,7 +48,7 @@
 	display: flex;
 	flex: 1;
 
-	& > div {
+	> div {
 		align-self: center;
 	}
 }
@@ -77,7 +77,7 @@
 	color: $white;
 	text-decoration: none;
 
-	& > svg {
+	> svg {
 		align-self: center;
 		margin-right: 0.5em;
 
@@ -87,7 +87,7 @@
 		fill: $white;
 	}
 
-	& > span {
+	> span {
 		line-height: 1.6em;
 	}
 }
@@ -95,7 +95,7 @@
 .icon {
 	margin-right: 1em;
 
-	& > svg {
+	> svg {
 		width: 1.5em;
 		height: 1.5em;
 

@@ -14,7 +14,7 @@ export const LOGO = `${CDN_URL}/images/pw_logo.svg`
 export const cover = {
   height: "10em",
   color: "#16a8af",
-  src: "/images/fdesk3.svg",
+  src: "/images/isomac.svg",
   size: "contain",
-  position: "center 0.8em"
+  position: "center"
 }

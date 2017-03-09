@@ -7,7 +7,7 @@ $container: 980px;
 .fold {
   height: 100vh;
 
-  & > .graphic > img {
+  > .graphic > img {
     bottom: 0;
     left: 50%;
     position: absolute;
@@ -26,13 +26,13 @@ $container: 980px;
   text-align: center;
   transform: translate(-50%, 0);
 
-  & > h2 {
+  > h2 {
     color: $landing;
     font-size: 2.5em;
     // text-shadow: 0px 1px 3px rgba(0,0,0,0.3);
   }
 
-  & > h3 {
+  > h3 {
     color: $sub;
     margin-top: 1em;
     font-size: 1.1em;
@@ -73,7 +73,7 @@ $container: 980px;
 .more {
   text-decoration: none;
 
-  & > span {
+  > span {
     align-self: center;
     margin-right: 0.6em;
     transition: all 1s cubic-bezier(0.03, 0.86, 0.57, 1);
@@ -83,7 +83,7 @@ $container: 980px;
     text-transform: uppercase;
   }
 
-  & > svg {
+  > svg {
     align-self: center;
 
     width: 1.5em;
@@ -105,7 +105,7 @@ $container: 980px;
 }
 
 .why {
-  & > .row {
+  > .row {
     margin-top: 1em;
   }
 }
@@ -113,12 +113,12 @@ $container: 980px;
 .reason {
   padding: 5em 6em;
 
-  & > h2 {
+  > h2 {
     font-size: 1.8em;
     color: $landing;
   }
 
-  & > p {
+  > p {
     margin-bottom: 1.5em;
   }
 }
@@ -160,11 +160,11 @@ $container: 980px;
 }
 
 .reason.p {
-  & > h2, & > p, & > .more > span {
+  > h2, > p, > .more > span {
     color: $white;
   }
 
-  & > .more > svg {
+  > .more > svg {
     fill: white;
   }
 }
@@ -188,7 +188,7 @@ $container: 980px;
 .deco {
   text-align: center;
 
-  & > img {
+  > img {
     width: 50%;
     margin-top: 2em;
     margin-bottom: 2em;
@@ -237,7 +237,7 @@ $container: 980px;
   margin: 0 auto;
   text-align: center;
 
-  & > h2 {
+  > h2 {
     font-size: 1.6em;
     margin-bottom: 1em;
     color: $landing;

@@ -16,7 +16,7 @@ const modal = {
 }
 
 export default () => (
-  <Background color="#16a8af">
+  <Background color="#efefef">
     <Grid style={modal} vc n c>
       <Paper depth="z-flow" cover={cover}>
         <Signup />

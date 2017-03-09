@@ -28,6 +28,8 @@ export const initState = async (user, services, dispatch, route) => {
         $sort: {presence: -1}
       }
     }))
+
+    await dispatch(services.queue.find({query: {device: "queue"}}))
   } catch (err) {
     console.error(err)
   }

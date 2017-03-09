@@ -37,7 +37,11 @@ class QueueManager {
   // Get the Queue's Data
   get = async function get({id, device}) {
     const queue = await r.getAsync(`p:queue:${device}:${id}`)
-    return JSON.parse(queue)
+    const completed = await r.getAsync(`p:queue:${device}:${id}:completed`)
+    return {
+      completed,
+      data: JSON.parse(queue)
+    }
   }
 
   // Create new Queues
@@ -54,13 +58,16 @@ class QueueManager {
     // Update Queue Counter in the Devices Model
     // await this.app.service("devices").patch(device, {queue: id})
 
-    if (id - completed === 1) {
-      this.app.logger.log("info", `Blank Queue Detected. Issuing Next immediately.`)
-      this.emit("next", {id, device})
+    this.app.logger.log("info", `[QueueCount] Remaining: ${id - completed}, Current: ${id}, Completed: ${completed}`)
+
+    if (id - completed <= 1) {
+      // Emits `next` to notify this queue immediately..
+        await this.patch(device, {id, as: "next"}).then(console.log)
+      this.app.logger.log("info", `[QueueNeXT] No Prior Queues; Notifying #${id} to be next.`)
     }
 
-    this.app.logger.log("debug", `Queue #${id} created for ${queue}`)
-    return {id}
+    this.app.logger.log("info", `Queue #${id} created for ${queue}`)
+    return {id, remain: id - completed}
   }
 
   // Mark Queue as Completed, Canceled or Failed.
@@ -69,8 +76,13 @@ class QueueManager {
       throw new Error("Queue State is invalid.")
 
     if (as === "next") {
-      this.emit("next", {id, device})
+      // Emits `next` to notify a queue.
+      await this.emit("next", {id, device})
       return {id, device, as}
+    }
+
+    if (await r.getAsync(`p:queue:${device}:${id}:completed`)) {
+      throw new Error(`Queue #${id} had been completed already!`)
     }
 
     // Emits the event back
@@ -82,20 +94,43 @@ class QueueManager {
     // Increment the Completed ID
     const completed = await r.incrAsync(`p:queue:${device}:completed`)
 
-    // Update Remaining Queue Counter in the Devices Database
+    // Total Queues
     const total = await r.getAsync(`p:queue:${device}:ids`)
-    await this.app.service("devices").patch(device, {queue: total - completed})
 
-    // Emits the Next event containing the Next Queue (id + 1)
+    if (total - completed >= 0) {
+      // Update Remaining Queue Count in the Device Display
+      try {
+        await this.app.service("devices").patch(device, {queue: total - completed})
+      } catch (e) {
+        this.app.logger.log("warn", "[Queue] Count can't be persisted,")
+      }
+    } else {
+      this.app.logger.log("warn", `[Warning] Negative Index on Queue.`)
+    }
+
+    // Calling the Next Queue in line.
     this.emit("next", {id: id + 1, device})
-    this.app.logger.log("Info", `[Queue #${id}] has been marked as ${as}. Next is #${id + 1}.`)
+
+    this.app.logger.log("info", `[Queue] Marked ${id} as ${as}.`)
+
     return {id, device, as}
   }
 
   remove = async function remove(device) {
     // HACK: Purge all queues. USE WITH CAUTION!
+    const total = await r.getAsync(`p:queue:${device}:ids`)
+    for (let i = 0; i <= total; i += 1) {
+      r.del(`p:queue:${device}:${i}:completed`)
+    }
     await r.setAsync(`p:queue:${device}:ids`, 0)
     await r.setAsync(`p:queue:${device}:completed`, 0)
+
+    try {
+      await this.app.service("devices").patch(device, {queue: 0})
+    } catch (e) {
+      this.app.logger.log("warn", "[Queue] Count can't be persisted,")
+    }
+
     return true
   }
 }

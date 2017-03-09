@@ -1,0 +1,32 @@
+@import "../../components/variables.scss";
+
+.main {
+  text-align: center;
+}
+
+.queue {
+  padding-top: 4.5em;
+  padding-bottom: 1em;
+  background: #efefef;
+  box-shadow: $zLite;
+
+  b {
+    font-size: 4em;
+    line-height: 1em;
+    color: $activeColor;
+  }
+}
+
+.reserve {
+  padding-top: 2em;
+
+  button:first-child {
+    margin-right: 1em;
+  }
+}
+
+.demo {
+  p {
+    margin-top: 0;
+  }
+}

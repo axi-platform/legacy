@@ -43,7 +43,7 @@
   text-align: center;
   height: 13em;
 
-  & > div {
+  > div {
     flex: 1;
     align-self: center;
   }
@@ -53,7 +53,7 @@
   color: $accent;
   animation: blink 1.5s linear infinite;
 
-  & > svg {
+  > svg {
     margin-top: -0.1em;
     fill: $accent !important;
   }
@@ -83,7 +83,7 @@
 }
 
 .device {
-  & > h3, & > h4 {
+  > h3, > h4 {
     margin: 0;
     font-weight: 300;
     line-height: 1.6em;
@@ -99,7 +99,7 @@
 .online, .offline, .unknown {
   position: relative;
 
-  & > svg {
+  > svg {
     position: absolute;
     top: 0;
     right: 0;
@@ -109,7 +109,7 @@
 .online {
   color: $accent;
 
-  & > svg {
+  > svg {
     fill: $accent !important;
   }
 }
@@ -117,7 +117,7 @@
 .offline {
   color: $complement;
 
-  & > svg {
+  > svg {
     fill: $complement !important;
   }
 }

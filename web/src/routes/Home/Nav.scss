@@ -16,7 +16,7 @@ nav {
   transition: all 0.25s ease;
   border-bottom: 1px solid white;
 
-  & > * > a {
+  > * > a {
     flex: 1;
     align-self: center;
 
@@ -26,18 +26,18 @@ nav {
     text-align: center;
   }
 
-  & > .left {
+  > .left {
     display: flex;
     justify-content: flex-start;
 
     flex: 3;
   }
 
-  & > .center {
+  > .center {
     flex: 3;
   }
 
-  & > .right {
+  > .right {
     display: flex;
     justify-content: flex-end;
     flex: 1;
@@ -45,7 +45,7 @@ nav {
     margin-right: 3.5em;
   }
 
-  & > .left > h1 {
+  > .left > h1 {
     flex: 1;
     align-self: center;
 
@@ -53,7 +53,7 @@ nav {
     font-size: 1.3em;
   }
 
-  & > .left > img {
+  > .left > img {
     flex: 1;
     align-self: center;
 
@@ -61,19 +61,19 @@ nav {
     height: 2em;
   }
 
-  & > .left > a {
+  > .left > a {
     color: $sub;
     // font-weight: 500;
   }
 
-  & > .right > a {
+  > .right > a {
     color: $landing;
   }
 
-  & > .right > .try {
+  > .right > .try {
     margin-left: 1em;
 
-    & > button {
+    > button {
       text-transform: uppercase;
       border-radius: 3px;
       background: $landing;
