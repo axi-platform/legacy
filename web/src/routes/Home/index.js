@@ -11,21 +11,6 @@ import Icon from "../../components/Icon"
 
 import s from "./Home.scss"
 
-/*
-const Techs = () => (
-  <section className={s.tech}>
-    <h2>Our Technologies</h2>
-    <Grid r>
-      <Idea t="Physical Web Beacons" />
-      <Idea t="Internet of Things" />
-      <Idea t="Progressive Web Apps" />
-      <Idea t="Cloud Microservices" />
-      <Idea t="High Availability Infrastructure" />
-    </Grid>
-  </section>
-)
-*/
-
 const More = ({text, hero, link}) => (
   <a
     href={link}
@@ -49,11 +34,13 @@ const Fold = () => (
         &nbsp;with Axi Platform
       </h2>
       <h3>
-        With Physical Web, Cloud Services, and Internet of Things,
+        With Physical Web, Cloud Microservices, and Internet of Things,
         <br className={s.break} />
         &nbsp;Axi joins you to develop innovative products.
       </h3>
-      <More text="Watch the Intro" hero />
+      <Link to="/printat" style={{textDecoration: "none"}}>
+        <More text="Try the Demo" hero />
+      </Link>
     </div>
     <div className={s.graphic}>
       <img src="https://fi.google.com/about/static/images/home/hero.svg" alt="intro" />
@@ -171,7 +158,7 @@ const Ideas = () => (
     <h2>Project Showcase</h2>
     <Grid r>
       <Idea t="PrintAt" img="/images/pw_logo.svg" to="/printat" ds="4.5" />
-      <Idea t="Co-working Spaces" img="/images/pw_logo.svg" ds="4.5" />
+      <Idea t="Co-working Space" img="/images/pw_logo.svg" to="/space" ds="4.5" />
       <Idea t="Smart City" img="/images/pw_logo.svg" ds="4.5" />
       <Idea t="Coffe Instante" img="/images/coffee1.svg" to="/coffe" ds="4.5" />
     </Grid>

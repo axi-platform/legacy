@@ -8,6 +8,7 @@ import NotFound from "./NotFound"
 import Login from "./Login"
 import Signup from "./Signup"
 
+import Landing from "./Landing"
 import PrintAt from "./PrintAt"
 import Space from "./Space"
 import Demo from "./Demo"
@@ -68,9 +69,10 @@ const MatchWhenNotAuthorized = connect(mapState)(({
 export default () => (
   <div>
     <Match exactly pattern="/" component={Home} />
+    <Match exactly pattern="/landing" component={Landing} />
     <Match exactly pattern="/printat" component={PrintAt} />
     <Match exactly pattern="/demo" component={Demo} />
-    <Match exact pattern="/space" component={Space} />
+    <Match exactly pattern="/space" component={Space} />
     <Match exactly pattern="/coffe" component={Coffe} />
     <Match exactly pattern="/login" component={Login} />
     <Match exactly pattern="/signup" component={Signup} />

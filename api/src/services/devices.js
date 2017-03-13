@@ -11,7 +11,7 @@ class DeviceService extends Service {
 
   constructor(opts) {
     super(opts)
-    this.events = ["ready", "busy", "unavailable", "online", "offline"]
+    this.events = ["ready", "busy", "unavailable", "online", "offline", "logs"]
   }
 
   setup(app) {
@@ -20,6 +20,7 @@ class DeviceService extends Service {
 
     client.on("message", (topic, msg) => {
       this.app.logger.log("debug", `[MQTT ${topic}]`, msg.toString())
+      this.emit("logs", {topic, message: msg.toString()})
 
       if (topic.startsWith("presence")) {
         const id = topic.split("/").pop()
@@ -58,12 +59,13 @@ class BeaconManagement {
   patch(device, {url, uid}) {
     if (url) {
       this.send("url", device, {url})
-      this.app.service("devices").patch({beacon: {url}})
+      this.app.service("devices").patch(device, {beacon: {url}})
       return Promise.resolve({status: "OK"})
     } else if (uid) {
       if (uid.uid) {
         const base64 = base64ArrayBuffer(hexToArrayBuffer(uid.uid))
         this.send("uid", device, {uid: uid.uid, base64})
+        this.app.service("devices").patch(device, {beacon: {uid}})
         return Promise.resolve({status: "OK", base64})
       }
       const buid = this.genUID(uid.namespace, uid.id)
@@ -78,12 +80,10 @@ class BeaconManagement {
 }
 
 class CommandService {
-
-  create = data => {
-    client.publish(data.topic, data.payload, data.options)
-    return Promise.resolve({status: "OK"})
+  create = ({project = "printat", device, topic, command, options}) => {
+    client.publish(`${project}/${device}/${topic}`, command, options)
+    return Promise.resolve("200")
   }
-
 }
 
 export default function devices() {

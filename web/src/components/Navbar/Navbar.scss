@@ -25,6 +25,14 @@
 	}
 }
 
+.logo {
+	opacity: 0.5;
+
+	&:hover {
+		opacity: 1;
+	}
+}
+
 @media screen and (max-width: $screen-sm-min) {
 	.root {
 		position: fixed;

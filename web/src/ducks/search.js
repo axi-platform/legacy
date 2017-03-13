@@ -4,17 +4,6 @@ import {services} from "../client/api"
 export const toggleSort = makeAction("TOGGLE_SORT")
 export const setFilter = makeAction("SET_FILTER", "filter", "service")
 
-const COURSE_SELECTOR = [
-  "_id", "name", "description", "thumbnail", "owner",
-  "guests", "updatedAt", "createdAt"
-]
-
-const DefaultSelector = {
-  classes: COURSE_SELECTOR,
-  users: null,
-  lessons: null
-}
-
 export const search = (value, service, options = {}) => (dispatch, getState) => {
   const current = getState().search[service] || {}
   if (current) {
@@ -49,23 +38,7 @@ export const filter = (value, service) => dispatch => {
   dispatch(search(false, service, options))
 }
 
-const initialState = {
-  classes: {
-    sort: 1,
-    filter: "name",
-    value: ""
-  },
-  users: {
-    sort: 1,
-    filter: "username",
-    value: ""
-  },
-  lessons: {
-    sort: 1,
-    filter: "name",
-    value: ""
-  }
-}
+const initialState = {}
 
 export default createReducer(initialState, state => ({
   SEARCH: ({value, service}) => ({

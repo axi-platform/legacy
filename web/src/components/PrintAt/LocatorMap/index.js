@@ -23,6 +23,8 @@ export const getPI = status => {
   return <div />
 }
 
+// Printer is&nbsp;
+
 const InfoCard = withStyles(s)(({station = {}, next}) => (
   <div className={s.fixed}>
     <Paper>
@@ -38,7 +40,6 @@ const InfoCard = withStyles(s)(({station = {}, next}) => (
             {station.presence === "online" && (
               <span>{station.queue} Queues -&nbsp;</span>
             )}
-            Printer is&nbsp;
             <span>
               {station.presence || "unavailable"}&nbsp;{getPI(station.presence)}
             </span>

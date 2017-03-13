@@ -45,11 +45,11 @@
   }
 
   .vcenter {
-    min-height: 100%;
-    min-height: 100%; // 100vh
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+
+    min-height: 100%;
   }
 
   .center {
@@ -58,19 +58,6 @@
 
   .full {
     width: 100%;
-  }
-
-  .inlineInput {
-    background: transparent;
-    border: 0;
-    font-family: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    margin: inherit;
-    font-weight: inherit;
-    width: 100%;
-    margin: 0;
-    padding: 0;
   }
 
   .flow-text {

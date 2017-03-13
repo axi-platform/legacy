@@ -38,7 +38,7 @@ export const authenticate = (email, password, msg = AUTH_MSG) => (dispatch, getS
   })
   .catch(err => {
     console.error("AUTH_ERR", err)
-    dispatch(notify("การยืนยันตัวตนผิดพลาด"))
+    dispatch(notify("การยืนยันตัวตนผิดพลาด", "error"))
   })
 }
 
@@ -54,39 +54,8 @@ export const register = (username, email, password) => (dispatch) => {
   })
   .catch(err => {
     console.error("REGISTRATION_ERR", err)
-    dispatch(notify("การสมัครสมาชิกผิดพลาด"))
+    dispatch(notify("การสมัครสมาชิกผิดพลาด", "error"))
   })
-}
-
-export const join = (code, username, email, password) => dispatch => {
-  app.service("invitation").create({code, username, email, password})
-    .then(({status, message, user}) => {
-      if (status === "INVITE_SUCCESS") {
-        dispatch(authenticate(email, password, message))
-        dispatch(reset("join"))
-        console.info("Invitation Acceptance Success", user)
-      }
-    })
-    .catch(err => {
-      console.error("JOIN_ERROR", err)
-      dispatch(notify(err.message))
-    })
-}
-
-export const joinExisting = code => dispatch => {
-  app.service("invitation").get(code)
-    .then(({status, message}) => {
-      if (status === "JOIN_EXISTING_SUCCESS") {
-        dispatch(push("/courses"))
-        dispatch(reset("joinExisting"))
-        dispatch(notify(message))
-        console.info("Join with existing account success")
-      }
-    })
-    .catch(err => {
-      console.error("JOIN_EXISTING_ERROR", err)
-      dispatch(notify("พบปัญหา"))
-    })
 }
 
 export const logout = () => dispatch => {
@@ -97,7 +66,7 @@ export const logout = () => dispatch => {
     dispatch(push("/"))
   }).catch(err => {
     console.error(err)
-    dispatch(notify("พบปัญหาในการออกจากระบบ"))
+    dispatch(notify("พบปัญหาในการออกจากระบบ", "error"))
   })
 }
 

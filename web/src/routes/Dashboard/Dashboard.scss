@@ -60,7 +60,10 @@
 }
 
 .root {
+  margin: 0 auto;
   margin-top: 5.5em;
+  max-width: $max-content-width;
+  padding: 1em;
 }
 
 .top {
@@ -123,12 +126,105 @@
 }
 
 .map {
-  height: 20em;
   width: auto;
   box-shadow: $zLite;
+  position: relative;
+
+  .title {
+    z-index: 1;
+    padding: 1em;
+    box-shadow: $zLite;
+    font-weight: 400;
+    position: relative;
+
+    svg {
+      width: 1.4em;
+      height: 1.4em;
+      margin-right: 2em;
+    }
+  }
+
+  .inner {
+    height: 20em;
+  }
 }
 
 .delete {
   background: $complement !important;
   margin-top: 1em;
+}
+
+.indic {
+  display: inline-block;
+  vertical-align: middle;
+
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+
+  background: white;
+  box-shadow: $zLite;
+  border: 2px solid lighten($green, 10);
+
+  &:hover {
+    border: 2px solid $green;
+  }
+}
+
+.indic.off {
+  border: 2px solid $complement;
+}
+
+.indic.blue {
+  border: 2px solid $blue;
+}
+
+.logs {
+  overflow-x: auto;
+  box-shadow: $zLite;
+
+  table {
+    width: 100%;
+    font-size: 0.9em;
+
+    border-collapse: collapse;
+
+    .time {
+      min-width: 5em;
+    }
+
+    .msg {
+      min-width: 35em;
+    }
+
+    tbody > tr > td > input {
+      border: none;
+      background: transparent;
+      font-family: $font-family-base;
+
+      &.topic {
+        width: 4em;
+      }
+    }
+
+    th, td {
+      padding: 5px;
+      text-align: left;
+      border-collapse: collapse;
+    }
+
+    thead {
+      border-bottom: 1px solid #d0d0d0;
+    }
+
+    tbody > tr:nth-child(odd) {
+      background: #f2f2f2
+    }
+
+    thead > tr > th, tbody > tr > td {
+      padding: 1em;
+      text-align: left;
+      vertical-align: top;
+    }
+  }
 }

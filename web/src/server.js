@@ -46,7 +46,7 @@ app.use(cookieParser())
 app.configure(hooks())
 
 app.use(render)
-app.use(errorHandler())
+// app.use(errorHandler())
 
 app.listen(PORT, () => {
   /* eslint no-console: 0 */
