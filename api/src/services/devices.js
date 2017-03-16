@@ -62,9 +62,9 @@ class BeaconManagement {
       this.app.service("devices").patch(device, {beacon: {url}})
       return Promise.resolve({status: "OK"})
     } else if (uid) {
-      if (uid.uid) {
-        const base64 = base64ArrayBuffer(hexToArrayBuffer(uid.uid))
-        this.send("uid", device, {uid: uid.uid, base64})
+      if (typeof uid === "string") {
+        const base64 = base64ArrayBuffer(hexToArrayBuffer(uid))
+        this.send("uid", device, {uid, base64})
         this.app.service("devices").patch(device, {beacon: {uid}})
         return Promise.resolve({status: "OK", base64})
       }
@@ -81,7 +81,7 @@ class BeaconManagement {
 
 class CommandService {
   create = ({project = "printat", device, topic, command, options}) => {
-    client.publish(`${project}/${device}/${topic}`, command, options)
+    client.publish(`${project}/${device ? `${device}/` : ""}${topic}`, command, options)
     return Promise.resolve("200")
   }
 }

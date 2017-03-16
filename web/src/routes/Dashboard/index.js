@@ -12,7 +12,6 @@ import Paper from "../../components/Paper"
 import Maps from "../../components/Maps"
 import Icon from "../../components/Icon"
 import Button from "../../components/Button"
-import AddPrinter from "../../components/PrintAt/AddPrinter"
 
 import {Devices, Heading, StatHeading} from "./Comps"
 
@@ -24,7 +23,8 @@ import {notify, setStation} from "../../ducks/app"
 import s from "./Dashboard.scss"
 
 const mapStateToProps = state => ({
-  devices: state.devices.queryResult || {}
+  devices: state.devices.queryResult || {},
+  station: state.app.station || {}
 })
 
 const mapDispatchToProps = dispatch => ({
@@ -65,7 +65,7 @@ class DeviceMgr extends Component {
         <Grid xs={12} sm={6} md={5}>
           <div className={s.map}>
             <div className={s.title}>
-              <Icon i="search" /> Device Location. 5 Devices, 1 Online.
+              <Icon i="search" /> Device Maps. {this.props.station.name || "None"} is selected.
             </div>
             <div className={s.inner}>
               <Maps pins={devices} onMarkerClick={this.props.setStation} />
@@ -83,24 +83,38 @@ class CommandForm extends Component {
     super(props)
     this.state = {
       topic: "control",
-      command: "0"
+      command: "0",
+      global: false
     }
   }
 
-  dispatch() {
+  dispatch = () => {
+    const device = this.state.global ? {} : {device: this.props.station._id}
     app.service("command").create({
       project: "printat",
-      device: this.props.station._id,
-      ...this.state
+      topic: this.state.topic,
+      command: this.state.command,
+      ...device
     })
   }
 
+  global = () => this.setState({global: !this.state.global})
+
   render = () => (
     <tr>
-      <td><div className={c(s.indic, s.blue)} /></td>
-      <td>{new Date().toLocaleString()}</td>
       <td>
-        <span>printat/{this.props.station._id}/</span>
+        <div
+          className={c(s.indic, this.state.global ? s.off : s.blue)}
+          title={this.state.global ? "Fleet Mode" : "Device Mode"}
+          onClick={this.global}
+        />
+      </td>
+      <td>Command Dispatcher</td>
+      <td>
+        <span>printat/</span>
+        {!this.state.global && (
+          <span>{this.props.station._id}/</span>
+        )}
         <input
           className={s.topic}
           value={this.state.topic}
@@ -117,6 +131,18 @@ class CommandForm extends Component {
       </td>
     </tr>
   )
+}
+
+const parseJSON = str => {
+  try {
+    const o = JSON.parse(str)
+    if (o && typeof o === "object") {
+      return o
+    }
+  } catch (e) {
+    // Do nothing
+  }
+  return false
 }
 
 class DeviceLogs extends Component {
@@ -142,6 +168,9 @@ class DeviceLogs extends Component {
 
   render = () => (
     <Grid className={c(s.bottom, s.logs)} r>
+      <button onClick={() => this.setState({logs: []})}>
+        Clear Log
+      </button>
       <table>
         <thead>
           <tr>
@@ -158,7 +187,8 @@ class DeviceLogs extends Component {
               <td>
                 <div
                   className={c(
-                    s.indic, (message === "offline" || message.error) && s.off
+                    s.indic,
+                    (message === "offline" || parseJSON(message).error) && s.off
                   )}
                 />
               </td>

@@ -319,6 +319,8 @@ def advertise(ad, beacon_type=Eddystone.url):
     # Resume advertising
     subprocess.call("sudo hcitool -i hci0 cmd 0x08 0x000a 01", shell = True, stdout = DEVNULL)
 
+    return message
+
 
 def stopAdvertising():
     print("Stopping advertising")

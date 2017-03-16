@@ -1,4 +1,5 @@
-import React from "react"
+import React, {Component} from "react"
+import c from "classnames"
 
 import StatusIcon from "material-ui/svg-icons/action/swap-vertical-circle"
 import OnlineIcon from "material-ui/svg-icons/device/wifi-tethering"
@@ -6,6 +7,8 @@ import OfflineIcon from "material-ui/svg-icons/communication/portable-wifi-off"
 
 import Grid from "../../components/Grid"
 import Paper from "../../components/Paper"
+
+import app from "../../client/api"
 
 import s from "./Dashboard.scss"
 
@@ -26,28 +29,98 @@ export const getPI = status => {
 }
 
 export const Device = ({_id, name, loc, presence, queue = 0, beacon = {}, remove}) => (
-  <Paper style={{marginBottom: "1em"}}>
+  <div className={s.card}>
     <div className={s.device}>
-      <h3 className={getPC(presence)}>
-        {name} ({queue} Queue) {getPI(presence)}
+      <h3 className={getPC(presence)} title={`(${loc[0].toFixed(5)}, ${loc[1].toFixed(5)})`}>
+        {name} {getPI(presence)}
       </h3>
-      {loc && (
+      {beacon.url && (
         <h4 className={s.sub}>
-          ({loc[0].toFixed(7)}, {loc[1].toFixed(7)})
+          {beacon.url}
         </h4>
       )}
-      {beacon && <h4 className={s.sub}>
-        {beacon.uid} {beacon.url}
-      </h4>}
+      <h4 className={s.sub}>
+        {queue} Queues
+      </h4>
       <h5 className={s.sub}>
-        Id: {_id} <span onClick={() => remove(_id)}>[Delete]</span>
+        HWID: {_id}
       </h5>
+      <h6 className={s.sub}>
+        {beacon.uid && <span>BUID: {beacon.uid}</span>}
+      </h6>
     </div>
-  </Paper>
+  </div>
 )
+
+class NewDevice extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      name: "",
+      lat: "",
+      lng: ""
+    }
+  }
+
+  componentDidMount() {
+    this.getNearest()
+  }
+
+  getNearest = () => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(({coords}) => {
+        this.setState({lat: coords.latitude, lng: coords.longitude})
+      }, err => console.error("getCurrentPosition ERROR", err))
+    }
+  }
+
+  submit = ({key}) => {
+    if (key === "Enter") {
+      app.service("devices").create({
+        name: this.state.name,
+        loc: [this.state.lat, this.state.lng]
+      }).then(console.log)
+    }
+  }
+
+  render = () => (
+    <div className={c(s.card, s.create)}>
+      <div className={s.offline}>
+        <OfflineIcon />
+      </div>
+      <input
+        value={this.state.name}
+        onChange={e => this.setState({name: e.target.value})}
+        onKeyPress={this.submit}
+        className={s.name}
+        placeholder="Device Name"
+      />
+      <input placeholder="Beacon Service URL" />
+      <Grid r>
+        <Grid xs={6}>
+          <input
+            value={this.state.lat}
+            onChange={e => this.setState({lat: e.target.value})}
+            placeholder="Latitude"
+          />
+        </Grid>
+        <Grid xs={6}>
+          <input
+            value={this.state.lng}
+            onChange={e => this.setState({lng: e.target.value})}
+            placeholder="Longitude"
+          />
+        </Grid>
+      </Grid>
+    </div>
+  )
+}
 
 export const Devices = ({data, remove = () => {}}) => (
   <Grid r>
+    <Grid xs={12} sm={6}>
+      <NewDevice />
+    </Grid>
     {data && data.map((device, i) => (
       <Grid key={i} xs={12} sm={6}>
         <Device remove={remove} {...device} />

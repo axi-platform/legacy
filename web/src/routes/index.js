@@ -12,6 +12,7 @@ import Landing from "./Landing"
 import PrintAt from "./PrintAt"
 import Space from "./Space"
 import Demo from "./Demo"
+import Queue from "./Demo/Queue"
 import Coffe from "./Coffe"
 import Dashboard from "./Dashboard"
 
@@ -72,6 +73,7 @@ export default () => (
     <Match exactly pattern="/landing" component={Landing} />
     <Match exactly pattern="/printat" component={PrintAt} />
     <Match exactly pattern="/demo" component={Demo} />
+    <Match exactly pattern="/queue" component={Queue} />
     <Match exactly pattern="/space" component={Space} />
     <Match exactly pattern="/coffe" component={Coffe} />
     <Match exactly pattern="/login" component={Login} />

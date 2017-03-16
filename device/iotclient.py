@@ -17,7 +17,7 @@ deviceId = "5885bb1d75f2ed518cbf5f48"
 cdnPath = "http://localhost:3000"
 serverPath = "localhost"
 
-serialName = "/dev/ttyACM1"
+serialName = "/dev/ttyACM0"
 
 try:
     control = serial.Serial(serialName)
@@ -59,9 +59,11 @@ def printerInfo():
 
     # Printer attributes
     attrs = printer.getPrinterAttributes(printerName)
-    for attr in attrs:
-        if attr != "media-size-supported":
-            print("[ATTR]", attr, "is", attrs[attr])
+    """
+        for attr in attrs:
+            if attr != "media-size-supported":
+                print("[ATTR]", attr, "is", attrs[attr])
+    """
 
     # PostScript Printer Definition
     ppds = subprocess.check_output(["cat", printer.getPPD(printerName)])
@@ -134,28 +136,36 @@ def on_message(client, userdata, msg):
         elif msg.topic == room + "/beacon/url":
             try:
                 print("Updating URL", payload)
-                beacon.advertise(payload["url"])
+                packet = beacon.advertise(payload["url"])
+                client.publish(room + "/status/beacon/url", json.dumps({"packet": packet}))
             except Exception as e:
                 print("[Error] URL Advertisement Failure:", e)
+                client.publish(room + "/status/beacon/url", json.dumps({"error": e}))
         elif msg.topic == room + "/beacon/uid":
             try:
                 print("Updating UID", payload)
-                beacon.advertise(payload["uid"], beacon.Eddystone.uid)
+                packet = beacon.advertise(payload["uid"], beacon.Eddystone.uid)
+                client.publish(room + "/status/beacon/uid", json.dumps({"packet": packet}))
             except Exception as e:
                 print("[Error] UID Advertisement Failure", e)
+                client.publish(room + "/status/beacon/uid", json.dumps({"error": e}))
         elif msg.topic == room + "/control":
             print("[Serial Control]", msg.payload)
             try:
-                control.write(msg.payload)
+                ack = control.write(msg.payload)
+                # client.publish(room + "/ack/serial", ack)
             except serial.SerialException as e:
                 print("[Serial Error]", e)
                 client.publish(room + "/error", json.dumps({
                     "error": "serial_io_exception",
                     "message": e
                 }))
-
     except json.decoder.JSONDecodeError:
         print("[Error] Malformed JSON.")
+        client.publish(room + "/error", json.dumps({"error": "malformed_json"}))
+    except Exception as e:
+        print("[Error]", e)
+        client.publish(room + "/error", json.dumps({"error": str(e)}))
 
 if (len(sys.argv) > 1):
     deviceId = sys.argv[1]
@@ -166,7 +176,11 @@ else:
     print("[AXI] Device Identifier is", deviceId)
 
 if (len(sys.argv) > 2):
-    printerName = sys.argv[2]
+	printerName = sys.argv[2]
+
+if (len(sys.argv) > 3):
+    serverPath = sys.argv[3]
+    cdnPath = sys.argv[4]
 
 try:
     printerState = printer.getPrinters()[printerName]["printer-state"]

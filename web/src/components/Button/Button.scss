@@ -30,6 +30,10 @@ $padding: 0.6em 1em !default;
   box-shadow: none;
 }
 
+.button:focus, .button:active {
+  // background: darken($button, 0.5);
+}
+
 .block {
   width: 100%;
 }

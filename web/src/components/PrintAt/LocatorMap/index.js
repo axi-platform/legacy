@@ -132,8 +132,8 @@ export default class LocatorMap extends Component {
 
   getNearest = () => {
     if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(position => {
-        const center = [position.coords.latitude, position.coords.longitude]
+      navigator.geolocation.getCurrentPosition(({coords}) => {
+        const center = [coords.latitude, coords.longitude]
         console.info(`Current Position Detected as (${center[0]}, ${center[1]}), Setting Map Origin.`)
         this.setState({center})
 
@@ -151,9 +151,7 @@ export default class LocatorMap extends Component {
             this.props.setNearest({_id, name, lat: loc[0], lng: loc[1], ...item})
           }
         })
-      }, err => {
-        console.error("getCurrentPosition ERROR", err)
-      })
+      }, err => console.error("getCurrentPosition ERROR", err))
     }
   }
 

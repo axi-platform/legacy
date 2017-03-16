@@ -10,6 +10,7 @@ import messages from "./messages"
 import socket from "./socket"
 import upload from "./upload"
 import account from "./account"
+import projects from "./projects"
 import fetch from "./fetch"
 import devices from "./devices"
 import queue from "./queue"
@@ -41,6 +42,7 @@ export default function services() {
   this.configure(socket)
   this.configure(upload)
   this.configure(account)
+  this.configure(projects)
   this.configure(devices)
   this.configure(queue)
   this.configure(print)

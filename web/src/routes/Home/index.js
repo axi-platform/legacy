@@ -159,7 +159,7 @@ const Ideas = () => (
     <Grid r>
       <Idea t="PrintAt" img="/images/pw_logo.svg" to="/printat" ds="4.5" />
       <Idea t="Co-working Space" img="/images/pw_logo.svg" to="/space" ds="4.5" />
-      <Idea t="Smart City" img="/images/pw_logo.svg" ds="4.5" />
+      <Idea t="Smart City" img="/images/pw_logo.svg" to="/demo" ds="4.5" />
       <Idea t="Coffe Instante" img="/images/coffee1.svg" to="/coffe" ds="4.5" />
     </Grid>
   </section>

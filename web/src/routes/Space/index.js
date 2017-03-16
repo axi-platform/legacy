@@ -11,6 +11,9 @@ import LoginForm from "../../components/Login"
 
 import {setUi} from "../../ducks/app"
 import {cover} from "../../constants/visual"
+import app from "../../client/api"
+
+import {Queue} from "../Demo/Queue"
 
 import s from "./Space.scss"
 
@@ -54,33 +57,37 @@ const plans = [{
   price: "300"
 }]
 
+const checkIn = () => {
+  app.service("command").create({
+    project: "printat",
+    device: "58c9fc5294546a0062436469", // this.props.station._id ||
+    topic: "control",
+    command: "9"
+  })
+}
+
 const Space = ({step, setStep, plan = 0}) => (
   <div>
     <Navbar />
-    <Grid c className={s.main}>
       <div className={s.plans} style={{display: step === 1 ? "block" : "none"}}>
-        <h2 className={s.heading}>Axi Spaces: Please Select Your Plan</h2>
-        <Grid r>
-          {plans.map((item, i) => <Plan key={i} i={i} {...item} />)}
+        <Grid c className={s.main}>
+          <h2 className={s.heading}>Axi Spaces: Please Select Your Plan</h2>
+          <Grid r>
+            {plans.map((item, i) => <Plan key={i} i={i} {...item} />)}
+          </Grid>
         </Grid>
       </div>
-      <div className={s.member} style={{display: step === 2 ? "block" : "none"}}>
-        <h2>
-          Have a membership for {plans[plan].name}?
-          Member Pricing is {parseInt(plans[plan].price) * 0.5} Baht!
-        </h2>
-        <br />
-        <Button base light className={s.guest} onClick={() => setStep(3)}>
-          Continue as Guest
-        </Button>
-        <Button base light onClick={() => setStep(1)}>
-          Choose another Plan
-        </Button>
+      <div style={{display: step === 2 ? "block" : "none"}}>
+        <Queue onComplete={checkIn} />
+        {/*
+          <div onClick={() => setStep(1)}>
+            Choose another Plan
+          </div>
+        */}
       </div>
       <div style={{display: step === 3 ? "block" : "none"}}>
 
       </div>
-    </Grid>
   </div>
 )
 
