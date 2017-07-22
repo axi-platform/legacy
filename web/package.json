@@ -16,10 +16,22 @@
   "eslintConfig": {
     "extends": "eslint-config-synacor",
     "rules": {
-      "semi": [2, "never"],
-      "quotes": [2, "double"],
-      "object-curly-spacing": [2, "never"],
-      "indent": [2, 2]
+      "semi": [
+        2,
+        "never"
+      ],
+      "quotes": [
+        2,
+        "double"
+      ],
+      "object-curly-spacing": [
+        2,
+        "never"
+      ],
+      "indent": [
+        2,
+        2
+      ]
     }
   },
   "devDependencies": {

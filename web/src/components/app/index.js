@@ -3,7 +3,7 @@ import {h} from "preact"
 import Header from "../header"
 import Routes from "../../routes"
 
-import "./index.sass"
+import "./style"
 
 export default () => (
   <div>

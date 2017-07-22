@@ -3,13 +3,26 @@ import {Link} from "preact-router/match"
 
 import s from "./style"
 
+const paths = [{
+  path: "/",
+  name: "Home"
+}, {
+  path: "/profile",
+  name: "Profile"
+}, {
+  path: "/profile/john",
+  name: "John"
+}]
+
 export default () => (
   <header class={s.header}>
     <h1>Preact App</h1>
     <nav>
-      <Link activeClassName={s.active} href="/">Home</Link>
-      <Link activeClassName={s.active} href="/profile">Me</Link>
-      <Link activeClassName={s.active} href="/profile/john">John</Link>
+      {paths.map(i => (
+        <Link key={i.path} activeClassName={s.active} href={i.path}>
+          {i.name}
+        </Link>
+      ))}
     </nav>
   </header>
 )
