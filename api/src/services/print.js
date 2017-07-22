@@ -23,6 +23,7 @@ class PrintService {
           this.emit("failed", "ALREADY_COMPLETED")
           app.service("queue").patch(device, {id, as: "failed"})
         }
+
         if (data) {
           app.logger.log("info", `[QueueActive #${id} @ ${device}] Issuing PRINT.`)
 
