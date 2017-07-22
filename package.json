@@ -1,8 +1,0 @@
-{
-  "name": "PrintAt",
-  "version": "0.1.0",
-  "description": "Public Printing Platform based on Microservices Architecture",
-  "repository": "https://github.com/phoomparin/PrintAt.git",
-  "author": "Phoomparin Mano <phoomparin@gmail.com>",
-  "license": "MIT"
-}
