@@ -1,50 +1,43 @@
 {
-  "name": "axi-web",
-  "version": "2.0.0",
-  "description": "Use Anything in a Tap, Reimagined.",
+  "name": "ssr",
+  "version": "1.0.0",
   "main": "index.js",
-  "license": "LGPL-3.0",
-  "repository": "git@github.com:phoomparin/Axi.git",
-  "author": "Phoomparin Mano <work@phoom.in.th>",
-  "scripts": {
-    "start": "if-env NODE_ENV=production && yarn serve || yarn dev",
-    "build": "preact build",
-    "serve": "preact build && preact serve",
-    "dev": "preact watch",
-    "test": "eslint src && preact test"
+  "license": "MIT",
+  "dependencies": {
+    "emotion": "^7.2.0",
+    "module-alias": "^2.0.1",
+    "next": "^3.0.6",
+    "preact": "^8.2.4",
+    "preact-compat": "^3.17.0"
   },
-  "eslintConfig": {
-    "extends": "eslint-config-synacor",
-    "rules": {
-      "semi": [
-        2,
-        "never"
-      ],
-      "quotes": [
-        2,
-        "double"
-      ],
-      "object-curly-spacing": [
-        2,
-        "never"
-      ],
-      "indent": [
-        2,
-        2
-      ]
-    }
+  "scripts": {
+    "dev": "node server.js",
+    "build": "NODE_ENV=production next build",
+    "export": "NODE_ENV=production next build && NODE_ENV=production next export",
+    "start": "NODE_ENV=production node server.js"
   },
   "devDependencies": {
-    "eslint": "^4.3.0",
-    "eslint-config-synacor": "^1.0.1",
-    "if-env": "^1.0.0",
-    "node-sass": "^4.5.3",
-    "preact-cli": "^1.4.0",
-    "sass-loader": "^6.0.6"
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "stats-webpack-plugin": "^0.6.1"
   },
-  "dependencies": {
-    "preact": "^8.2.1",
-    "preact-compat": "^3.16.0",
-    "preact-router": "^2.5.5"
+  "babel": {
+    "presets": [
+      "latest",
+      "stage-0",
+      "react"
+    ],
+    "plugins": [
+      "transform-runtime",
+      [
+        "emotion",
+        {
+          "inline": true
+        }
+      ]
+    ]
   }
 }
