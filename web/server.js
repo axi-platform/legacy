@@ -6,8 +6,10 @@ const next = require('next')
 const dev = process.env.NODE_ENV !== 'production'
 const port = parseInt(process.env.PORT, 10) || 3000
 
-moduleAlias.addAlias('react', 'preact-compat')
-moduleAlias.addAlias('react-dom', 'preact-compat')
+if (!dev) {
+  moduleAlias.addAlias('react', 'preact-compat')
+  moduleAlias.addAlias('react-dom', 'preact-compat')
+}
 
 const app = next({dev})
 const handle = app.getRequestHandler()

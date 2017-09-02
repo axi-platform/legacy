@@ -7,8 +7,14 @@
     "emotion": "^7.2.0",
     "module-alias": "^2.0.1",
     "next": "^3.0.6",
+    "polished": "^1.7.0",
     "preact": "^8.2.4",
-    "preact-compat": "^3.17.0"
+    "preact-compat": "^3.17.0",
+    "react-redux": "^5.0.6",
+    "recompose": "^0.25.0",
+    "redux": "^3.7.2",
+    "redux-saga": "^0.15.6",
+    "theming": "^1.1.0"
   },
   "scripts": {
     "dev": "node server.js",
