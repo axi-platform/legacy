@@ -18,16 +18,15 @@ export const Row = styled.div`
   flex-direction: column;
   position: relative;
   width: 18em;
+  height: 22em;
   padding: 0.5em;
   text-align: left;
-  min-height: 19em;
-  max-height: 22em;
 
   align-items: center;
   justify-content: center;
 `
 
-export const Card = styled.div`
+export const Card = styled.a`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -37,6 +36,7 @@ export const Card = styled.div`
   width: 100%;
   color: white;
   background: ${props => props.color || '#2c3e50'};
+  text-decoration: none;
 
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
   transition: 1s cubic-bezier(0.22, 0.61, 0.36, 1) all;
@@ -89,14 +89,14 @@ export const Content = styled.div`
   flex-direction: column;
   flex-grow: 1;
   position: relative;
-  padding: 1.5em;
+  padding: 1em;
   font-size: 1.8em;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   user-select: none;
 
   > img {
     width: 2em;
-    margin-top: 0.8em;
+    margin-top: 0.85em;
   }
 `
 
@@ -107,4 +107,14 @@ export const Meta = styled.div`
   background: rgba(0, 0, 0, 0.2);
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
+`
+
+export const Small = styled.div`
+  font-size: 0.53em;
+  line-height: 1.4em;
+  margin-top: 0.8em;
+  height: 4.3em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 3;
 `

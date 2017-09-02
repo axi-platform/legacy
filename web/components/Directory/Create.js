@@ -5,7 +5,7 @@ import Ink from 'react-ink'
 
 import {Card, Content, Meta} from './Card'
 
-import {setName, setId, addService} from '../../ducks/app'
+import {setName, setId, setDesc, addService} from '../../ducks/app'
 import color from '../../core/color'
 
 const Input = styled.input`
@@ -13,6 +13,7 @@ const Input = styled.input`
   overflow: hidden;
   border: none;
   font-size: ${props => props.size || 'inherit'};
+  margin-top: ${props => props.sub && '0.5em'};
   font-family: inherit;
   font-weight: inherit;
   color: white;
@@ -63,15 +64,17 @@ const Label = styled.div`
 
 const mapStateToProps = state => ({
   id: state.app.id,
+  desc: state.app.desc,
   icon: state.app.icon,
   project: state.app.project
 })
 
-const CreateCard = ({id, project, icon, setName, setId, addService}) => (
+const CreateCard = ({id, project, desc, icon, setName, setId, setDesc, addService}) => (
   <CardWrapper>
     <Card color={color(`phoomparin:${id}`)}>
       <Content>
         <Input placeholder='Project Name' value={project} onChange={setName} />
+        <Input size='0.6em' placeholder='Description' value={desc} onChange={setDesc} sub />
         <img src={icon} alt='' />
       </Content>
       <Meta>
@@ -86,4 +89,4 @@ const CreateCard = ({id, project, icon, setName, setId, addService}) => (
   </CardWrapper>
 )
 
-export default connect(mapStateToProps, {addService, setName, setId})(CreateCard)
+export default connect(mapStateToProps, {addService, setName, setId, setDesc})(CreateCard)

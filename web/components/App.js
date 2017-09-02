@@ -7,10 +7,6 @@ import store from '../ducks'
 
 const theme = {}
 
-if (typeof window !== 'undefined') {
-  hydrate(window.__NEXT_DATA__.ids)
-}
-
 injectGlobal`
   body {
     margin: 0;
@@ -20,6 +16,10 @@ injectGlobal`
     box-sizing: border-box;
   }
 `
+
+if (typeof window !== 'undefined') {
+  hydrate(window.__NEXT_DATA__.ids)
+}
 
 const App = Component => props => (
   <Provider store={store}>

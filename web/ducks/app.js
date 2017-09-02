@@ -4,22 +4,28 @@ import {createReducer, makeAction} from './helper'
 
 export const SET_NAME = 'SET_NAME'
 export const SET_ID = 'SET_ID'
+export const SET_DESC = 'SET_DESC'
 export const TOGGLE_OPEN = 'TOGGLE_OPEN'
 export const ADD_SERVICE = 'ADD_SERVICE'
+export const TAB_TO = 'TAB_TO'
 
 export const setName = makeAction(SET_NAME)
 export const setId = makeAction(SET_ID)
+export const setDesc = makeAction(SET_DESC)
 export const toggleOpen = makeAction(TOGGLE_OPEN)
 export const addService = makeAction(ADD_SERVICE)
+export const tabTo = makeAction(TAB_TO)
 
 const initial = {
   id: '',
   project: '',
   icon: '../static/solbot.png',
+  tab: 0,
   open: false,
   services: [{
     id: 'phoomparin:printat',
     name: 'PrintAt',
+    desc: 'Print Anywhere, Instantly. The Next Generation Print Shop Service.',
     icon: '../static/wizbot.png'
   }, {
     id: 'phoomparin:eventc',
@@ -55,13 +61,16 @@ export default createReducer(initial, state => ({
     ...state,
     id: ev.target.value.toLowerCase().replace(/ /g, '-')
   }),
+  [SET_DESC]: ev => ({...state, desc: ev.target.value}),
   [TOGGLE_OPEN]: () => ({...state, open: !state.open}),
   [ADD_SERVICE]: () => ({
     ...state,
     services: [...state.services, {
       id: `phoomparin:${state.id}`,
       name: state.project,
+      desc: state.desc,
       icon: state.icon
     }]
-  })
+  }),
+  [TAB_TO]: tab => ({...state, tab})
 }))

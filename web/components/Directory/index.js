@@ -1,8 +1,9 @@
 import React from 'react'
 import Ink from 'react-ink'
 import {connect} from 'react-redux'
+import Link from 'next/link'
 
-import {Grid, Row, Card, Content, Meta, Adder, AdderRing} from './Card'
+import {Grid, Row, Card, Content, Meta, Adder, AdderRing, Small} from './Card'
 import Create from './Create'
 
 import Modal from '../Modal'
@@ -17,14 +18,17 @@ const Directory = ({open, services, toggleOpen}) => (
   <Grid>
     {services.map(item => (
       <Row key={item.id}>
-        <Card color={item.color || color(item.id)}>
-          <Content>
-            <Ink />
-            {item.name}
-            {item.icon && <img src={item.icon} alt='' />}
-          </Content>
-          <Meta>{item.id}</Meta>
-        </Card>
+        <Link href={`/service?id=${item.id}`} passHref replace>
+          <Card color={item.color || color(item.id)}>
+            <Content>
+              <Ink />
+              {item.name}
+              {item.desc && <Small>{item.desc}</Small>}
+              {item.icon && <img src={item.icon} alt='' />}
+            </Content>
+            <Meta>{item.id}</Meta>
+          </Card>
+        </Link>
       </Row>
     ))}
     <Row>

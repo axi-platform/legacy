@@ -7,6 +7,7 @@
     "emotion": "^7.2.0",
     "module-alias": "^2.0.1",
     "next": "^3.0.6",
+    "next-routes": "^1.0.40",
     "polished": "^1.7.0",
     "preact": "^8.2.4",
     "preact-compat": "^3.17.0",
