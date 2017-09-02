@@ -3,9 +3,10 @@ import {connect} from 'react-redux'
 import styled from 'react-emotion'
 import Ink from 'react-ink'
 
-import {Card, Content, Meta} from './Directory/Card'
-import {setName, setId, addService} from '../ducks/app'
-import color from '../core/color'
+import {Card, Content, Meta} from './Card'
+
+import {setName, setId, addService} from '../../ducks/app'
+import color from '../../core/color'
 
 const Input = styled.input`
   background: transparent;

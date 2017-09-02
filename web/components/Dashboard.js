@@ -1,16 +1,7 @@
 import React from 'react'
 import styled from 'react-emotion'
-import {connect} from 'react-redux'
 
 import Directory from './Directory'
-import CreateService from './CreateService'
-import Modal from './Modal'
-
-import {toggleOpen} from '../ducks/app'
-
-const Root = styled.div`
-
-`
 
 const Container = styled.div`
   display: flex;
@@ -22,20 +13,10 @@ const Container = styled.div`
   font-weight: 300;
 `
 
-const Dashboard = ({open, services, toggleOpen}) => (
-  <Root>
-    <Container>
-      <Directory data={services} onAdd={toggleOpen} />
-      <Modal open={open} onClose={toggleOpen}>
-        <CreateService />
-      </Modal>
-    </Container>
-  </Root>
+const Dashboard = () => (
+  <Container>
+    <Directory />
+  </Container>
 )
 
-const mapStateToProps = state => ({
-  open: state.app.open,
-  services: state.app.services
-})
-
-export default connect(mapStateToProps, {toggleOpen})(Dashboard)
+export default Dashboard
