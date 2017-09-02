@@ -7,6 +7,10 @@ export const Grid = styled.div`
   margin-left: auto;
   margin-right: auto;
   max-width: calc(54em + 1.5em);
+
+  @media screen and (max-width: 911px) {
+    justify-content: center;
+  }
 `
 
 export const Row = styled.div`
@@ -16,6 +20,7 @@ export const Row = styled.div`
   width: 18em;
   padding: 0.5em;
   text-align: left;
+  min-height: 19em;
   max-height: 22em;
 
   align-items: center;
@@ -35,6 +40,7 @@ export const Card = styled.div`
 
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
   transition: 1s cubic-bezier(0.22, 0.61, 0.36, 1) all;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
   &:hover {
     transform: scale(1.04);
@@ -45,7 +51,6 @@ export const Adder = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
 
   background: ${props => props.color || '#16a085'};
   cursor: pointer;
@@ -54,6 +59,9 @@ export const Adder = styled.div`
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
   opacity: 0.75;
   transition: 1s cubic-bezier(0.22, 0.61, 0.36, 1) all;
+  position: relative;
+  user-select: none;
+  transform: scale(1.05);
 
   > svg {
     fill: white;
@@ -63,7 +71,7 @@ export const Adder = styled.div`
 
   &:hover {
     opacity: 1;
-    transform: scale(1.24);
+    transform: scale(1.28);
   }
 `
 
@@ -80,8 +88,16 @@ export const Content = styled.div`
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  position: relative;
   padding: 1.5em;
   font-size: 1.8em;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  user-select: none;
+
+  > img {
+    width: 2em;
+    margin-top: 0.8em;
+  }
 `
 
 export const Meta = styled.div`

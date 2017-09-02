@@ -1,6 +1,28 @@
 import React from 'react'
-import {injectGlobal} from 'emotion'
+import {keyframes} from 'emotion'
 import styled from 'react-emotion'
+
+import Icon from './Icon'
+
+const opacityIn = keyframes`
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+`
+
+const scaleIn = keyframes`
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1.1);
+  }
+`
 
 const Backdrop = styled.div`
   position: fixed;
@@ -11,8 +33,12 @@ const Backdrop = styled.div`
   z-index: 1;
   background: rgba(255, 255, 255, 0.9);
 
-  transition: 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) all;
-  opacity: ${props => (props.open ? 1 : 0)};
+  display: ${props => props.open ? 'block' : 'none'};
+
+  animation-name: ${opacityIn};
+  animation-duration: 0.3s;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
 `
 
 const Wrapper = styled.div`
@@ -22,34 +48,70 @@ const Wrapper = styled.div`
   bottom: 0;
   right: 0;
 
-  display: flex;
+  display: ${props => props.open ? 'flex' : 'none'};
   align-items: center;
   justify-content: center;
-  z-index: 2;
+  z-index: 1;
 `
 
+// width: 65%;
+// min-width: 15em;
 const Modal = styled.div`
-  width: 13em;
-  background: white;
+  width: ${props => props.width};
+  min-width: ${props => props.minWidth};
+  background: #fafafa;
   padding: 0.8em;
   font-family: 'Helvetica Neue';
   font-weight: 300;
-  font-size: 1.25em;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+  border-radius: 0.2em;
+  z-index: 1;
 
-  transition: 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) all;
-  transform: scale(${props => (props.open ? 1.1 : 0)});
+  animation-name: ${scaleIn};
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.22, 0.61, 0.36, 1);
+  transform: scale(1.1);
 `
 
-const ModalBox = ({open, children}) => open && (
-  <div>
-    <Backdrop open={open} />
-    <Wrapper>
-      <Modal open={open}>
-        {children}
-      </Modal>
-    </Wrapper>
-  </div>
+const Header = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1em;
+`
+
+const IconButton = styled.button`
+  appearance: none;
+  border: none;
+  background: transparent;
+  width: 2.4em;
+  cursor: pointer;
+  outline: none;
+  transition: 1s cubic-bezier(0.22, 0.61, 0.36, 1) all;
+
+  &:hover {
+    transform: scale(1.1) rotate(180deg);
+  }
+
+  > svg {
+    color: #333;
+  }
+`
+
+const ModalBox = ({open, onClose, children}) => (
+  <Wrapper open={open}>
+    <Backdrop open={open} onClick={onClose} />
+    <Modal open={open}>
+      <Header>
+        <span>Create a Service Deployment</span>
+        <IconButton onClick={onClose}>
+          <Icon i='close' />
+        </IconButton>
+      </Header>
+      {children}
+    </Modal>
+  </Wrapper>
 )
 
 export default ModalBox
