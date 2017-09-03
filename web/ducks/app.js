@@ -30,14 +30,22 @@ const initial = {
   }, {
     id: 'phoomparin:eventc',
     name: 'EventClub',
+    desc: 'Host a local event with your communities and get to know others.',
     icon: '../static/lumbot.png'
   }, {
     id: 'phoomparin:tales',
     name: 'Tales',
+    desc: 'Everyone has a story to tell. Step up and let the world know!',
     icon: '../static/solbot.png'
   }, {
-    id: 'phoomparin:hotelsuite',
+    id: 'phoomparin:hoe',
     name: 'HotelSuite',
+    desc: 'Check-in to a hotel room and control them within a tap.',
+    icon: '../static/archbot.png'
+  }, {
+    id: 'phoomparin:ifttt-portal',
+    name: 'IFTTT Portal',
+    desc: 'Directly access IFTTT services and applets from Axi.',
     icon: '../static/archbot.png'
   }]
 }

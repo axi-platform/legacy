@@ -4,9 +4,7 @@ import App from '../components/App'
 import Service from '../components/Service'
 
 const ServiceRoute = ({url: {query}}) => (
-  <div>
-    <Service qs={query} />
-  </div>
+  <Service qs={query} />
 )
 
 export default App(ServiceRoute)

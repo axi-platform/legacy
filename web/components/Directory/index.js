@@ -9,26 +9,30 @@ import Create from './Create'
 import Modal from '../Modal'
 import Icon from '../Icon'
 
-import color from '../../core/color'
+import toColor from '../../core/color'
 import {toggleOpen} from '../../ducks/app'
 
 const actColor = '#e74c3c'
 
-const Directory = ({open, services, toggleOpen}) => (
+export const ServiceCard = ({id, href, color, name, desc, icon}) => (
+  <Link href={href} passHref replace prefetch>
+    <Card color={color || toColor(id)}>
+      <Content>
+        <Ink />
+        {name}
+        {desc && <Small>{desc}</Small>}
+        {icon && <img src={icon} alt='' />}
+      </Content>
+      <Meta>{id}</Meta>
+    </Card>
+  </Link>
+)
+
+export const Directory = ({open, services, toggleOpen}) => (
   <Grid>
     {services.map(item => (
       <Row key={item.id}>
-        <Link href={`/service?id=${item.id}`} passHref replace>
-          <Card color={item.color || color(item.id)}>
-            <Content>
-              <Ink />
-              {item.name}
-              {item.desc && <Small>{item.desc}</Small>}
-              {item.icon && <img src={item.icon} alt='' />}
-            </Content>
-            <Meta>{item.id}</Meta>
-          </Card>
-        </Link>
+        <ServiceCard href={`/service?id=${item.id}`} {...item} />
       </Row>
     ))}
     <Row>
