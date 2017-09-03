@@ -71,8 +71,8 @@ const IconLink = styled.a`
   }
 
   > svg {
-    width: 2em;
-    height: 2em;
+    width: 1.9em;
+    height: 1.9em;
     fill: white;
   }
 `
