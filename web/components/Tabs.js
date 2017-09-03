@@ -1,9 +1,6 @@
 import React from 'react'
-import {connect} from 'react-redux'
 import styled from 'react-emotion'
 import Ink from 'react-ink'
-
-import {tabTo} from '../ducks/app'
 
 // box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
 const TabWrapper = styled.div`
@@ -12,7 +9,6 @@ const TabWrapper = styled.div`
   justify-content: center;
   position: relative;
 `
-
 
 const Tab = styled.div`
   display: flex;
@@ -30,6 +26,10 @@ const Tab = styled.div`
   font-family: 'Helvetica Neue';
   font-weight: 300;
   font-size: 1.1em;
+
+  @media screen and (max-width: 660px) {
+    display: none;
+  }
 `
 
 const TabIndicator = styled.div`
@@ -42,10 +42,10 @@ const TabIndicator = styled.div`
   transform: translateX(${props => props.index * 100}%);
 `
 
-export const Tabs = ({tab, tabTo, tabs, color}) => (
+const Tabs = ({tab, go, tabs, color}) => (
   <TabWrapper>
     {tabs.map((item, index) => (
-      <Tab key={item} onClick={() => tabTo(index)}>
+      <Tab key={item} onClick={() => go(index)}>
         {item}
         <Ink opacity={0.1} />
       </Tab>
@@ -54,8 +54,4 @@ export const Tabs = ({tab, tabTo, tabs, color}) => (
   </TabWrapper>
 )
 
-const mapStateToProps = state => ({
-  tab: state.app.tab
-})
-
-export default connect(mapStateToProps, {tabTo})(Tabs)
+export default Tabs

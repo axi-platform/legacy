@@ -1,10 +1,10 @@
 import React from 'react'
 
 import App from '../components/App'
-import Service from '../components/Service'
+import Project from '../components/Project'
 
 const ServiceRoute = ({url: {query}}) => (
-  <Service qs={query} />
+  <Project qs={query} />
 )
 
 export default App(ServiceRoute)

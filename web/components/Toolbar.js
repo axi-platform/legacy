@@ -2,23 +2,29 @@ import React from 'react'
 import {connect} from 'react-redux'
 import styled from 'react-emotion'
 import Link from 'next/link'
-import Ink from 'react-ink'
 
 import Icon from './Icon'
 import Tabs from './Tabs'
 
 import color from '../core/color'
+import {tabTo} from '../ducks/app'
+
+const tabs = ['Overview', 'Services', 'Devices']
+
+// const bg = (name, at) => color(at ? name + tabs[at] : name)
 
 const Nav = styled.nav`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  min-height: 3.02rem;
 
   color: white;
   font-family: 'Helvetica Neue';
   font-weight: 300;
   background: ${props => color(props.name)};
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+  transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) all;
 `
 
 const Name = styled.div`
@@ -77,9 +83,9 @@ const IconLink = styled.a`
   }
 `
 
-const Toolbar = ({name}) => (
+const Toolbar = ({name, tab, tabTo}) => (
   <div>
-    <Nav name={name}>
+    <Nav name={name} at={tab}>
       <Left>
         <Link href='/dashboard' passHref prefetch>
           <IconLink>
@@ -89,10 +95,14 @@ const Toolbar = ({name}) => (
         <Name>{name}</Name>
       </Left>
       <Section>
-        <Tabs tabs={['Overview', 'Services', 'Devices']} />
+        <Tabs tabs={tabs} tab={tab} go={tabTo} />
       </Section>
     </Nav>
   </div>
 )
 
-export default Toolbar
+const mapStateToProps = state => ({
+  tab: state.app.tab
+})
+
+export default connect(mapStateToProps, {tabTo})(Toolbar)
