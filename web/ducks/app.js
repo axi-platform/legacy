@@ -26,22 +26,25 @@ const initial = {
     id: 'phoomparin:printat',
     name: 'PrintAt',
     desc: 'Print Anywhere, Instantly. The Next Generation Print Shop Service.',
+    color: 'linear-gradient(45deg, #d4145a, #fbb03b)',
     icon: '../static/wizbot.png'
   }, {
-    id: 'phoomparin:eventc',
+    id: 'phoomparin:hotelsuite',
+    name: 'HotelSuite',
+    desc: 'Check-in to a hotel room and control them within a tap.',
+    color: 'linear-gradient(45deg, #f24645, #ebc08d)',
+    icon: '../static/archbot.png'
+  }, {
+    id: 'phoomparin:eventclub',
     name: 'EventClub',
     desc: 'Host a local event with your communities and get to know others.',
+    color: 'linear-gradient(45deg, #2e3192, #1bffff)',
     icon: '../static/lumbot.png'
   }, {
     id: 'phoomparin:tales',
     name: 'Tales',
     desc: 'Everyone has a story to tell. Step up and let the world know!',
     icon: '../static/solbot.png'
-  }, {
-    id: 'phoomparin:hoe',
-    name: 'HotelSuite',
-    desc: 'Check-in to a hotel room and control them within a tap.',
-    icon: '../static/archbot.png'
   }, {
     id: 'phoomparin:ifttt-portal',
     name: 'IFTTT Portal',

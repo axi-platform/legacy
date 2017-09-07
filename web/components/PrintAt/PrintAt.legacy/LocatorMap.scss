@@ -1,0 +1,60 @@
+@import "../../variables.scss";
+
+.heading {
+  margin: 0;
+  color: $grey;
+
+  font-weight: 300;
+  text-align: right;
+  line-height: 1.8em;
+}
+
+@media screen and (max-width: $screen-sm-min) {
+  .heading {
+    font-size: 1.3em;
+  }
+}
+
+.text {
+  color: $dark;
+}
+
+.btn {
+  margin-top: 0.5em;
+  text-align: right;
+}
+
+.fixed {
+  position: absolute;
+  top: 5em;
+  right: 1em;
+  z-index: 1;
+  margin-left: 1em;
+}
+
+.status {
+  margin: 0;
+
+  color: $complement;
+
+  font-weight: 300;
+  text-align: right;
+  line-height: 1.8em;
+
+  > span {
+    text-transform: capitalize;
+  }
+
+  > span > svg {
+    fill: $complement !important;
+  }
+}
+
+.online {
+  color: $accent;
+
+  > span > svg {
+    margin-top: -0.2em;
+    fill: $accent !important;
+  }
+}

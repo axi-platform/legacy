@@ -1,0 +1,90 @@
+@import "../../variables.scss";
+
+.h {
+  margin: 0;
+
+  color: $dark;
+
+  font-weight: 300;
+  text-align: left;
+  line-height: 1.8em;
+}
+
+.heading {
+  @extend .h;
+
+  color: $grey;
+  margin-bottom: 0.5em;
+}
+
+.text {
+  color: $dark;
+}
+
+.bottom {
+  margin-bottom: 4em;
+}
+
+.img {
+  width: 100%;
+  height: auto;
+}
+
+.ripple {
+  @extend .resetBtn;
+
+  background: transparent;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-shadow: $zLite;
+}
+
+.noFiles {
+  text-align: center;
+
+  > img {
+    margin-bottom: 1em;
+
+    width: 8.5em;
+    height: auto;
+  }
+
+  > * {
+    text-align: center;
+  }
+}
+
+.small {
+  color: $grey;
+  line-height: 4em;
+  margin-top: 0.8em;
+}
+
+.iframe {
+  position: relative;
+  padding-bottom: 65.25%;
+  padding-top: 30px;
+  height: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling:touch;
+  border: none;
+}
+
+.iframe > iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+}
+
+.remove {
+  margin-left: 1em;
+  background: $complement;
+}
+
+.pad {
+  padding: 1.5em;
+}

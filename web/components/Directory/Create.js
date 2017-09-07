@@ -6,6 +6,7 @@ import Ink from 'react-ink'
 import {Card, Content, Meta} from './Card'
 
 import {setName, setId, setDesc, addService} from '../../ducks/app'
+import {font} from '../../core/style'
 import color from '../../core/color'
 
 const Input = styled.input`
@@ -46,7 +47,7 @@ const Confirm = styled.button`
   width: 6.5em;
   padding: 0.2em;
   align-self: flex-end;
-  font-family: 'Helvetica Neue';
+  font-family: ${font};
   font-size: 1.05em;
   font-weight: 300;
   border-radius: 5px;
@@ -59,6 +60,7 @@ const Confirm = styled.button`
 
 const Label = styled.div`
   padding: 1px;
+  padding-right: 0;
   font-size: 0.8em;
 `
 

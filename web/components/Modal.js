@@ -61,7 +61,6 @@ const Modal = styled.div`
   min-width: ${props => props.minWidth};
   background: #fafafa;
   padding: 0.8em;
-  font-family: 'Helvetica Neue';
   font-weight: 300;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
   border-radius: 0.2em;
@@ -78,14 +77,16 @@ const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 1em;
+  margin-bottom: 0.7em;
 `
 
 const IconButton = styled.button`
   appearance: none;
   border: none;
   background: transparent;
-  width: 2.4em;
+  padding: 0;
+  width: 1.3em;
+  line-height: 1em;
   cursor: pointer;
   outline: none;
   transition: 1s cubic-bezier(0.22, 0.61, 0.36, 1) all;
@@ -104,7 +105,7 @@ const ModalBox = ({open, onClose, children}) => (
     <Backdrop open={open} onClick={onClose} />
     <Modal open={open}>
       <Header>
-        <span>Create a Service Deployment</span>
+        <span>Create a Project</span>
         <IconButton onClick={onClose}>
           <Icon i='close' />
         </IconButton>

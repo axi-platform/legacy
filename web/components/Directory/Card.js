@@ -38,12 +38,12 @@ export const Card = styled.a`
   background: ${props => props.color || '#2c3e50'};
   text-decoration: none;
 
-  box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   transition: 1s cubic-bezier(0.22, 0.61, 0.36, 1) all;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
   &:hover {
-    transform: scale(1.04);
+    transform: scale(1.03);
   }
 `
 

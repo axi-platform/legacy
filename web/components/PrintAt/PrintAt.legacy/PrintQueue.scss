@@ -1,0 +1,45 @@
+@import "../../variables.scss";
+
+.h {
+  margin: 0;
+
+  font-weight: 300;
+  text-align: left;
+  line-height: 1.8em;
+
+  color: $dark;
+}
+
+.heading {
+  @extend .h;
+
+  margin-bottom: 0.5em;
+}
+
+.sub {
+  @extend .h;
+
+  color: $grey;
+  margin-bottom: 0.5em;
+}
+
+.title {
+  @extend .h;
+
+  color: $grey;
+}
+
+.text {
+  color: $dark;
+}
+
+.small {
+  color: $grey;
+}
+
+.cancel {
+  color: $grey;
+  background: $white;
+  box-shadow: $zLite;
+  margin-left: 1em;
+}

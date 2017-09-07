@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'react-emotion'
 import Link from 'next/link'
 
+import {font} from '../core/style'
+
 const View = styled.div`
   display: flex;
   align-items: center;
@@ -10,7 +12,7 @@ const View = styled.div`
 `
 
 const Text = styled.div`
-  font-family: 'Helvetica Neue';
+  font-family: ${font};
   font-weight: 300;
   font-size: 2em;
   color: #333;

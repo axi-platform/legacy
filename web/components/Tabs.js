@@ -2,6 +2,8 @@ import React from 'react'
 import styled from 'react-emotion'
 import Ink from 'react-ink'
 
+import {font} from '../core/style'
+
 // box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
 const TabWrapper = styled.div`
   display: flex;
@@ -23,7 +25,7 @@ const Tab = styled.div`
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   user-select: none;
 
-  font-family: 'Helvetica Neue';
+  font-family: ${font};
   font-weight: 300;
   font-size: 1.1em;
 
@@ -45,7 +47,7 @@ const TabIndicator = styled.div`
 const Tabs = ({tab, go, tabs, color}) => (
   <TabWrapper>
     {tabs.map((item, index) => (
-      <Tab key={item} onClick={() => go(index)}>
+      <Tab key={index} onClick={() => go(index)}>
         {item}
         <Ink opacity={0.1} />
       </Tab>

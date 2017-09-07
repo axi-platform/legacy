@@ -12,10 +12,10 @@ import Icon from '../Icon'
 import toColor from '../../core/color'
 import {toggleOpen} from '../../ducks/app'
 
-const actColor = '#e74c3c'
+const MaybeLink = props => props.href ? <Link {...props} /> : props.children
 
 export const ServiceCard = ({id, href, color, name, desc, icon}) => (
-  <Link href={href} passHref replace prefetch>
+  <MaybeLink href={href} passHref prefetch>
     <Card color={color || toColor(id)}>
       <Content>
         <Ink />
@@ -25,10 +25,20 @@ export const ServiceCard = ({id, href, color, name, desc, icon}) => (
       </Content>
       <Meta>{id}</Meta>
     </Card>
-  </Link>
+  </MaybeLink>
 )
 
-export const Directory = ({open, services, toggleOpen}) => (
+export const Add = ({onClick}) => (
+  <Adder color='linear-gradient(45deg, #d4145a, #fbb03b)' onClick={onClick}>
+    <Icon i='add' />
+    <AdderRing color='#e74c3c' />
+    <Ink background opacity={0.15} />
+  </Adder>
+)
+
+export {Grid, Row} from './Card'
+
+const Directory = ({open, services, toggleOpen}) => (
   <Grid>
     {services.map(item => (
       <Row key={item.id}>
@@ -36,11 +46,7 @@ export const Directory = ({open, services, toggleOpen}) => (
       </Row>
     ))}
     <Row>
-      <Adder color={actColor} onClick={toggleOpen}>
-        <Icon i='add' />
-        <AdderRing color={actColor} />
-        <Ink background opacity={0.15} />
-      </Adder>
+      <Add onClick={toggleOpen} />
     </Row>
     <Modal open={open} onClose={toggleOpen}>
       <Create />

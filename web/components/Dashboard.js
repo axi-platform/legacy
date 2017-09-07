@@ -1,7 +1,10 @@
 import React from 'react'
 import styled from 'react-emotion'
 
+import Toolbar from './Toolbar'
 import Directory from './Directory'
+
+import {font} from '../core/style'
 
 const Container = styled.div`
   display: flex;
@@ -9,14 +12,17 @@ const Container = styled.div`
   padding: 1.5em;
   min-height: 100vh;
 
-  font-family: 'Helvetica Neue';
+  font-family: ${font};
   font-weight: 300;
 `
 
 const Dashboard = () => (
-  <Container>
-    <Directory />
-  </Container>
+  <div>
+    <Toolbar title='Dashboard' />
+    <Container>
+      <Directory />
+    </Container>
+  </div>
 )
 
 export default Dashboard

@@ -1,0 +1,16 @@
+@import "../../variables.scss";
+
+.root {
+  position: absolute;
+  left: 1em;
+  top: 5em;
+  z-index: 2;
+}
+
+.row {
+  margin-top: 1em;
+}
+
+.small {
+  color: $grey;
+}
