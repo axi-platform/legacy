@@ -1,0 +1,71 @@
+@import "../../components/variables.scss";
+
+.wrapper {
+  text-align: center;
+}
+
+.root {
+  margin: 0 auto;
+  max-width: $max-content-width;
+  padding: 1em;
+  padding-top: 5.5em;
+
+  h2 {
+    margin-bottom: 0.5em;
+  }
+
+  h3 {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+}
+
+.queue {
+  text-align: center;
+  padding-top: 4.5em;
+  padding-bottom: 1em;
+  background: #efefef;
+  box-shadow: $zLite;
+
+  b {
+    font-size: 4em;
+    line-height: 1em;
+    color: $activeColor;
+  }
+}
+
+.reserve {
+  padding-top: 2em;
+
+  button:first-child {
+    margin-right: 1em;
+  }
+}
+
+.demo {
+  p {
+    margin-top: 0;
+  }
+}
+
+button.off, button.on {
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+  margin-right: 1em;
+}
+
+button.off {
+  background: $complement;
+
+  &:focus, &:active, &:hover {
+    background: darken($complement, 5%);
+  }
+}
+
+button.on {
+  background: $green;
+
+  &:focus, &:active, &:hover {
+    background: darken($green, 5%);
+  }
+}

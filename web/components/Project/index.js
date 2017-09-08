@@ -1,14 +1,15 @@
 import React from 'react'
-import {connect} from 'react-redux'
 import styled from 'react-emotion'
 
+import {makeTab} from '../Tabs'
 import ProjectToolbar from './ProjectToolbar'
 
 import {font} from '../../core/style'
 
 const Section = styled.div`
-  padding: 1.8em;
-  max-width: 1000px;
+  padding: 1.8em 2.5em;
+  max-width: 900px;
+  min-height: 95vh;
   margin: 0 auto;
   color: #777;
 
@@ -18,16 +19,21 @@ const Section = styled.div`
   font-size: 1em;
 `
 
-const mapStateToTab = state => ({tab: state.app.tab || 0})
-const Tab = connect(mapStateToTab)(({is, tab, children}) => tab === is && children)
+const Page = makeTab(state => ({tab: state.app.tab || 0}))
+
+const Tab = ({is, children}) => (
+  <Page is={is}>
+    <Section>
+      {children}
+    </Section>
+  </Page>
+)
 
 const Project = ({qs: {id}}) => (
   <div>
-    <ProjectToolbar name={id} color='linear-gradient(45deg, #d4145a, #fbb03b)' />
+    <ProjectToolbar name={id} />
     <Tab is={0}>
-      <Section>
-        <h1>Hello, World!</h1>
-      </Section>
+      <h1>Hello, World!</h1>
     </Tab>
   </div>
 )

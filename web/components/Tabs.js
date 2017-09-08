@@ -1,4 +1,5 @@
 import React from 'react'
+import {connect} from 'react-redux'
 import styled from 'react-emotion'
 import Ink from 'react-ink'
 
@@ -55,5 +56,7 @@ const Tabs = ({tab, go, tabs, color}) => (
     <TabIndicator color={color} total={tabs.length} index={tab} />
   </TabWrapper>
 )
+
+export const makeTab = s => connect(s)(({is, tab, children}) => tab === is && children)
 
 export default Tabs

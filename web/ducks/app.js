@@ -38,17 +38,21 @@ const initial = {
     id: 'phoomparin:eventclub',
     name: 'EventClub',
     desc: 'Host a local event with your communities and get to know others.',
-    color: 'linear-gradient(45deg, #2e3192, #1bffff)',
+    color: 'linear-gradient(45deg, #662d8c, #ed1e79)',
     icon: '../static/lumbot.png'
   }, {
     id: 'phoomparin:tales',
     name: 'Tales',
     desc: 'Everyone has a story to tell. Step up and let the world know!',
+    color: 'linear-gradient(45deg, #4f00bc, #29abe2)',
+    // color: 'linear-gradient(45deg, #00a8c5, #ffff7e)',
     icon: '../static/solbot.png'
   }, {
     id: 'phoomparin:ifttt-portal',
     name: 'IFTTT Portal',
     desc: 'Directly access IFTTT services and applets from Axi.',
+    color: 'linear-gradient(45deg, #3a3897, #a3a1ff)',
+    // color: 'linear-gradient(45deg, #ed1c24, #fcee21)',
     icon: '../static/archbot.png'
   }]
 }

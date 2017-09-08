@@ -21,12 +21,14 @@ const makeIconWrapper = tag => styled(tag)`
   &:hover {
     transform: scale(1.2);
     opacity: 1;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.15));
   }
 
   > svg {
     width: ${props => props.size || 1.5}em;
     height: ${props => props.size || 1.5}em;
     fill: white;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.25));
   }
 `
 
