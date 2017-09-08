@@ -30,7 +30,7 @@ export const ServiceCard = ({id, href, color, name, desc, icon}) => (
 
 export const Add = ({onClick}) => (
   <Adder color='linear-gradient(45deg, #d4145a, #fbb03b)' onClick={onClick}>
-    <Icon i='add' />
+    <Icon i='add' size={1.25} />
     <AdderRing color='#e74c3c' />
     <Ink background opacity={0.15} />
   </Adder>

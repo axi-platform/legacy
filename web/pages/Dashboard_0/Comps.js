@@ -1,10 +1,6 @@
 import React, {Component} from "react"
 import c from "classnames"
 
-import StatusIcon from "material-ui/svg-icons/action/swap-vertical-circle"
-import OnlineIcon from "material-ui/svg-icons/device/wifi-tethering"
-import OfflineIcon from "material-ui/svg-icons/communication/portable-wifi-off"
-
 import Grid from "../../components/Grid"
 import Paper from "../../components/Paper"
 

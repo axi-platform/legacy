@@ -63,12 +63,6 @@ export const Adder = styled.div`
   user-select: none;
   transform: scale(1.05);
 
-  > svg {
-    fill: white;
-    width: 1.25em;
-    height: 1.25em;
-  }
-
   &:hover {
     opacity: 1;
     transform: scale(1.28);

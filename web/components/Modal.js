@@ -94,10 +94,6 @@ const IconButton = styled.button`
   &:hover {
     transform: scale(1.1) rotate(180deg);
   }
-
-  > svg {
-    color: #333;
-  }
 `
 
 const ModalBox = ({open, onClose, children}) => (
@@ -107,7 +103,7 @@ const ModalBox = ({open, onClose, children}) => (
       <Header>
         <span>Create a Project</span>
         <IconButton onClick={onClose}>
-          <Icon i='close' />
+          <Icon i='close' fill='#333' />
         </IconButton>
       </Header>
       {children}
