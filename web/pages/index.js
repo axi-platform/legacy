@@ -2,8 +2,10 @@ import React from 'react'
 import Link from 'next/link'
 import styled from 'emotion/react'
 
-import Nav from './Nav'
-import Icon from '../../components/Icon'
+import Nav from './Landing/Nav'
+import Icon from '../components/Icon'
+
+import {font, mediumScreen, smallScreen, extraSmallScreen} from '../core/style'
 
 const landingColor = '#1B5A7A'
 const subColor = '#757575'
@@ -47,10 +49,11 @@ const Intro = styled.div`
   transform: translate(-50%, 0);
 `
 
+// text-shadow: 0px 1px 3px rgba(0,0,0,0.3);
 const Heading = styled.h2`
   color: ${landingColor};
   font-size: 2.5em;
-  text-shadow: 0px 1px 3px rgba(0,0,0,0.3);
+  font-weight: 300;
 
   @media screen and (max-width: ${mediumScreen}) {
     font-size: 2em;
@@ -66,6 +69,7 @@ const SubHeading = styled.h3`
   margin-top: 1em;
   font-size: 1.1em;
   line-height: 1.6em;
+  font-weight: 300;
 
   @media screen and (max-width: ${mediumScreen}) {
     font-size: 1.05em;
@@ -81,7 +85,7 @@ const MoreText = styled.span`
   margin-right: 0.6em;
   transition: all 1s cubic-bezier(0.03, 0.86, 0.57, 1);
 
-  color: ${landing};
+  color: ${landingColor};
   font-weight: 600;
   text-transform: uppercase;
   cursor: pointer;
@@ -102,7 +106,7 @@ const ReasonRoot = styled.div`
 
   > h2 {
     font-size: 1.8em;
-    color: $landing;
+    color: ${landingColor};
   }
 
   > p {
@@ -126,7 +130,7 @@ const Rel = styled.div`
   position: relative;
 
   ${props => props.right && css`
-    background: ${landing};
+    background: ${landingColor};
     text-align: right;
 
     @media screen and (min-width: ${smallScreen}) {
@@ -139,7 +143,7 @@ const Rel = styled.div`
       color: $white;
     }
 
-    > .more > svg {
+    > . > svg {
       fill: white;
     }
   `}
@@ -195,12 +199,13 @@ const IdeaSection = styled.section`
   max-width: ${containerWidth};
   margin: 0 auto;
   text-align: center;
+`
 
-  > h2 {
-    font-size: 1.6em;
-    margin-bottom: 1em;
-    color: $landing;
-  }
+const IdeaHeading = styled.h2`
+  font-size: 1.6em;
+  margin-bottom: 1em;
+  color: ${landingColor};
+  font-weight: 300;
 `
 
 const JoinSection = styled.section`
@@ -208,10 +213,16 @@ const JoinSection = styled.section`
   padding-top: 3em;
 `
 
+const Anchor = styled.a`
+  text-decoration: none;
+`
+
 const More = ({text, link}) => (
   <Link href={link}>
-    <span>{text}</span>
-    <Icon i='play' size={1.5} fill={landing} />
+    <Anchor>
+      <MoreText>{text}</MoreText>
+      <Icon i='play' size={1.5} fill={landingColor} />
+    </Anchor>
   </Link>
 )
 
@@ -233,9 +244,9 @@ const Fold = () => (
         <More text='Try the Demo' hero />
       </Link>
     </Intro>
-    <HeroImg>
-      <Hero src='https://fi.google.com/about/static/images/home/hero.svg' alt='' />
-    </HeroImg>
+    <Hero>
+      <HeroImg src='https://fi.google.com/about/static/images/home/hero.svg' alt='' />
+    </Hero>
   </FoldSection>
 )
 
@@ -319,11 +330,11 @@ const Rationale = () => (
 
 const MaybeLink = props => props.link ? <Link {...props} /> : <div>{props.children}</div>
 
-const Idea = ({h, href = '#!', img = defaultImage}) => (
+const Idea = ({h, t, to = '#!', img = defaultImage}) => (
   <Row>
-    <MaybeLink href={href}>
+    <MaybeLink href={to}>
       <IdeaSection>
-        <h2>{t}</h2>
+        <IdeaHeading>{t}</IdeaHeading>
         <DecoImage height={h} src={img} />
       </IdeaSection>
     </MaybeLink>
@@ -338,10 +349,10 @@ const Ideas = () => (
   <IdeaSection>
     <h2>Project Showcase</h2>
     <Row>
-      <Idea t='PrintAt' img='/images/pw_logo.svg' to='/printat' ds='4.5' />
-      <Idea t='Co-working Space' img='/images/pw_logo.svg' to='/space' ds='4.5' />
-      <Idea t='Smart City' img='/images/pw_logo.svg' to='/demo' ds='4.5' />
-      <Idea t='Coffe Instante' img='/images/coffee1.svg' to='/coffe' ds='4.5' />
+      <Idea t='PrintAt' img='/images/pw_logo.svg' to='/printat' />
+      <Idea t='Co-working Space' img='/images/pw_logo.svg' to='/space' />
+      <Idea t='Smart City' img='/images/pw_logo.svg' to='/demo' />
+      <Idea t='Coffe Instante' img='/images/coffee1.svg' to='/coffe' />
     </Row>
   </IdeaSection>
 )
@@ -352,8 +363,13 @@ const Join = () => (
   </JoinSection>
 )
 
+const Page = styled.div`
+  font-family: ${font};
+  font-weight: 300;
+`
+
 const Home = () => (
-  <div>
+  <Page>
     <Nav />
     <main>
       <Fold />
@@ -361,7 +377,7 @@ const Home = () => (
       <Ideas />
       <Join />
     </main>
-  </div>
+  </Page>
 )
 
 export default Home

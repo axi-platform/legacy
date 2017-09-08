@@ -47,10 +47,10 @@ const Svg = styled.svg`
   opacity: ${props => props.opacity || 1};
 `
 
-const Icon = ({i, ...props}) => (
+const Icon = ({i, ...props}) => icons[i] ? (
   <Svg viewBox={icons[i].vb || '0 0 24 24'} {...props}>
     <path d={icons[i].i} />
   </Svg>
-)
+) : <div />
 
 export default Icon
