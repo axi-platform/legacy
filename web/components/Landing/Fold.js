@@ -11,15 +11,7 @@ import {mediumScreen, extraSmallScreen} from '../../core/style'
 
 export const FoldSection = styled.section`
   position: relative;
-  height: 100vh;
-
-  @media screen and (max-width: ${mediumScreen}px) {
-    height: 80vh;
-  }
-
-  @media screen and (max-width: ${extraSmallScreen}px) {
-    height: 60vh;
-  }
+  height: 80vh;
 `
 
 export const Intro = styled.div`
@@ -38,7 +30,7 @@ export const Intro = styled.div`
   }
 
   @media screen and (max-width: ${extraSmallScreen}px) {
-    top: 17%;
+    top: 20%;
   }
 `
 
@@ -70,11 +62,11 @@ export const Heading = styled.h1`
     font-size: 1.4em;
   }
 
-  > .Cursor {
+  > span > .Typist > .Cursor {
     display: inline-block;
   }
 
-  > .Cursor.Cursor--blinking {
+  > span > .Typist > .Cursor.Cursor--blinking {
     opacity: 1;
     animation: ${blinking} 1s linear infinite;
   }
@@ -96,28 +88,31 @@ export const SubHeading = styled.h2`
   }
 `
 
-// background: linear-gradient(45deg, #3a3897, #a3a1ff);
 const Banner = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
   transform: skewY(-12deg);
   transform-origin: 0;
-  background: linear-gradient(45deg, hsl(264, 46%, 41%), hsl(241, 100%, 82%));
+  background: linear-gradient(45deg, hsl(283, 46%, 41%), hsl(241, 100%, 82%));
   box-shadow: 0 2px 8px 0 rgba(0,0,0,0.2);
 `
 
 export const HeroImg = styled.img`
   position: absolute;
   bottom: 2px;
-  left: 50%;
+  left: 80%;
   pointer-events: none;
-
-  transform: translate(-50%, 0) rotate(-12deg);
-  transform-origin: 0;
-
-  width: 100%;
+  transform: translate(-50%, -15%) rotate(-42deg);
+  transform-origin: 0px;
+  width: 24%;
   mix-blend-mode: luminosity;
+
+  @media screen and (max-width: 600px) {
+    transform: translate(-62%, 10%) rotate(-42deg);
+    transform-origin: 0px;
+    width: 36%;
+  }
 `
 
 const particle = {
@@ -160,6 +155,9 @@ const particle = {
   }
 }
 
+// https://fi.google.com/about/static/static/home/hero.svg
+const heroImage = '/static/gamechars.svg'
+
 // TODO: Developers, Entrepreneurs and Makers
 const Fold = () => (
   <FoldSection>
@@ -187,7 +185,7 @@ const Fold = () => (
       </SubHeading>
       <More text='Try the Demo' color='#ffffff' link='/dashboard' />
     </Intro>
-    <HeroImg src='https://fi.google.com/about/static/static/home/hero.svg' alt='' />
+    <HeroImg src={heroImage} alt='' />
   </FoldSection>
 )
 

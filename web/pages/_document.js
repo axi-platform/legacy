@@ -33,7 +33,7 @@ export default class MyDocument extends Document {
     <html lang='en'>
       <Head>
         <title>Axi Dashboard</title>
-        <meta name='viewport' content='width=device-width' />
+        <meta name='viewport' content='width=device-width, initial-scale=1' />
         <style dangerouslySetInnerHTML={{__html: this.props.css}} />
         <link rel='stylesheet' type='text/css' href='/static/nprogress.css' />
         <link href='https://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' />

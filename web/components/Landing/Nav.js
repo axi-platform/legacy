@@ -5,7 +5,7 @@ import Link from 'next/link'
 import Ink from 'react-ink'
 
 import {landingColor} from './Layout'
-import {font, largeScreen, extraSmallScreen} from '../../core/style'
+import {font, largeScreen, smallScreen, extraSmallScreen} from '../../core/style'
 
 const NavBar = styled.nav`
   display: flex;
@@ -74,7 +74,7 @@ const Menu = styled.a`
   }
 `
 
-const Image = styled.img`
+const Logo = styled.img`
   align-self: center;
 
   width: 2em;
@@ -82,6 +82,10 @@ const Image = styled.img`
 
   margin-left: 1em;
   margin-right: 1em;
+
+  @media screen and (max-width: ${smallScreen}px) {
+    width: 2.5em;
+  }
 `
 
 const TryButton = styled.button`
@@ -112,9 +116,14 @@ const TryButton = styled.button`
 const Inline = styled.div`
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 840px) {
+    display: none;
+  }
 `
 
-const Anchor = styled.a`
+const LogoAnchor = styled.a`
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   text-decoration: none;
   cursor: pointer;
   transition: 1s cubic-bezier(0.22, 0.61, 0.36, 1) all;
@@ -129,9 +138,9 @@ const Nav = () => (
   <NavBar color='#ffffff'>
     <Left>
       <Link href='/' passHref>
-        <Anchor>
-          <Image src='/static/logo.svg' alt='Logo' />
-        </Anchor>
+        <LogoAnchor>
+          <Logo src='/static/logo.svg' alt='Logo' />
+        </LogoAnchor>
       </Link>
       <Inline>
         <Menu href='#!'>Overview</Menu>

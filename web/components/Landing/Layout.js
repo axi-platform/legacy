@@ -14,14 +14,6 @@ export const Page = styled.div`
   font-weight: 300;
 `
 
-export const Row = styled.div`
-  display: flex;
-`
-
-export const Col = styled.div`
-
-`
-
 export const Anchor = styled.a`
   display: flex;
   align-items: center;
@@ -46,17 +38,12 @@ export const MoreText = styled.span`
   }
 `
 
-// isodata: width 40% sWidth 30%
-// phyweb: width 65% top 6em sWidth 40% sTop 1
-// isomono: width 60% top 4em sWidth 45% sTop 0
 export const DecoImage = styled.img`
   align-self: center;
   width: ${props => props.width || 50}%;
-  margin-top: ${props => props.top || 2}em;
-  margin-bottom: 2em;
 
   @media screen and (max-width: ${smallScreen}px) {
-    width: {props => props.sWidth || 35}%;
+    width: ${props => props.sWidth || props.width || 50}%;
     margin-top: ${props => props.sTop || 1}em;
     margin-bottom: ${props => props.sBottom || 1}em;
   }

@@ -11,12 +11,17 @@ import {mediumScreen, smallScreen, extraSmallScreen} from '../../core/style'
 
 const Row = styled.div`
   display: flex;
+
+  @media screen and (max-width: ${smallScreen}px) {
+    flex-direction: column;
+  }
 `
 
 const Col = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
 
   @media screen and (min-width: ${smallScreen}px) {
     flex: ${props => props.flex || 1};
@@ -34,6 +39,7 @@ export const Trig = styled.div`
   position: absolute;
   right: -1em;
   top: 38%;
+  z-index: 1;
 
   width: 2em;
   height: 2em;
@@ -57,6 +63,7 @@ export const ReasonBox = styled.div`
   }
 
   > h2 {
+    margin: 0;
     font-size: 1.8em;
     font-weight: 300;
     color: ${landingColor};
@@ -69,7 +76,7 @@ export const ReasonBox = styled.div`
 
 
   ${props => props.right && css`
-    background: ${landingColor};
+    color: ${'white'/* background: ${landingColor};
     text-align: right;
 
     > h2, > p, > ${MoreText} > span {
@@ -78,7 +85,7 @@ export const ReasonBox = styled.div`
 
     > svg {
       fill: white;
-    }
+    } */}
   `}
 
   @media screen and (max-width: ${mediumScreen}px) {
@@ -90,32 +97,37 @@ export const ReasonBox = styled.div`
   }
 
   @media screen and (max-width: ${extraSmallScreen}px) {
-    padding: 1em 2em;
+    padding: 2em 2em;  
   }
 `
 
-const Reason = ({right, more, img, link, children}) => (
+const Reason = ({right, more, ic, img = ic.img, link, children}) => (
   <Row>
     <Col right={right}>
-      <Trig />
+      <Trig right={right} />
       <ReasonBox right={right}>
         {children}
         <More text={more} link={link} />
       </ReasonBox>
     </Col>
     <Col>
-      <DecoImage src={img} alt='' ic />
+      <DecoImage src={img} alt='' {...ic} />
     </Col>
   </Row>
 )
 
 // NOTE: Instantaneously Interact with Google's Physical Web
+
+const phyweb = {img: '/static/isocity.svg', width: 60, sWidth: 40, sTop: 1}
+const isodata = {img: '/static/isodata.svg', width: 35, sWidth: 32}
+const isomono = {img: '/static/isocitymono.svg', width: 60, sWidth: 45, top: 4, sTop: 0}
+
 const Why = () => (
   <WhySection>
     <Reason
       more='Learn about the Physical Web'
       link='https://google.github.io/physical-web/'
-      img='/static/isocity.svg'
+      ic={phyweb}
     >
       <h2>
         Walk Up and Use Anything&nbsp;
@@ -129,7 +141,7 @@ const Why = () => (
         tap away. Axi gives you the foundation to deliver the best experience.
       </p>
     </Reason>
-    <Reason more='View The Technologies' img='/static/isodata.svg' right>
+    <Reason more='View The Technologies' ic={isodata} right>
       <h2>Stay Ahead of the Curve</h2>
       <p>
         Axi implements various cutting edge technologies to fill in the gaps and
@@ -159,7 +171,7 @@ const Why = () => (
         can freely choose and switch between providers with no lock-ins.
       </p>
     </Reason>
-    <Reason more='Learn More' img='/static/isocitymono.svg'>
+    <Reason more='Learn More' ic={isomono}>
       <h2>
         Open, Modular and Scalable
       </h2>
