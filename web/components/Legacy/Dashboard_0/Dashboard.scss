@@ -1,0 +1,264 @@
+@import "../../components/variables.scss";
+
+@keyframes blink {
+  0% {
+    opacity: 1.0;
+  }
+  30% {
+    opacity: 0.4;
+  }
+  60% {
+    opacity: 1.0;
+  }
+}
+
+.root {
+  margin: 0 auto;
+  max-width: $max-content-width;
+  padding: 1em;
+  padding-top: 5.5em;
+}
+
+.menuBtn {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22%23fff%22%3E%3Cpath%20d%3D%22M0%200h6v6H0z%22%2F%3E%3Cpath%20d%3D%22M0%209h6v6H0z%22%2F%3E%3Cpath%20d%3D%22M0%2018h6v6H0z%22%2F%3E%3Cpath%20d%3D%22M18%2018h6v6h-6z%22%2F%3E%3Cpath%20d%3D%22M9%2018h6v6H9z%22%2F%3E%3Cpath%20d%3D%22M9%200h6v6H9z%22%2F%3E%3Cpath%20d%3D%22M9%209h6v6H9z%22%2F%3E%3Cpath%20d%3D%22M18%200h6v6h-6z%22%2F%3E%3Cpath%20d%3D%22M18%209h6v6h-6z%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+  width: 1.5em;
+  height: 1.5em;
+  opacity: .3;
+}
+
+.menuBtn:hover {
+  opacity: .9;
+}
+
+.create {
+  input {
+    color: $grey;
+    margin-bottom: 0.5em;
+  }
+
+  .name {
+    color: $complement;
+    font-size: 1.2em;
+  }
+
+  .name::placeholder {
+    color: $complement;
+    opacity: 0.8;
+  }
+}
+
+.pre {
+  line-height: 1.4em;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.welcome {
+  display: flex;
+  justify-content: center;
+
+  background-image: url(/static/landing.svg);
+  background-size: cover;
+
+  margin-top: -2.5em;
+  margin-bottom: 2.5em;
+
+  box-shadow: $zLite;
+  text-align: center;
+  height: 13em;
+
+  > div {
+    flex: 1;
+    align-self: center;
+  }
+}
+
+.status {
+  color: $accent;
+  animation: blink 1.5s linear infinite;
+
+  > svg {
+    margin-top: -0.1em;
+    fill: $accent !important;
+  }
+}
+
+.top {
+  margin-top: 1.5em;
+}
+
+.bottom {
+  margin-bottom: 1.5em;
+}
+
+.heading {
+  margin: 0;
+  font-weight: 300;
+  line-height: 1.6em;
+}
+
+.sub {
+  @extend .heading;
+  color: $grey;
+}
+
+.device {
+  > h3, > h4 {
+    margin: 0;
+    font-weight: 300;
+    line-height: 1.6em;
+  }
+}
+
+.card {
+  padding: 1em;
+  box-shadow: $zCard;
+  margin-bottom: 1em;
+
+  input {
+    @extend .inlineInput;
+  }
+}
+
+.online, .offline, .unknown {
+  position: relative;
+
+  > svg {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+}
+
+.online {
+  color: $accent;
+
+  > svg {
+    fill: $accent !important;
+  }
+}
+
+.offline {
+  color: $complement;
+
+  > svg {
+    fill: $complement !important;
+  }
+}
+
+.map {
+  width: auto;
+  box-shadow: $zLite;
+  position: relative;
+
+  .title {
+    z-index: 1;
+    padding: 1em;
+    box-shadow: $zLite;
+    font-weight: 400;
+    position: relative;
+
+    svg {
+      width: 1.4em;
+      height: 1.4em;
+      margin-right: 2em;
+    }
+  }
+
+  .inner {
+    height: 20em;
+  }
+}
+
+.delete {
+  background: $complement !important;
+  margin-top: 1em;
+}
+
+.indic {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+
+  background: white;
+  box-shadow: $zLite;
+  border: 2px solid lighten($green, 10);
+
+  &:hover {
+    border: 2px solid $green;
+  }
+}
+
+.indic.off {
+  border: 2px solid $complement;
+}
+
+.indic.blue {
+  border: 2px solid $blue;
+}
+
+.logs {
+  overflow-x: auto;
+  position: relative;
+  box-shadow: $zLite;
+
+  button {
+    @extend .resetBtn;
+    position: absolute;
+    width: initial;
+    right: 0;
+
+    padding: 0.6em;
+    color: #2d2d30;
+    background: transparent;
+  }
+
+  table {
+    width: 100%;
+    font-size: 0.9em;
+
+    border-collapse: collapse;
+
+    .time {
+      min-width: 5.5em;
+    }
+
+    .msg {
+      min-width: 35em;
+    }
+
+    tbody > tr > td > input {
+      border: none;
+      background: transparent;
+      font-family: $font-family-base;
+
+      &.topic {
+        width: 4em;
+      }
+    }
+
+    th, td {
+      padding: 5px;
+      text-align: left;
+      border-collapse: collapse;
+    }
+
+    thead {
+      border-bottom: 1px solid #d0d0d0;
+    }
+
+    tbody > tr:nth-child(odd) {
+      background: #f2f2f2
+    }
+
+    thead > tr > th, tbody > tr > td {
+      padding: 1em;
+      text-align: left;
+      vertical-align: top;
+    }
+  }
+}

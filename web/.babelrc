@@ -1,0 +1,11 @@
+{
+  "presets": [
+    "next/babel",
+    "stage-0"
+  ],
+  "plugins": [
+    "transform-runtime",
+    "transform-decorators-legacy",
+    ["emotion/babel", {"inline": true}]
+  ]
+}

@@ -1,0 +1,109 @@
+@import "../../components/variables.scss";
+
+.main {
+  margin-top: 5em;
+}
+
+.checkin {
+  button {
+    margin-right: 1em;
+    background: $dark;
+  }
+}
+
+h2.heading {
+  margin-bottom: 1em;
+  font-weight: 400;
+}
+
+.plan {
+  text-align: center;
+
+  img {
+    width: 5.5em;
+    text-align: center;
+  }
+}
+
+.paper {
+  text-align: center;
+
+  h2 {
+    margin-bottom: 1em;
+  }
+}
+
+$cFore: #2980b9; //  #2980b9 #27ae60
+$cDrop: #3498db ; // #3498db #1abc9c
+
+.planCard {
+  box-shadow: $zLite;
+
+  .cardImage {
+    height: 10em;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url(/static/isocity.svg);
+    background-color: $cDrop;
+    border: 1em solid $cDrop;
+    box-shadow: $z1;
+  }
+
+  .plan {
+    padding: 1.3em;
+
+    .p {
+      margin: 0.5em;
+      line-height: 1.6em;
+    }
+  }
+
+  button {
+    margin-top: 0.5em;
+    background: $cDrop;
+  }
+}
+
+.planCard:hover {
+  .cardImage {
+    background-color: $cFore;
+    border: 1em solid $cFore;
+  }
+
+  button {
+    background: $cFore;
+  }
+}
+
+@media screen and (max-width: $screen-md-min) {
+  .planCard > .cardImage {
+    height: 7em;
+  }
+}
+
+@media screen and (max-width: $screen-sm-min) {
+  .planCard > .cardImage {
+    height: 5em;
+  }
+}
+
+.member {
+  text-align: center;
+
+  .login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    min-height: 68%; // 100vh
+  }
+
+  button {
+    background: $cDrop;
+  }
+
+  .guest {
+    margin-right: 1em;
+  }
+}
