@@ -38,22 +38,5 @@
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
     "stats-webpack-plugin": "^0.6.1"
-  },
-  "babel": {
-    "presets": [
-      "latest",
-      "stage-0",
-      "react"
-    ],
-    "plugins": [
-      "transform-runtime",
-      "transform-decorators-legacy",
-      [
-        "emotion",
-        {
-          "inline": true
-        }
-      ]
-    ]
   }
 }

@@ -31,7 +31,7 @@ export default class MyDocument extends Document {
       <Head>
         <title>Axi Dashboard</title>
         <style dangerouslySetInnerHTML={{__html: this.props.css}} />
-        <meta name="viewport" content="width=device-width" />
+        <meta name='viewport' content='width=device-width' />
       </Head>
       <body>
         <Main />

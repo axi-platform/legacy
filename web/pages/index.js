@@ -1,221 +1,13 @@
 import React from 'react'
 import Link from 'next/link'
-import styled from 'emotion/react'
 
-import Nav from './Landing/Nav'
+import {
+  Row, Col, FoldSection, Hero, HeroImg, Intro, Heading, SubHeading, MoreText,
+  Why, ReasonRoot, Break, BreakMedium, Trig, DecoImage, IdeaSection, JoinSection,
+  IdeaHeading, Anchor, Page, landingColor, Nav
+} from '../components/Landing/index'
+
 import Icon from '../components/Icon'
-
-import {font, mediumScreen, smallScreen, extraSmallScreen} from '../core/style'
-
-const landingColor = '#1B5A7A'
-const subColor = '#757575'
-const containerWidth = '980px'
-
-const Row = styled.div`
-
-`
-
-const Col = styled.div`
-
-`
-
-const FoldSection = styled.section`
-  height: 100vh;
-`
-
-const Hero = styled.div`
-  display: flex;
-  justify-content: center;
-
-  margin-top: 1.5em;
-`
-
-const HeroImg = styled.img`
-  bottom: 0;
-  left: 50%;
-  position: absolute;
-  transform: translate(-50%, 0);
-  width: 100%;
-`
-
-const Intro = styled.div`
-  position: absolute;
-  top: 27.3%;
-  left: 50%;
-  z-index: 3;
-
-  width: 90%;
-  text-align: center;
-  transform: translate(-50%, 0);
-`
-
-// text-shadow: 0px 1px 3px rgba(0,0,0,0.3);
-const Heading = styled.h2`
-  color: ${landingColor};
-  font-size: 2.5em;
-  font-weight: 300;
-
-  @media screen and (max-width: ${mediumScreen}) {
-    font-size: 2em;
-  }
-
-  @media screen and (max-width: ${extraSmallScreen}) {
-    font-size: 1.8em;
-  }
-`
-
-const SubHeading = styled.h3`
-  color: ${subColor};
-  margin-top: 1em;
-  font-size: 1.1em;
-  line-height: 1.6em;
-  font-weight: 300;
-
-  @media screen and (max-width: ${mediumScreen}) {
-    font-size: 1.05em;
-  }
-
-  @media screen and (max-width: ${extraSmallScreen}) {
-    font-size: 1em;
-  }
-`
-
-const MoreText = styled.span`
-  align-self: center;
-  margin-right: 0.6em;
-  transition: all 1s cubic-bezier(0.03, 0.86, 0.57, 1);
-
-  color: ${landingColor};
-  font-weight: 600;
-  text-transform: uppercase;
-  cursor: pointer;
-
-  &:hover > span {
-    margin-right: 1.3em;
-  }
-`
-
-const Why = styled.sectio`
-  > ${Row} {
-    margin-top: 1em;
-  }
-`
-
-const ReasonRoot = styled.div`
-  padding: 5em 6em;
-
-  > h2 {
-    font-size: 1.8em;
-    color: ${landingColor};
-  }
-
-  > p {
-    margin-bottom: 1.5em;
-  }
-
-  @media screen and (max-width: ${mediumScreen}) {
-    padding: 2em 3em;
-  }
-
-  @media screen and (max-width: ${smallScreen}) {
-    text-align: center !important;
-  }
-
-  @media screen and (max-width: ${extraSmallScreen}) {
-    padding: 1em 2em;
-  }
-`
-
-const Rel = styled.div`
-  position: relative;
-
-  ${props => props.right && css`
-    background: ${landingColor};
-    text-align: right;
-
-    @media screen and (min-width: ${smallScreen}) {
-      order: 1;
-    }
-  `}
-
-  ${props => props.white && css`
-    > h2, > p, > .more > span {
-      color: $white;
-    }
-
-    > . > svg {
-      fill: white;
-    }
-  `}
-`
-
-const Break = styled.div`
-  @media screen and (max-width: ${smallScreen}) {
-    display: none
-  }
-`
-
-const BreakMedium = styled.div`
-  @media screen and (max-width: ${mediumScreen}) {
-    display: none
-  }
-`
-
-const Trig = styled.div`
-  position: absolute;
-  right: -1em;
-  top: 38%;
-
-  width: 2em;
-  height: 2em;
-  background: white;
-  transform: rotate(135deg);
-
-  ${props => props.right && css`
-    left: -1em;
-    right: initial;
-  `}
-`
-
-// isodata: width 40% sWidth 30%
-// phyweb: width 65% top 6em sWidth 40% sTop 1
-// isomono: width 60% top 4em sWidth 45% sTop 0
-const DecoImage = styled.div`
-  align-self: center;
-  width: ${props => props.width || 50}%;
-  margin-top: ${props => props.top || 2}em;
-  margin-bottom: 2em;
-
-  @media screen and (max-width: ${smallScreen}) {
-    width: {props => props.sWidth || 35}%;
-    margin-top: ${props => props.sTop || 1}em;
-    margin-bottom: ${props => props.sBottom || 1}em;
-  }
-`
-
-// ds => width: initial; margin-top: 1em;
-const IdeaSection = styled.section`
-  padding-top: 5em;
-  max-width: ${containerWidth};
-  margin: 0 auto;
-  text-align: center;
-`
-
-const IdeaHeading = styled.h2`
-  font-size: 1.6em;
-  margin-bottom: 1em;
-  color: ${landingColor};
-  font-weight: 300;
-`
-
-const JoinSection = styled.section`
-  text-align: center;
-  padding-top: 3em;
-`
-
-const Anchor = styled.a`
-  text-decoration: none;
-`
 
 const More = ({text, link}) => (
   <Link href={link}>
@@ -227,11 +19,15 @@ const More = ({text, link}) => (
 )
 
 // TODO: Developers, Entrepreneurs and Makers
+// Turn Amazing Ideas into Physical Web Solutions
+// <Break />
+// &nbsp;with Axi Platform
+
 const Fold = () => (
   <FoldSection>
     <Intro>
       <Heading>
-        Turn Amazing Ideas into Physical Web Solutions
+        Turn Amazing Ideas into Magical Solutions
         <Break />
         &nbsp;with Axi Platform
       </Heading>
@@ -240,7 +36,7 @@ const Fold = () => (
         <Break />
         &nbsp;Axi joins you to develop innovative products.
       </SubHeading>
-      <Link to='/printat'>
+      <Link href='/printat' passHref>
         <More text='Try the Demo' hero />
       </Link>
     </Intro>
@@ -254,7 +50,7 @@ const Reason = ({more, img, link, children}) => (
   <Row>
     <Col>
       <Trig />
-      <ReasonRoot>
+      <ReasonRoot right>
         {children}
         <More text={more} link={link} />
       </ReasonRoot>
@@ -363,12 +159,7 @@ const Join = () => (
   </JoinSection>
 )
 
-const Page = styled.div`
-  font-family: ${font};
-  font-weight: 300;
-`
-
-const Home = () => (
+const Landing = () => (
   <Page>
     <Nav />
     <main>
@@ -380,4 +171,4 @@ const Home = () => (
   </Page>
 )
 
-export default Home
+export default Landing

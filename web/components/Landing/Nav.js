@@ -2,17 +2,19 @@ import React, {Component} from 'react'
 import styled from 'emotion/react'
 import {lighten} from 'polished'
 import Link from 'next/link'
+import Ink from 'react-ink'
 
-import {largeScreen, extraSmallScreen} from '../../core/style'
+import {font, largeScreen, extraSmallScreen} from '../../core/style'
 
 const landingColor = '#1B5A7A' // #1B5A7A #009688 #0f9d58 $teal
 const subColor = '#757575'
 
-const Nav = styled.nav`
+const NavBar = styled.nav`
   display: flex;
   justify-content: space-between;
 
   position: fixed;
+  top: 0;
   width: 100%;
   z-index: 10;
 
@@ -26,11 +28,11 @@ const Left = styled.div`
   display: flex;
   justify-content: flex-start;
 
-  flex: 3;
+  flex: 2;
 `
 
 const Center = styled.div`
-  flex: 3;
+  flex: 1;
 
   @media screen and (max-width: ${largeScreen}) {
     display: none;
@@ -57,6 +59,7 @@ const Menu = styled.a`
   text-decoration: none;
   text-transform: uppercase;
   text-align: center;
+  transition: 1s cubic-bezier(0.22, 0.61, 0.36, 1) all;
 
   color: ${props => props.color || subColor};
 
@@ -68,7 +71,7 @@ const Menu = styled.a`
 
   &:hover {
     color: ${landingColor};
-    font-weight: 400;
+    transform: scale(1.1);
   }
 `
 
@@ -81,13 +84,20 @@ const Image = styled.img`
 `
 
 const TryButton = styled.button`
-  margin-left: 1em;
+  position: relative;
+  appearance: none;
+  border: 0;
+  cursor: pointer;
+  outline: none;
+  font-family: ${font};
+  margin-left: 1.2em;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   border-radius: 3px;
   background: ${landingColor};
-  color: $white;
-  padding: 0.5em;
-  box-shadow: $zLite;
+  color: #efefef;
+  padding: 0.5em 0.8em;
+  box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
 
   &:hover {
     background: ${lighten('10%', landingColor)};
@@ -95,8 +105,8 @@ const TryButton = styled.button`
   }
 `
 
-// Possibilities Examples Ideas
-export default class Navigation extends Component {
+// Nav: Possibilities Examples Ideas
+export default class Nav extends Component {
   constructor(props) {
     super(props)
     this.state = {scrolled: false}
@@ -114,7 +124,7 @@ export default class Navigation extends Component {
   }
 
   render = () => (
-    <Nav scrolled={this.state.scrolled}>
+    <NavBar scrolled={this.state.scrolled}>
       <Left>
         <Image src='/images/axi1.svg' alt='Logo' />
         <Menu href='#!'>Overview</Menu>
@@ -125,12 +135,13 @@ export default class Navigation extends Component {
       <Center />
       <Right>
         <Menu href='#!'>Sign In</Menu>
-        <Link to='/dashboard'>
+        <Link href='/dashboard' passHref>
           <TryButton light>
             Try Now
+            <Ink />
           </TryButton>
         </Link>
       </Right>
-    </Nav>
+    </NavBar>
   )
 }
