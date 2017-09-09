@@ -1,0 +1,11 @@
+{
+  "name": "axi-api",
+  "version": "2.0.0",
+  "description": "Axi Platform's Decentralized API Service",
+  "main": "index.js",
+  "author": "Phoomparin Mano <hello@phoom.in.th>",
+  "license": "MIT",
+  "dependencies": {
+    "@std/esm": "^0.8.3"
+  }
+}

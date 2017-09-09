@@ -4,10 +4,8 @@ import {lighten} from 'polished'
 import Link from 'next/link'
 import Ink from 'react-ink'
 
+import {landingColor, subColor} from './Layout'
 import {font, largeScreen, extraSmallScreen} from '../../core/style'
-
-const landingColor = '#1B5A7A' // #1B5A7A #009688 #0f9d58 $teal
-const subColor = '#757575'
 
 const NavBar = styled.nav`
   display: flex;
