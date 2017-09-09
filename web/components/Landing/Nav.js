@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 import {lighten} from 'polished'
 import Link from 'next/link'
 import Ink from 'react-ink'
@@ -135,7 +135,7 @@ export default class Nav extends Component {
       <Center />
       <Right>
         <Menu href='#!'>Sign In</Menu>
-        <Link href='/dashboard' passHref>
+        <Link href='/dashboard' passHref prefetch>
           <TryButton light>
             Try Now
             <Ink />

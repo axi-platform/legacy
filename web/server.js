@@ -7,8 +7,9 @@ const dev = process.env.NODE_ENV !== 'production'
 const port = parseInt(process.env.PORT, 10) || 3000
 
 if (!dev) {
-  moduleAlias.addAlias('react', 'preact-compat')
-  moduleAlias.addAlias('react-dom', 'preact-compat')
+  // moduleAlias.addAlias('react', 'preact-compat')
+  // moduleAlias.addAlias('react-dom', 'preact-compat')
+  // moduleAlias.addAlias('react-emotion', 'preact-emotion')
 }
 
 const app = next({dev})

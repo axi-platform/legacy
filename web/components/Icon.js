@@ -1,5 +1,5 @@
 import React from 'react'
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 
 const icons = {
   add: {
@@ -43,15 +43,15 @@ const icons = {
   }
 }
 
-const Svg = styled.svg`
+const Svg = styled(props => <svg {...props} />)`
   width: ${props => props.size || 1.5}em;
   height: ${props => props.size || 1.5}em;
   fill: ${props => props.fill || '#ffffff'};
   opacity: ${props => props.opacity || 1};
 `
 
-const Icon = ({i, ...props}) => icons[i] ? (
-  <Svg viewBox={icons[i].vb || '0 0 24 24'} {...props}>
+const Icon = ({i}) => icons[i] ? (
+  <Svg viewBox={icons[i].vb || '0 0 24 24'}>
     <path d={icons[i].i} />
   </Svg>
 ) : <div />

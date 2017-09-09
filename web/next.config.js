@@ -1,11 +1,11 @@
-
-const StatsPlugin = require("stats-webpack-plugin")
+/* eslint func-names: 0, no-param-reassign: 0 */
+const StatsPlugin = require('stats-webpack-plugin')
 
 module.exports = {
   exportPathMap: () => ({
-    "/": {page: "/"}
+    '/': {page: '/'}
   }),
-  webpack: function (config, { dev }) {
+  webpack: function (config, {dev}) {
     config.profile = true
     config.plugins.push(
       new StatsPlugin('stats.json', {
@@ -27,8 +27,9 @@ module.exports = {
     }
 
     config.resolve.alias = {
-      'react': 'preact-compat/dist/preact-compat',
-      'react-dom': 'preact-compat/dist/preact-compat'
+      // react: 'preact-compat/dist/preact-compat',
+      // 'react-dom': 'preact-compat/dist/preact-compat',
+      // 'react-emotion': 'preact-emotion'
     }
 
     return config

@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import styled from 'emotion/react'
+import styled from 'react-emotion'
 
 import App from '../components/App'
 import {font} from '../core/style'

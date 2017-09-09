@@ -10,7 +10,7 @@
     "next-routes": "^1.0.40",
     "polished": "^1.7.0",
     "preact": "^8.2.4",
-    "preact-compat": "^3.17.0",
+    "preact-compat": "^3.17.0", "preact-emotion": "^7.2.2",
     "react-ink": "^6.2.0",
     "react-redux": "^5.0.6",
     "recompose": "^0.25.0",
