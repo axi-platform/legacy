@@ -165,7 +165,7 @@ const Why = () => (
         solutions based on our real world experiences and in-house projects.
       </p>
     </Reason>
-    <Reason more='Try it Out for Free' img='/static/isomac.svg' right>
+    <Reason more='Try it Out for Free' img='/static/isomac.svg'>
       <h2>
         Decentralized Control,
         <br />
@@ -177,7 +177,7 @@ const Why = () => (
         can freely choose and switch between providers with no lock-ins.
       </p>
     </Reason>
-    <Reason more='Learn More' ic={isomono}>
+    <Reason more='Learn More' ic={isomono} right>
       <h2>
         Open, Modular and Scalable
       </h2>
