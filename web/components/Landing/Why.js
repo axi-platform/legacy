@@ -3,11 +3,26 @@ import styled from 'react-emotion'
 import {css} from 'emotion'
 
 import {
-  Row, Col, Break, BreakMedium, DecoImage,
+  Break, BreakMedium, DecoImage,
   More, MoreText, landingColor
 } from './Layout'
 
 import {mediumScreen, smallScreen, extraSmallScreen} from '../../core/style'
+
+const Row = styled.div`
+  display: flex;
+`
+
+const Col = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @media screen and (min-width: ${smallScreen}px) {
+    flex: ${props => props.flex || 1};
+    order: ${props => props.right ? 1 : 0};
+  }
+`
 
 const WhySection = styled.section`
   > ${Row} {
@@ -31,11 +46,19 @@ export const Trig = styled.div`
   `}
 `
 
-export const ReasonRoot = styled.div`
-  padding: 5em 6em;
+export const ReasonBox = styled.div`
+  padding: 2em 6em;
+  position: relative;
+
+  > a {
+    @media screen and (max-width: ${smallScreen}px) {
+      justify-content: center;
+    }
+  }
 
   > h2 {
     font-size: 1.8em;
+    font-weight: 300;
     color: ${landingColor};
   }
 
@@ -44,7 +67,6 @@ export const ReasonRoot = styled.div`
     line-height: 1.6em;
   }
 
-  position: relative;
 
   ${props => props.right && css`
     background: ${landingColor};
@@ -57,33 +79,29 @@ export const ReasonRoot = styled.div`
     > svg {
       fill: white;
     }
-
-    @media screen and (min-width: ${smallScreen}) {
-      order: 1;
-    }
   `}
 
-  @media screen and (max-width: ${mediumScreen}) {
+  @media screen and (max-width: ${mediumScreen}px) {
     padding: 2em 3em;
   }
 
-  @media screen and (max-width: ${smallScreen}) {
-    text-align: center !important;
+  @media screen and (max-width: ${smallScreen}px) {
+    text-align: center;
   }
 
-  @media screen and (max-width: ${extraSmallScreen}) {
+  @media screen and (max-width: ${extraSmallScreen}px) {
     padding: 1em 2em;
   }
 `
 
-const Reason = ({more, img, link, children}) => (
+const Reason = ({right, more, img, link, children}) => (
   <Row>
-    <Col>
+    <Col right={right}>
       <Trig />
-      <ReasonRoot right>
+      <ReasonBox right={right}>
         {children}
         <More text={more} link={link} />
-      </ReasonRoot>
+      </ReasonBox>
     </Col>
     <Col>
       <DecoImage src={img} alt='' ic />
@@ -97,7 +115,7 @@ const Why = () => (
     <Reason
       more='Learn about the Physical Web'
       link='https://google.github.io/physical-web/'
-      img='/images/isocity.svg'
+      img='/static/isocity.svg'
     >
       <h2>
         Walk Up and Use Anything&nbsp;
@@ -111,7 +129,7 @@ const Why = () => (
         tap away. Axi gives you the foundation to deliver the best experience.
       </p>
     </Reason>
-    <Reason more='View The Technologies' img='/images/isodata.svg'>
+    <Reason more='View The Technologies' img='/static/isodata.svg' right>
       <h2>Stay Ahead of the Curve</h2>
       <p>
         Axi implements various cutting edge technologies to fill in the gaps and
@@ -119,7 +137,7 @@ const Why = () => (
         composing microservices, and system monitoring.
       </p>
     </Reason>
-    <Reason more='Try Some Examples' img='/images/gamechars.svg'>
+    <Reason more='Try Some Examples' img='/static/gamechars.svg'>
       <h2>
         Build Practical Solutions, not toys
       </h2>
@@ -129,7 +147,7 @@ const Why = () => (
         solutions based on our real world experiences and in-house projects.
       </p>
     </Reason>
-    <Reason more='Try it Out for Free' img='/images/isomac.svg' r>
+    <Reason more='Try it Out for Free' img='/static/isomac.svg' right>
       <h2>
         Decentralized Control,
         <br />
@@ -141,7 +159,7 @@ const Why = () => (
         can freely choose and switch between providers with no lock-ins.
       </p>
     </Reason>
-    <Reason more='Learn More' img='/images/isocitymono.svg'>
+    <Reason more='Learn More' img='/static/isocitymono.svg'>
       <h2>
         Open, Modular and Scalable
       </h2>

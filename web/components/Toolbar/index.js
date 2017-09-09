@@ -3,6 +3,8 @@ import styled from 'react-emotion'
 
 import {font} from '../../core/style'
 
+const primary = '#6b4bab'
+
 // box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
 export const Nav = styled.nav`
   display: flex;
@@ -13,7 +15,7 @@ export const Nav = styled.nav`
   color: white;
   font-family: ${font};
   font-weight: 300;
-  background: ${props => props.color || 'rgb(61, 63, 77)'};
+  background: ${props => props.color || primary};
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.20);
   transition: 0.4s cubic-bezier(0.22, 0.61, 0.36, 1) all;
 `

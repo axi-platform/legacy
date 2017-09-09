@@ -51,8 +51,8 @@ const Svg = styled(props => <svg {...props} />)`
   opacity: ${props => props.opacity || 1};
 `
 
-const Icon = ({i}) => icons[i] ? (
-  <Svg viewBox={icons[i].vb || '0 0 24 24'}>
+const Icon = ({i, ...props}) => icons[i] ? (
+  <Svg viewBox={icons[i].vb || '0 0 24 24'} {...props}>
     <path d={icons[i].i} />
   </Svg>
 ) : <div />

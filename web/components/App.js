@@ -1,4 +1,6 @@
 import React from 'react'
+import Router from 'next/router'
+import Progress from 'nprogress'
 import {Provider} from 'react-redux'
 import {hydrate, injectGlobal} from 'emotion'
 import {ThemeProvider} from 'theming'
@@ -11,6 +13,10 @@ const theme = {}
 
 if (typeof window !== 'undefined') {
   hydrate(window.__NEXT_DATA__.ids)
+
+  Router.onRouteChangeStart = () => Progress.start()
+  Router.onRouteChangeComplete = () => Progress.done()
+  Router.onRouteChangeError = () => Progress.done()
 }
 
 const enhance = lifecycle({

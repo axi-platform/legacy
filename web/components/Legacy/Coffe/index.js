@@ -18,7 +18,7 @@ const Coffe = () => (
       <Icon i="cart" />
     </nav>
     <main className={s.main}>
-      <img src="/images/coffee1.svg" role="presentation" />
+      <img src="/static/coffee1.svg" role="presentation" />
       <h2>Cappucino</h2>
       <h3>
         Dark, rich espresso lies in wait under a smoothed and
@@ -31,19 +31,19 @@ const Coffe = () => (
       <Grid className={s.details} r>
         <Grid xs={4}>
           <div className={s.detail}>
-            <img src="/images/coffee5.svg" role="presentation" />
+            <img src="/static/coffee5.svg" role="presentation" />
             <p>Dark</p>
           </div>
         </Grid>
         <Grid xs={4}>
           <div className={s.detail}>
-            <img src="/images/coffee2.svg" role="presentation" />
+            <img src="/static/coffee2.svg" role="presentation" />
             <p>2 Sugars</p>
           </div>
         </Grid>
         <Grid xs={4}>
           <div className={s.detail}>
-            <img src="/images/coffee3.svg" role="presentation" />
+            <img src="/static/coffee3.svg" role="presentation" />
             <p>Grande</p>
           </div>
         </Grid>
@@ -53,7 +53,7 @@ const Coffe = () => (
         <span>Chaodoi Coffee, Suvinthawong Rd.</span>
       </div>
       <div className={s.more}>
-        <img src="/images/coffee4.svg" role="presentation" />
+        <img src="/static/coffee4.svg" role="presentation" />
         <span>Add a Muffin only for 100 THB extra</span>
       </div>
       <div className={s.order}>

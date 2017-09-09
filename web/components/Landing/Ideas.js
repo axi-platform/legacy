@@ -44,10 +44,10 @@ const Ideas = () => (
   <IdeaSection>
     <h2>Project Showcase</h2>
     <Row>
-      <Idea t='PrintAt' img='/images/pw_logo.svg' to='/printat' />
-      <Idea t='Co-working Space' img='/images/pw_logo.svg' to='/space' />
-      <Idea t='Smart City' img='/images/pw_logo.svg' to='/demo' />
-      <Idea t='Coffe Instante' img='/images/coffee1.svg' to='/coffe' />
+      <Idea t='PrintAt' img='/static/pw_logo.svg' to='/printat' />
+      <Idea t='Co-working Space' img='/static/pw_logo.svg' to='/space' />
+      <Idea t='Smart City' img='/static/pw_logo.svg' to='/demo' />
+      <Idea t='Coffe Instante' img='/static/coffee1.svg' to='/coffe' />
     </Row>
   </IdeaSection>
 )

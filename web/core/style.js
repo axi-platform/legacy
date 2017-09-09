@@ -1,4 +1,4 @@
-export const font = 'Helvetica Neue, Roboto, sans-serif'
+export const font = 'Roboto, Helvetica Neue, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, sans-serif'
 
 export const largeScreen = 1200 // Large screen / wide desktop
 export const mediumScreen = 992 // Medium screen / desktop

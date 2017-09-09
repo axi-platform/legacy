@@ -1,5 +1,6 @@
 import React from 'react'
 
+import App from '../components/App'
 import {Page, Nav, Fold, Why, Ideas, Join} from '../components/Landing/index'
 
 const Landing = () => (
@@ -14,4 +15,4 @@ const Landing = () => (
   </Page>
 )
 
-export default Landing
+export default App(Landing)

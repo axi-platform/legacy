@@ -14,7 +14,10 @@ export default class MyDocument extends Document {
     const page = renderPage()
     const styles = extractCritical(page.html)
 
-    return {...page, ...styles}
+    return {
+      ...page,
+      ...styles
+    }
   }
 
   constructor(props) {
@@ -30,8 +33,10 @@ export default class MyDocument extends Document {
     <html lang='en'>
       <Head>
         <title>Axi Dashboard</title>
-        <style dangerouslySetInnerHTML={{__html: this.props.css}} />
         <meta name='viewport' content='width=device-width' />
+        <style dangerouslySetInnerHTML={{__html: this.props.css}} />
+        <link rel='stylesheet' type='text/css' href='/static/nprogress.css' />
+        <link href='https://fonts.googleapis.com/css?family=Roboto:300,400' rel='stylesheet' />
       </Head>
       <body>
         <Main />
