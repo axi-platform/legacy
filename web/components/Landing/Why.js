@@ -30,6 +30,14 @@ const Col = styled.div`
 `
 
 const WhySection = styled.section`
+  @media screen and (min-width: 1000px) {
+    transform: translateY(-140px);
+  }
+
+  @media screen and (min-width: 600px) {
+    transform: translateY(-120px);
+  }
+
   > ${Row} {
     margin-top: 1em;
   }
@@ -97,7 +105,7 @@ export const ReasonBox = styled.div`
   }
 
   @media screen and (max-width: ${extraSmallScreen}px) {
-    padding: 2em 2em;  
+    padding: 2em 2em;
   }
 `
 
@@ -118,17 +126,15 @@ const Reason = ({right, more, ic, img = ic.img, link, children}) => (
 
 // NOTE: Instantaneously Interact with Google's Physical Web
 
-const phyweb = {img: '/static/isocity.svg', width: 60, sWidth: 40, sTop: 1}
+const phyweb = {img: '/static/isocity.svg', width: 50, sWidth: 40, sTop: 1}
 const isodata = {img: '/static/isodata.svg', width: 35, sWidth: 32}
 const isomono = {img: '/static/isocitymono.svg', width: 60, sWidth: 45, top: 4, sTop: 0}
 
+const phywebLink = 'https://google.github.io/physical-web/'
+
 const Why = () => (
   <WhySection>
-    <Reason
-      more='Learn about the Physical Web'
-      link='https://google.github.io/physical-web/'
-      ic={phyweb}
-    >
+    <Reason more='Learn about the Physical Web' link={phywebLink} ic={phyweb} right>
       <h2>
         Walk Up and Use Anything&nbsp;
         <Break />
@@ -141,7 +147,7 @@ const Why = () => (
         tap away. Axi gives you the foundation to deliver the best experience.
       </p>
     </Reason>
-    <Reason more='View The Technologies' ic={isodata} right>
+    <Reason more='View The Technologies' ic={isodata}>
       <h2>Stay Ahead of the Curve</h2>
       <p>
         Axi implements various cutting edge technologies to fill in the gaps and
@@ -149,7 +155,7 @@ const Why = () => (
         composing microservices, and system monitoring.
       </p>
     </Reason>
-    <Reason more='Try Some Examples' img='/static/gamechars.svg'>
+    <Reason more='Try Some Examples' img='/static/gamechars.svg' right>
       <h2>
         Build Practical Solutions, not toys
       </h2>
