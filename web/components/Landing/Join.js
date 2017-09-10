@@ -1,8 +1,7 @@
 import React from 'react'
 import styled from 'react-emotion'
-import {lighten} from 'polished'
+import Link from 'next/link'
 
-import {landingColor} from './Layout'
 import {font} from '../../core/style'
 
 const JoinSection = styled.section`
@@ -13,7 +12,8 @@ const JoinSection = styled.section`
   padding-bottom: 3em;
 `
 
-const JoinButton = styled.button`
+const JoinButton = styled.a`
+  text-decoration: none;
   text-transform: uppercase;
   box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
   border: 0;
@@ -25,6 +25,8 @@ const JoinButton = styled.button`
   cursor: pointer;
   font-family: ${font};
   height: 3em;
+  line-height: 2em;
+  text-align: center;
   letter-spacing: 0.15em;
   margin-left: 1em;
   outline: none;
@@ -43,9 +45,11 @@ const JoinButton = styled.button`
 
 const Join = () => (
   <JoinSection>
-    <JoinButton>
-      Sign Up
-    </JoinButton>
+    <Link href='/dashboard' passHref>
+      <JoinButton>
+        Sign Up
+      </JoinButton>
+    </Link>
   </JoinSection>
 )
 

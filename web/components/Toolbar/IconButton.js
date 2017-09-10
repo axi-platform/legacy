@@ -14,6 +14,7 @@ const makeIconWrapper = tag => styled(tag)`
   border: none;
   outline: none;
   appearance: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 
   transition: 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) all;
   opacity: ${props => props.opacity || 0.85};

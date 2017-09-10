@@ -34,7 +34,7 @@ const WhySection = styled.section`
     transform: translateY(-140px);
   }
 
-  @media screen and (min-width: 999px) and (max-width: 767px) {
+  @media screen and (max-width: 999px) and (min-width: 767px) {
     transform: translateY(-110px)
   }
 

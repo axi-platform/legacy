@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import styled from 'react-emotion'
 
-import Toolbar, {IconLink, Title} from '../Toolbar'
+import Toolbar, {IconLink} from '../Toolbar'
 import Tabs from '../Tabs'
 
 import colorize from '../../core/color'
@@ -35,6 +35,34 @@ const Separator = styled.div`
   opacity: 0.75;
 `
 
+export const Title = styled.div`
+  display: flex;
+  align-items: center;
+
+  padding-left: 0.6em;
+  font-size: 1.15em;
+
+  @media screen and (max-width: 700px) {
+    font-size: 1em;
+    padding-left: 0;
+    overflow: hidden;
+  }
+`
+
+const Desktop = styled.div`
+  @media screen and (max-width: 700px) {
+    display: none;
+  }
+`
+
+const MobileTab = styled.div`
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.16);
+
+  @media screen and (min-width: 700px) {
+    display: none;
+  }
+`
+
 const tabs = [
   'Overview',
   'Services',
@@ -42,24 +70,31 @@ const tabs = [
 ]
 
 const ProjectToolbar = ({name, color, tab, tabTo}) => (
-  <Toolbar
-    color={color || colorize(name)}
-    left={
-      <Left>
-        <IconLink href='/dashboard' icon='dashboard' />
-        <Separator />
-        <Title>{name}</Title>
-      </Left>
-    }
-    right={
-      <Right>
-        <Tabs tabs={tabs} tab={tab} go={tabTo} />
-        <Separator />
-        <IconLink href='/dashboard' icon='notifications' />
-        <IconLink href='/dashboard' icon='settings' />
-      </Right>
-    }
-  />
+  <div>
+    <Toolbar
+      color={color || colorize(name)}
+      left={
+        <Left>
+          <IconLink href='/dashboard' icon='dashboard' />
+          <Separator />
+          <Title min={6}>{name}</Title>
+        </Left>
+      }
+      right={
+        <Right>
+          <Desktop>
+            <Tabs tabs={tabs} tab={tab} go={tabTo} />
+          </Desktop>
+          <Separator />
+          <IconLink href='/dashboard' icon='notifications' />
+          <IconLink href='/dashboard' icon='settings' />
+        </Right>
+      }
+    />
+    <MobileTab>
+      <Tabs tabs={tabs} tab={tab} go={tabTo} color='hsl(264, 46%, 41%)' />
+    </MobileTab>
+  </div>
 )
 
 function selectColor(svc, name) {

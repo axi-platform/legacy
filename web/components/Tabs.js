@@ -20,7 +20,7 @@ const Tab = styled.div`
   position: relative;
 
   width: 100%;
-  padding: 0.75em 1.5em;
+  padding: 0.76em 1.5em;
   background: transparent;
 
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
@@ -29,10 +29,6 @@ const Tab = styled.div`
   font-family: ${font};
   font-weight: 300;
   font-size: 1.1em;
-
-  @media screen and (max-width: 660px) {
-    display: none;
-  }
 `
 
 const TabIndicator = styled.div`
