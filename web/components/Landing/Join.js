@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'react-emotion'
 import Link from 'next/link'
+import Ink from 'react-ink'
 
 import {font} from '../../core/style'
 
@@ -13,28 +14,27 @@ const JoinSection = styled.section`
 `
 
 const JoinButton = styled.a`
-  text-decoration: none;
-  text-transform: uppercase;
+  font-family: ${font};
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  height: 3em;
   box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
-  border: 0;
   align-self: center;
   border-radius: 3px;
   background: linear-gradient(45deg, hsl(283, 46%, 41%), hsl(241, 100%, 82%));
   appearance: none;
-  color: #efefef;
-  cursor: pointer;
-  font-family: ${font};
-  height: 3em;
-  line-height: 2em;
-  text-align: center;
-  letter-spacing: 0.15em;
+  border: 0;
   margin-left: 1em;
+  cursor: pointer;
+  color: #efefef;
+  font-size: 1.3em;
+  letter-spacing: 0.15em;
+  line-height: 2em;
   outline: none;
-
   padding: 0.5em 1.4em;
   position: relative;
-  font-size: 1.3em;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
 
   &:hover {
     background: linear-gradient(45deg, #3a3897, #a3a1ff);
@@ -48,6 +48,7 @@ const Join = () => (
     <Link href='/dashboard' passHref>
       <JoinButton>
         Sign Up
+        <Ink />
       </JoinButton>
     </Link>
   </JoinSection>

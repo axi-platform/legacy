@@ -41,6 +41,7 @@ export const MoreText = styled.span`
 export const DecoImage = styled.img`
   align-self: center;
   width: ${props => props.width || 50}%;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.30));
 
   @media screen and (max-width: ${smallScreen}px) {
     width: ${props => props.sWidth || props.width || 50}%;

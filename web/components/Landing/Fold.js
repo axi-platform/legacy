@@ -102,16 +102,28 @@ export const HeroImg = styled.img`
   position: absolute;
   bottom: 2px;
   left: 80%;
-  pointer-events: none;
+  pointer-events: visiblefill;
   transform: translate(-50%, -15%) rotate(-42deg);
   transform-origin: 0px;
   width: 24%;
+  filter: drop-shadow(0 1px 4px rgba(0, 0, 0, 0.18));
+  transition: 1s cubic-bezier(0.22, 0.61, 0.36, 1) all;
   mix-blend-mode: luminosity;
+  cursor: pointer;
+
+  &:hover {
+    mix-blend-mode: initial;
+    transform: translate(-50%, -15%) rotate(-42deg) scale(1.05);
+  }
 
   @media screen and (max-width: 600px) {
     transform: translate(-62%, 10%) rotate(-42deg);
     transform-origin: 0px;
     width: 36%;
+
+    &:hover {
+      transform: translate(-62%, 10%) rotate(-42deg) scale(1.05);
+    }
   }
 `
 
@@ -156,7 +168,7 @@ const particle = {
 }
 
 // https://fi.google.com/about/static/static/home/hero.svg
-const heroImage = '/static/gamechars.svg'
+const heroImage = '/static/hero.svg'
 
 // TODO: Developers, Entrepreneurs and Makers
 const Fold = () => (
