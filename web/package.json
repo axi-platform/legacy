@@ -13,6 +13,7 @@
     "preact": "^8.2.4",
     "preact-compat": "^3.17.0",
     "preact-emotion": "^7.2.2",
+    "react-apollo": "^1.4.15",
     "react-ink": "^6.2.0",
     "react-particles-js": "^1.5.0",
     "react-redux": "^5.0.6",
